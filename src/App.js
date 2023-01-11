@@ -8,8 +8,8 @@ import './App.css';
 function App() {
   return (
     <div>
-      {/* <Navbar />
-      <PropertyCard /> */}
+      <Navbar />
+      {/* <PropertyCard /> */}
       {/* <SearchPage /> */}
       {/* <PropertyDetailPage/> */}
 
