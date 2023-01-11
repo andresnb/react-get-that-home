@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import PropertyCard from '../PropertyCard';
 
 const Wrapper = styled.div`
   display: flex;
@@ -12,7 +13,7 @@ function Navbar(){
   return (
     <Wrapper>
       <h1>HOLA SOY EL NAVBAR</h1>
-
+      {/* <PropertyCard/> */}
     </Wrapper>
   )
 }

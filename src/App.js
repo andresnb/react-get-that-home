@@ -1,5 +1,5 @@
 import Navbar from './components/Navbar';
-import SearchPage from './pages/search-page'
+import LandingPage from './pages/landing-page';
 import PropertyCard from './components/PropertyCard';
 import PropertyDetailPage from './pages/property-detail-page';
 import TeamMembers from './components/TeamMembers';
@@ -10,7 +10,7 @@ function App() {
     <div>
       <Navbar />
       {/* <PropertyCard /> */}
-      {/* <SearchPage /> */}
+      <LandingPage />
       {/* <PropertyDetailPage/> */}
 
     </div>
