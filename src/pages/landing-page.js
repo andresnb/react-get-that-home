@@ -1,7 +1,11 @@
 import styled from 'styled-components';
-import TeamMembers from '../components/TeamMembers';
+import TeamMemberCard from '../components/TeamMemberCard/teamMemberCard';
 import PropertyCard from '../components/PropertyCard/propertyCard';
-import sampleProperty from "../assets/images/rental-image-example.png"
+import sampleProperty from "../assets/images/rental-image-example.png";
+import christoffpic from "../assets/images/christoff-echevarria-profile.png";
+import andrespic from "../assets/images/andres-naula-profile.png";
+import anthonypic from "../assets/images/anthony-caceres-profile.png";
+import marthapic from "../assets/images/martha-huaman-profile.png";
 // import { ReactComponent as LandingBackground } from "../assets/svg/landing-background.svg";
 
 const Wrapper = styled.div`
@@ -38,6 +42,15 @@ const SignupSection = styled.div`
   padding-top: 64px;
   padding-bottom: 64px;
   background-color: rgba(244, 143, 177, 0.15);
+`;
+
+const TeamMembersSection = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 64px;
+  padding-bottom: 64px;
 `;
 
 const StyledForm = styled("form")`
@@ -106,6 +119,15 @@ const PropertiesContainer = styled.div`
   display: grid;
   gap: 48px;
   grid-template-columns: repeat(3, 300px);
+  justify-content:center;
+  align-items: center;
+`;
+
+const TeamMembersContainer = styled.div`
+  width: fit-content;
+  display: grid;
+  gap: 62px;
+  grid-template-columns: repeat(4, 240px);
   justify-content:center;
   align-items: center;
 `;
@@ -223,7 +245,27 @@ function LandingPage() {
             lineHeight: "24px", letterSpacing: "1.25px", color: "#FFFFFF"}}>CREATE AN ACCOUNT NOW</p>
         </SignupButton>
       </SignupSection>
-      {/* <TeamMembers/> */}
+
+      <TeamMembersSection>
+        <p style={{ fontSize: "48px", fontFamily: "Montserrat", fontSize: "48px",
+          fontWeight: "400", lineHeight: "58.51px", color: "#BF5F82",
+          textAlign: "center", marginBottom: "26px"
+        }}> Meet the team </p>
+        <TeamMembersContainer>
+          <TeamMemberCard name="Andres Naula" githubUrl="https://github.com/andresnb"
+          linkedinUrl="https://www.linkedin.com/in/andresnaula/"
+          image={andrespic}/>
+          <TeamMemberCard name="Anthony Caceres" githubUrl="https://github.com/AnthonyKcrs"
+          linkedinUrl="https://www.linkedin.com/in/anthony-c%C3%A1ceres-mart%C3%ADnez-b38280140/"
+          image={anthonypic}/>
+          <TeamMemberCard name="Christoff Echevarria" githubUrl="https://github.com/andresnb"
+          linkedinUrl="https://www.linkedin.com/in/andresnaula/"
+          image={christoffpic}/>
+          <TeamMemberCard name="Martha Huaman" githubUrl="https://github.com/ssmartha"
+          linkedinUrl="https://www.linkedin.com/in/ssmartha/"
+          image={marthapic}/>
+        </TeamMembersContainer>
+      </TeamMembersSection>
     </Wrapper>
   )
 }
