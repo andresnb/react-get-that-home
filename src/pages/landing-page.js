@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 import TeamMembers from '../components/TeamMembers';
+import PropertyCard from '../components/PropertyCard/propertyCard';
+import sampleProperty from "../assets/images/rental-image-example.png"
 // import { ReactComponent as LandingBackground } from "../assets/svg/landing-background.svg";
 
 const Wrapper = styled.div`
@@ -15,6 +17,15 @@ const SearchSection = styled.div`
   justify-content: center;
   align-items: center;
   gap: 66px;
+`;
+
+const SamplePropertiesSection = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 66.07px;
+  margin-bottom: 66.07px;
 `;
 
 const StyledForm = styled("form")`
@@ -67,6 +78,15 @@ const ButtonText = styled.p`
   line-height: 24px;
   letter-spacing: 1.25px;
   color: #FFFFFF;
+`;
+
+const PropertiesContainer = styled.div`
+  width: fit-content;
+  display: grid;
+  gap: 48px;
+  grid-template-columns: repeat(3, 300px);
+  justify-content:center;
+  align-items: center;
 `;
 
 function LandingPage() {
@@ -159,6 +179,19 @@ function LandingPage() {
         </StyledForm>
       </SearchSection>
 
+      <SamplePropertiesSection>
+        <Wrapper>
+          <p style={{ fontFamily: "Montserrat", fontWeight: "500", fontSize: "14px",
+            lineHeight: "20px", letterSpacing: "0.1px", color: "#373737"}}>Find an Apartment you Love</p>
+          <p style={{ fontFamily: "Montserrat", fontWeight: "400", fontSize: "36px",
+            lineHeight: "48px", color: "#BF5F82", marginTop: "16.07px", marginBottom: "32px"}}>Homes for rent at the best prices</p>
+        </Wrapper>
+        <PropertiesContainer>
+          <PropertyCard image={sampleProperty} />
+          <PropertyCard image={sampleProperty} />
+          <PropertyCard image={sampleProperty} />
+        </PropertiesContainer>
+      </SamplePropertiesSection>
 
       {/* <TeamMembers/> */}
     </Wrapper>
