@@ -6,6 +6,7 @@ import christoffpic from "../assets/images/christoff-echevarria-profile.png";
 import andrespic from "../assets/images/andres-naula-profile.png";
 import anthonypic from "../assets/images/anthony-caceres-profile.png";
 import marthapic from "../assets/images/martha-huaman-profile.png";
+import {DiRuby, DiReact} from "react-icons/di";
 // import { ReactComponent as LandingBackground } from "../assets/svg/landing-background.svg";
 
 const Wrapper = styled.div`
@@ -42,6 +43,28 @@ const SignupSection = styled.div`
   padding-top: 64px;
   padding-bottom: 64px;
   background-color: rgba(244, 143, 177, 0.15);
+`;
+
+const LandingFooter = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 1440px;
+  padding-top: 16px;
+  padding-bottom: 16px;
+  background-color: #F5F5F6;
+`;
+
+const LandingDetailsContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: top;
+  align-items: top;
+  width: 1000px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  background-color: #F5F5F6;
+  justify-content: space-between
 `;
 
 const TeamMembersSection = styled.div`
@@ -266,6 +289,26 @@ function LandingPage() {
           image={marthapic}/>
         </TeamMembersContainer>
       </TeamMembersSection>
+
+      <LandingFooter>
+        <LandingDetailsContainer>
+          <p>© 2023 - Find That Home</p>
+          <div style={{display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", gap: "2px"}}>
+            <p>Source Code</p>
+            <div style={{display: "flex", flexDirection: "row", justifyContent: "center", alignItems: "center", gap: "5px"}}>
+              <div style={{display: "flex", flexDirection: "row", justifyContent: "center", alignItems: "center", gap: "3.67px"}}>
+                <DiRuby style={{width: "20px", height: "19px", color: "#616161"}}/>
+                <p>Ruby on Rails REST API</p>
+              </div>
+              <div style={{display: "flex", flexDirection: "row", justifyContent: "center", alignItems: "center", gap: "3.67px"}}>
+                <DiReact style={{width: "20px", height: "19px", color: "#616161"}}/>
+                <p>React Responsive SPA</p>
+              </div>
+            </div>
+          </div>
+          <p>Codeable - Cohort 8 Final Project</p>
+        </LandingDetailsContainer>
+      </LandingFooter>
     </Wrapper>
   )
 }
