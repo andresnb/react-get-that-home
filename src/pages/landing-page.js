@@ -101,7 +101,7 @@ const ButtonBox = styled.div`
   padding: 10px 16px 10px 8px;
 `;
 
-const StyledButton = styled("button")`
+const SearchButton = styled("button")`
   width: 96px;
   height: 40px;
   border: none;
@@ -237,9 +237,9 @@ function LandingPage() {
           </SelectBox>
 
           <ButtonBox>
-            <StyledButton type="submit">
+            <SearchButton type="submit">
               <ButtonText> Search </ButtonText>
-            </StyledButton>
+            </SearchButton>
           </ButtonBox>
         </StyledForm>
       </SearchSection>
