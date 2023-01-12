@@ -28,6 +28,18 @@ const SamplePropertiesSection = styled.div`
   margin-bottom: 66.07px;
 `;
 
+const SignupSection = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 312px;
+  width: 1440px;
+  padding-top: 64px;
+  padding-bottom: 64px;
+  background-color: rgba(244, 143, 177, 0.15);
+`;
+
 const StyledForm = styled("form")`
   display: flex;
   flex-direction: row;
@@ -56,6 +68,15 @@ const ButtonBox = styled.div`
 const StyledButton = styled("button")`
   width: 96px;
   height: 40px;
+  border: none;
+  background: #F48FB1;
+  border-radius: 16px;
+  padding: 0px;
+`;
+
+const SignupButton = styled("button")`
+  width: 264px;
+  height: 56px;
   border: none;
   background: #F48FB1;
   border-radius: 16px;
@@ -93,7 +114,6 @@ function LandingPage() {
 
   return (
     <Wrapper>
-      <div>AQUI VA EL Landing PAGE</div>
       {/* <LandingBackground/> */}
       <SearchSection>
         <Wrapper>
@@ -193,6 +213,16 @@ function LandingPage() {
         </PropertiesContainer>
       </SamplePropertiesSection>
 
+      <SignupSection>
+        <p style={{ fontFamily: "Montserrat", fontWeight: "400", fontSize: "36px",
+          lineHeight: "48px", letterSpacing: "0.25px", color: "#373737",
+          marginBottom: "32px", width: "823px", textAlign: "center"
+        }}>Getting someone to rent your apartment has never been this easy</p>
+        <SignupButton>
+          <p style={{ fontFamily: "Inter", fontWeight: "500", fontSize: "14px",
+            lineHeight: "24px", letterSpacing: "1.25px", color: "#FFFFFF"}}>CREATE AN ACCOUNT NOW</p>
+        </SignupButton>
+      </SignupSection>
       {/* <TeamMembers/> */}
     </Wrapper>
   )
