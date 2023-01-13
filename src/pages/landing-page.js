@@ -7,7 +7,8 @@ import andrespic from "../assets/images/andres-naula-profile.png";
 import anthonypic from "../assets/images/anthony-caceres-profile.png";
 import marthapic from "../assets/images/martha-huaman-profile.png";
 import {DiRuby, DiReact} from "react-icons/di";
-import { Link } from "react-router-dom";
+import {useNavigate} from 'react-router-dom';
+
 
 // import { ReactComponent as LandingBackground } from "../assets/svg/landing-background.svg";
 
@@ -158,12 +159,14 @@ const TeamMembersContainer = styled.div`
 `;
 
 function LandingPage() {
-
+  const navigate = useNavigate();
+  
   function handleSubmit(event) {
+    
     event.preventDefault();
 
-    const { query } = event.target.elements;
-    // onFormSubmit(query.value);
+
+    navigate(`/properties?property_type${event.target.elements[0].value}=&operation_type=${event.target.elements[1].value}&district=${event.target.elements[2].value}`);
   }
 
   return (
