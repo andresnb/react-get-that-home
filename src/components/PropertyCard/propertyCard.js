@@ -1,5 +1,5 @@
-import FooterCard from "./footerCard"
-import { AiOutlineLeft, AiOutlineRight } from "react-icons/ai";
+// import FooterCard from "./footerCard"
+// import { AiOutlineLeft, AiOutlineRight } from "react-icons/ai";
 import { RiMoneyDollarCircleLine } from "react-icons/ri";
 import { BiBed, BiBath, BiArea } from "react-icons/bi";
 import { MdOutlinePets } from "react-icons/md";
@@ -33,7 +33,7 @@ function PropertyCard({image}){
     <PropertyWrapper>
         <img
         src={image}
-        alt="property picture"
+        alt="Property"
         style={{ height: "200px", width: "300px", borderTopLeftRadius:"8px", borderTopRightRadius: "8px"}}
         />
         <DetailsWrapper>

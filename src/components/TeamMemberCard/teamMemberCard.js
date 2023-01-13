@@ -2,12 +2,12 @@ import styled from 'styled-components';
 import { AiOutlineGithub } from "react-icons/ai";
 import { CiLinkedin } from "react-icons/ci";
 
-const Wrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-`;
+// const Wrapper = styled.div`
+//   display: flex;
+//   flex-direction: column;
+//   justify-content: center;
+//   align-items: center;
+// `;
 
 const CardWrapper = styled.div`
   display: flex;
@@ -39,11 +39,11 @@ function TeamMemberCard({ name, githubUrl, linkedinUrl, image }) {
     <CardWrapper>
       <img
       src={image}
-      alt="team member picture"
+      alt="Team member"
         style={{ height: "180px", width: "180px", borderRadius: "50%" }}
       />
       <DetailsWrapper>
-        <p style={{ fontSize: "12px", fontFamily: "Montserrat", fontSize: "24px",
+        <p style={{ fontSize: "12px", fontFamily: "Montserrat",
         fontWeight: "400", lineHeight: "29px"  }}> {name} </p>
         <MediaWrapper>
           <a href={githubUrl}> <AiOutlineGithub style={{width: "20px", height: "19.51px", color: "#616161"}}/> </a>

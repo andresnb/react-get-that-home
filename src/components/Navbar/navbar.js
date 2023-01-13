@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import PropertyCard from '../PropertyCard';
+// import PropertyCard from '../PropertyCard';
 import getThatHomeLogo from "../../assets/images/get-that-home-logo.png";
 import {AiOutlineUserAdd} from "react-icons/ai";
 import {FiSearch} from "react-icons/fi";

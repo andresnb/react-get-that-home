@@ -270,7 +270,7 @@ function LandingPage() {
       </SignupSection>
 
       <TeamMembersSection>
-        <p style={{ fontSize: "48px", fontFamily: "Montserrat", fontSize: "48px",
+        <p style={{ fontSize: "48px", fontFamily: "Montserrat",
           fontWeight: "400", lineHeight: "58.51px", color: "#BF5F82",
           textAlign: "center", marginBottom: "26px"
         }}> Meet the team </p>
