@@ -37,7 +37,7 @@ function PropertyDetailPage() {
             <AiOutlineLeft/>
             <img
               src={require("../../src/assets/images/property-image-example.png")}
-              alt="team member picture"
+              alt="Team Member"
                 style={{ height: "384px", width: "512px"}}
               />
             <AiOutlineRight/>
@@ -100,7 +100,7 @@ function PropertyDetailPage() {
           {/* <iframe style={{ width: "100%", height: "760px"}} src="https://maps.google.com/maps?q=CAMPO%20DE%20MARTE&t=&z=15&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
           <iframe style={{ width: "100%", height: "760px"}} src="https://maps.google.com/maps?q=PARQUE%20DE%20LA%20AMISTAD&t=&z=15&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe> */}
           {/* Francisco de Paula Ugarriza 27, Miraflores, Lima */}
-          <iframe style={{ width: "100%", height: "760px"}} src="https://maps.google.com/maps?q=Francisco%20de%20Paula%20Ugarriza%2027,%20Miraflores,%20Lima&t=&z=15&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
+          <iframe title="map" style={{ width: "100%", height: "760px"}} src="https://maps.google.com/maps?q=Francisco%20de%20Paula%20Ugarriza%2027,%20Miraflores,%20Lima&t=&z=15&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
         </div>
       </DetailsCard>
     </Wrapper>

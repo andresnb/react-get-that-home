@@ -12,7 +12,7 @@ function App() {
       {/* <PropertyCard /> */}
       {/* <LandingPage /> */}
       {/* <PropertyDetailPage/> */}
-      <ListViewPage/>
+      {/* <ListViewPage/> */}
     </div>
   );
 }
