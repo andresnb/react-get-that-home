@@ -28,7 +28,9 @@ const DetailsWrapper = styled.div`
   margin: 8px 6px 0px 6px;
 `;
 
-function PropertyCard({image}){
+function PropertyCard({ image, id, name, operation_type, address, phone, price, property_type, bedrooms, bathrooms, area, pets, description }) {
+  console.log("DETAILS", description, price, property_type);
+
   return (
     <PropertyWrapper>
         <img
@@ -42,34 +44,34 @@ function PropertyCard({image}){
               <RiMoneyDollarCircleLine style={{width: "26.67px", height: "26.67px", color: "#373737"}}/>
 
               <p style={{ fontFamily: "Montserrat", fontWeight: "400",
-              fontSize: "24px", lineHeight: "32px", color: "#373737"}}> 3000</p>
+              fontSize: "24px", lineHeight: "32px", color: "#373737"}}> {price}</p>
             </div>
             <div style={{display: "flex", flexDirection: "row", justifyContent: "center", alignItems: "center", gap: "5px"}}>
               <RiBuildingLine style={{width: "22px", height: "18px", color: "#616161"}}/>
 
-              <p> Apartment</p>
+              <p> {property_type}</p>
             </div>
           </div>
           <div style={{paddingTop: "12px", paddingBottom: "16px"}}>
-            <p style={{ fontFamily: "Montserrat", letterSpacing: "0.15px", color: "#373737"}}>86872 Jacob Gateway, Durganport, WV 48044</p>
+            <p style={{ fontFamily: "Montserrat", letterSpacing: "0.15px", color: "#373737"}}>{address}</p>
           </div>
 
           <div style={{ display: "flex", flexDirection: "row", justifyContent: "space-between", alignItems: "center", marginBottom: "8px"}}>
             <div style={{display: "flex", flexDirection: "row", justifyContent: "center", alignItems: "center", gap: "3.67px"}}>
               <BiBed style={{width: "20px", height: "19px", color: "#616161"}}/>
-              <p> 4 </p>
+              <p> {bedrooms} </p>
             </div>
             <div style={{display: "flex", flexDirection: "row", justifyContent: "center", alignItems: "center", gap: "3.67px"}}>
               <BiBath style={{width: "20px", height: "19px", color: "#616161"}}/>
-              <p> 2 </p>
+              <p> {bathrooms} </p>
             </div>
             <div style={{display: "flex", flexDirection: "row", justifyContent: "center", alignItems: "center", gap: "6.67px"}}>
               <BiArea style={{width: "18px", height: "18px", color: "#616161"}}/>
-              <p> 180 m2 </p>
+              <p> {area} </p>
             </div>
 
-            <MdOutlinePets style={{width: "20px", height: "17.5px", color: "#616161"}}/>
-            <BsHeartFill style={{width: "20px", height: "17.5px", color: "#F48FB1", marginRight: "10px"}}/>
+            { pets? <MdOutlinePets style={{width: "20px", height: "17.5px", color: "#616161"}}/>: <MdOutlinePets style={{width: "20px", height: "17.5px", color: "#FFFFFF"}}/>}
+            {/* <BsHeartFill style={{width: "20px", height: "17.5px", color: "#F48FB1", marginRight: "10px"}}/> */}
           </div>
         </DetailsWrapper>
     </PropertyWrapper>
