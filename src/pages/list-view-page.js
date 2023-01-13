@@ -3,6 +3,7 @@ import PropertyCard from '../components/PropertyCard/propertyCard';
 import { FiSearch, FiChevronDown } from "react-icons/fi";
 import { AiOutlineMinus } from "react-icons/ai";
 import { RiMoneyDollarCircleFill } from "react-icons/ri";
+import sampleProperty from "../assets/images/rental-image-example.png";
 
 const Wrapper = styled.div`
   display: flex;
@@ -160,6 +161,16 @@ const ButtonFilterCheckbox = styled.input`
   color: #8E8E8E;
 `;
 
+
+const PropertiesContainer = styled.div`
+  width: fit-content;
+  display: grid;
+  gap: 48px;
+  grid-template-columns: repeat(3, 300px);
+  justify-content:center;
+  align-items: center;
+`;
+
 function ListViewPage() {
 
   return (
@@ -201,7 +212,7 @@ function ListViewPage() {
           </select>
         </FiltersSection>
 
-        <PriceFilter>
+        {/* <PriceFilter>
           <p style={{ fontFamily: "Inter", fontWeight: "400", fontSize: "10px",
               lineHeight: "12.1px", letterSpacing: "1.5px", color: "#616161", marginBottom: "4px"}}>PRICE RANGE</p>
 
@@ -244,9 +255,9 @@ function ListViewPage() {
               <p>PRICE</p>
             </PinkDoneButton>
           </div>
-        </PriceFilter>
+        </PriceFilter> */}
 
-        <PropertyFilter>
+        {/* <PropertyFilter>
           <p style={{ fontFamily: "Inter", fontWeight: "400", fontSize: "10px",
               lineHeight: "12.1px", letterSpacing: "1.5px", color: "#616161", marginBottom: "12px"}}>PROPERTY TYPE</p>
 
@@ -273,9 +284,9 @@ function ListViewPage() {
               <p>PRICE</p>
             </PinkDoneButton>
           </div>
-        </PropertyFilter>
+        </PropertyFilter> */}
 
-        <MoreFilter>
+        {/* <MoreFilter>
           <div style={{display: "flex", flexDirection: "row", justifyContent: "left", alignItems: "center", gap: "4px", marginBottom: "24px"}}>
             <ButtonFilterCheckbox
               type="checkbox"
@@ -325,9 +336,9 @@ function ListViewPage() {
               <p>PRICE</p>
             </PinkDoneButton>
           </div>
-        </MoreFilter>
+        </MoreFilter> */}
 
-        <BedAndBathFilter>
+        {/* <BedAndBathFilter>
           <p style={{ fontFamily: "Inter", fontWeight: "400", fontSize: "10px",
               lineHeight: "12.1px", letterSpacing: "1.5px", color: "#616161", marginBottom: "4px"}}>BEDS</p>
           <div style={{display: "flex", flexDirection: "row", justifyContent: "left", alignItems: "center", marginBottom: "12px"}}>
@@ -382,7 +393,21 @@ function ListViewPage() {
               <p>PRICE</p>
             </PinkDoneButton>
           </div>
-        </BedAndBathFilter>
+        </BedAndBathFilter> */}
+
+            <p style={{ fontFamily: "Montserrat", fontWeight: "500", fontSize: "20px",
+                lineHeight: "28px", color: "#616161", marginTop: "16px", marginBottom: "22px", textAlign: "left"}}>9 properties found</p>
+            <PropertiesContainer>
+              <PropertyCard image={sampleProperty} />
+              <PropertyCard image={sampleProperty} />
+              <PropertyCard image={sampleProperty} />
+              <PropertyCard image={sampleProperty} />
+              <PropertyCard image={sampleProperty} />
+              <PropertyCard image={sampleProperty} />
+              <PropertyCard image={sampleProperty} />
+              <PropertyCard image={sampleProperty} />
+              <PropertyCard image={sampleProperty} />
+            </PropertiesContainer>
       </PageContainer>
     </Wrapper>
   )

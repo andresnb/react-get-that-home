@@ -9,7 +9,7 @@ import { getProperties } from './services/property-service';
 function App() {
 
   const properties = getProperties();
-  
+
   console.log(properties)
 
 
@@ -19,7 +19,7 @@ function App() {
       {/* <PropertyCard /> */}
       {/* <LandingPage /> */}
       {/* <PropertyDetailPage/> */}
-      {/* <ListViewPage/> */}
+      <ListViewPage/>
     </div>
   );
 }
