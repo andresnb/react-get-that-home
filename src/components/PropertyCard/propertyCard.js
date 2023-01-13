@@ -6,6 +6,7 @@ import { MdOutlinePets } from "react-icons/md";
 import { RiBuildingLine } from "react-icons/ri";
 import { BsHeartFill } from "react-icons/bs";
 import styled from 'styled-components';
+import { Link } from "react-router-dom";
 
 const PropertyWrapper = styled.div`
   border-radius: 8px;
@@ -33,47 +34,51 @@ function PropertyCard({ image, id, name, operation_type, address, phone, price, 
 
   return (
     <PropertyWrapper>
-        <img
-        src={image}
-        alt="Property"
-        style={{ height: "200px", width: "300px", borderTopLeftRadius:"8px", borderTopRightRadius: "8px"}}
-        />
-        <DetailsWrapper>
-          <div style={{ display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
-            <div style={{display: "flex", flexDirection: "row", justifyContent: "center", alignItems: "center", gap: "10.66px"}}>
-              <RiMoneyDollarCircleLine style={{width: "26.67px", height: "26.67px", color: "#373737"}}/>
+        <Link
+          to={"/properties/" + id}
+        >
+            <img
+            src={image}
+            alt="Property"
+            style={{ height: "200px", width: "300px", borderTopLeftRadius:"8px", borderTopRightRadius: "8px"}}
+            />
+            <DetailsWrapper>
+              <div style={{ display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
+                <div style={{display: "flex", flexDirection: "row", justifyContent: "center", alignItems: "center", gap: "10.66px"}}>
+                  <RiMoneyDollarCircleLine style={{width: "26.67px", height: "26.67px", color: "#373737"}}/>
 
-              <p style={{ fontFamily: "Montserrat", fontWeight: "400",
-              fontSize: "24px", lineHeight: "32px", color: "#373737"}}> {price}</p>
-            </div>
-            <div style={{display: "flex", flexDirection: "row", justifyContent: "center", alignItems: "center", gap: "5px"}}>
-              <RiBuildingLine style={{width: "22px", height: "18px", color: "#616161"}}/>
+                  <p style={{ fontFamily: "Montserrat", fontWeight: "400",
+                  fontSize: "24px", lineHeight: "32px", color: "#373737"}}> {price}</p>
+                </div>
+                <div style={{display: "flex", flexDirection: "row", justifyContent: "center", alignItems: "center", gap: "5px"}}>
+                  <RiBuildingLine style={{width: "22px", height: "18px", color: "#616161"}}/>
 
-              <p> {property_type}</p>
-            </div>
-          </div>
-          <div style={{paddingTop: "12px", paddingBottom: "16px"}}>
-            <p style={{ fontFamily: "Montserrat", letterSpacing: "0.15px", color: "#373737"}}>{address}</p>
-          </div>
+                  <p> {property_type}</p>
+                </div>
+              </div>
+              <div style={{paddingTop: "12px", paddingBottom: "16px"}}>
+                <p style={{ fontFamily: "Montserrat", letterSpacing: "0.15px", color: "#373737"}}>{address}</p>
+              </div>
 
-          <div style={{ display: "flex", flexDirection: "row", justifyContent: "space-between", alignItems: "center", marginBottom: "8px"}}>
-            <div style={{display: "flex", flexDirection: "row", justifyContent: "center", alignItems: "center", gap: "3.67px"}}>
-              <BiBed style={{width: "20px", height: "19px", color: "#616161"}}/>
-              <p> {bedrooms} </p>
-            </div>
-            <div style={{display: "flex", flexDirection: "row", justifyContent: "center", alignItems: "center", gap: "3.67px"}}>
-              <BiBath style={{width: "20px", height: "19px", color: "#616161"}}/>
-              <p> {bathrooms} </p>
-            </div>
-            <div style={{display: "flex", flexDirection: "row", justifyContent: "center", alignItems: "center", gap: "6.67px"}}>
-              <BiArea style={{width: "18px", height: "18px", color: "#616161"}}/>
-              <p> {area} </p>
-            </div>
+              <div style={{ display: "flex", flexDirection: "row", justifyContent: "space-between", alignItems: "center", marginBottom: "8px"}}>
+                <div style={{display: "flex", flexDirection: "row", justifyContent: "center", alignItems: "center", gap: "3.67px"}}>
+                  <BiBed style={{width: "20px", height: "19px", color: "#616161"}}/>
+                  <p> {bedrooms} </p>
+                </div>
+                <div style={{display: "flex", flexDirection: "row", justifyContent: "center", alignItems: "center", gap: "3.67px"}}>
+                  <BiBath style={{width: "20px", height: "19px", color: "#616161"}}/>
+                  <p> {bathrooms} </p>
+                </div>
+                <div style={{display: "flex", flexDirection: "row", justifyContent: "center", alignItems: "center", gap: "6.67px"}}>
+                  <BiArea style={{width: "18px", height: "18px", color: "#616161"}}/>
+                  <p> {area} </p>
+                </div>
 
-            { pets? <MdOutlinePets style={{width: "20px", height: "17.5px", color: "#616161"}}/>: <MdOutlinePets style={{width: "20px", height: "17.5px", color: "#FFFFFF"}}/>}
-            {/* <BsHeartFill style={{width: "20px", height: "17.5px", color: "#F48FB1", marginRight: "10px"}}/> */}
-          </div>
-        </DetailsWrapper>
+                { pets? <MdOutlinePets style={{width: "20px", height: "17.5px", color: "#616161"}}/>: <MdOutlinePets style={{width: "20px", height: "17.5px", color: "#FFFFFF"}}/>}
+                {/* <BsHeartFill style={{width: "20px", height: "17.5px", color: "#F48FB1", marginRight: "10px"}}/> */}
+              </div>
+            </DetailsWrapper>
+        </Link>
     </PropertyWrapper>
   )
 }
