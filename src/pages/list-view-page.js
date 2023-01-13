@@ -4,6 +4,8 @@ import { FiSearch, FiChevronDown } from "react-icons/fi";
 import { AiOutlineMinus } from "react-icons/ai";
 import { RiMoneyDollarCircleFill } from "react-icons/ri";
 import sampleProperty from "../assets/images/rental-image-example.png";
+import { useEffect, useState } from "react";
+import { getProperties } from "../services/property-service";
 
 const Wrapper = styled.div`
   display: flex;
@@ -172,6 +174,19 @@ const PropertiesContainer = styled.div`
 `;
 
 function ListViewPage() {
+  const [properties, setProperties] = useState([]);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    getProperties()
+      .then((data) => {
+        console.log("properties 18333333333",data);
+        setProperties(data);
+      })
+      .catch((error) => {
+        setError("Access Denied");
+      });
+  }, []);
 
   return (
     <Wrapper>
@@ -396,17 +411,16 @@ function ListViewPage() {
         </BedAndBathFilter> */}
 
             <p style={{ fontFamily: "Montserrat", fontWeight: "500", fontSize: "20px",
-                lineHeight: "28px", color: "#616161", marginTop: "16px", marginBottom: "22px", textAlign: "left"}}>9 properties found</p>
+                lineHeight: "28px", color: "#616161", marginTop: "16px", marginBottom: "22px", textAlign: "left"}}>4 properties found</p>
             <PropertiesContainer>
-              <PropertyCard image={sampleProperty} />
-              <PropertyCard image={sampleProperty} />
-              <PropertyCard image={sampleProperty} />
-              <PropertyCard image={sampleProperty} />
-              <PropertyCard image={sampleProperty} />
-              <PropertyCard image={sampleProperty} />
-              <PropertyCard image={sampleProperty} />
-              <PropertyCard image={sampleProperty} />
-              <PropertyCard image={sampleProperty} />
+               {properties.map((property) => (
+                <PropertyCard
+                key={property.id}
+                image={sampleProperty}
+                // onPropertyClick={onPropertyClick}
+                {...property}
+                />
+                ))}
             </PropertiesContainer>
       </PageContainer>
     </Wrapper>

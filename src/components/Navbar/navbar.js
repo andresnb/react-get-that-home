@@ -2,7 +2,8 @@ import styled from 'styled-components';
 // import PropertyCard from '../PropertyCard';
 import getThatHomeLogo from "../../assets/images/get-that-home-logo.png";
 import {AiOutlineUserAdd} from "react-icons/ai";
-import {FiSearch} from "react-icons/fi";
+import { FiSearch } from "react-icons/fi";
+import { Link } from "react-router-dom";
 
 const Wrapper = styled.div`
   display: flex;
@@ -49,16 +50,20 @@ function Navbar(){
   return (
     <Wrapper>
       <NavBarContainer>
-        <img
-        src={getThatHomeLogo}
-        alt="get that home app logo"
-        style={{ height: "40px", width: "136px"}}
-        />
+        <Link  to={"/landing"}>
+          <img
+          src={getThatHomeLogo}
+          alt="get that home app logo"
+          style={{ height: "40px", width: "136px"}}
+          />
+        </Link>
         <NavBarItems>
           <div style={{display: "flex", flexDirection: "row", justifyContent: "center", alignItems: "center", gap: "6px"}}>
-            <FiSearch style={{color: "#616161"}}/>
-            <p style={{ fontFamily: "Inter", fontWeight: "500", fontSize: "14px",
-              lineHeight: "24px", letterSpacing: "1.25px", color: "#616161"}}>FIND A HOME</p>
+            <FiSearch style={{ color: "#616161" }} />
+            <Link  to={"/properties"}>
+              <p style={{ fontFamily: "Inter", fontWeight: "500", fontSize: "14px",
+                lineHeight: "24px", letterSpacing: "1.25px", color: "#616161"}}>FIND A HOME</p>
+            </Link>
           </div>
           <WhiteButton>
             <div style={{display: "flex", flexDirection: "row", justifyContent: "center", alignItems: "center", gap: "4px"}}>
