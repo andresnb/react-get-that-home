@@ -7,6 +7,8 @@ import andrespic from "../assets/images/andres-naula-profile.png";
 import anthonypic from "../assets/images/anthony-caceres-profile.png";
 import marthapic from "../assets/images/martha-huaman-profile.png";
 import {DiRuby, DiReact} from "react-icons/di";
+import { Link } from "react-router-dom";
+
 // import { ReactComponent as LandingBackground } from "../assets/svg/landing-background.svg";
 
 const Wrapper = styled.div`
@@ -157,6 +159,13 @@ const TeamMembersContainer = styled.div`
 
 function LandingPage() {
 
+  function handleSubmit(event) {
+    event.preventDefault();
+
+    const { query } = event.target.elements;
+    // onFormSubmit(query.value);
+  }
+
   return (
     <Wrapper>
       {/* <LandingBackground/> */}
@@ -168,10 +177,10 @@ function LandingPage() {
             lineHeight: "32px", color: "#616161"}}>The easiest way to find where you belong</p>
         </Wrapper>
 
-        <StyledForm >
+        <StyledForm onSubmit={handleSubmit} >
           <SelectBox>
             <StyledSelectTitle>I'M LOOKING FOR</StyledSelectTitle>
-            <select required name="relation"  style={{ border: "none", height: "24px", width: "160px", fontFamily: "Inter", fontSize: "16px",
+            <select required name="property_type"  style={{ border: "none", height: "24px", width: "160px", fontFamily: "Inter", fontSize: "16px",
                 lineHeight: "24px", letterSpacing: "0.5px", color: "#373737"}}>
               <option value="Apartment">An apartment</option>
               <option value="House">A house</option>
@@ -180,7 +189,7 @@ function LandingPage() {
 
           <SelectBox>
             <StyledSelectTitle>I WANT TO</StyledSelectTitle>
-            <select required name="relation"  style={{ border: "none", height: "24px", width: "160px", fontFamily: "Inter", fontSize: "16px",
+            <select required name="operation_type"  style={{ border: "none", height: "24px", width: "160px", fontFamily: "Inter", fontSize: "16px",
                 lineHeight: "24px", letterSpacing: "0.5px", color: "#373737"}}>
               <option value="Rent">Rent</option>
               <option value="Sale">Sale</option>
@@ -189,7 +198,7 @@ function LandingPage() {
 
           <SelectBox>
             <StyledSelectTitle>WHERE</StyledSelectTitle>
-            <select required name="relation"  style={{ border: "none", height: "24px", width: "304px", fontFamily: "Inter", fontSize: "16px",
+            <select required name="district"  style={{ border: "none", height: "24px", width: "304px", fontFamily: "Inter", fontSize: "16px",
                 lineHeight: "24px", letterSpacing: "0.5px", color: "#373737"}}>
               <option disabled selected hidden>Favorite district</option>
               <option value="Family">Ancón</option>

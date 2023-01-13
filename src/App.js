@@ -1,25 +1,19 @@
 import Navbar from './components/Navbar';
-import LandingPage from './pages/landing-page';
-import PropertyCard from './components/PropertyCard';
-import PropertyDetailPage from './pages/property-detail-page';
-import ListViewPage from './pages/list-view-page';
+import { Navigate, Route, Routes } from "react-router-dom";
 import './App.css';
-import { getProperties } from './services/property-service';
-
+import ListViewPage from "./pages/list-view-page"
+import LandingPage from "./pages/landing-page"
 function App() {
-
-  const properties = getProperties();
-
-  console.log(properties)
-
 
   return (
     <div>
       <Navbar />
-      {/* <PropertyCard /> */}
-      {/* <LandingPage /> */}
-      {/* <PropertyDetailPage/> */}
-      <ListViewPage/>
+      <Routes>
+        <Route index element = {<Navigate to = "landing" />} />
+        <Route path = "/landing" element ={<LandingPage />} />
+        <Route path = "/properties" element ={<ListViewPage />} />
+        <Route path = "/properties/:id" element ={<ListViewPage />} />
+      </Routes>
     </div>
   );
 }
