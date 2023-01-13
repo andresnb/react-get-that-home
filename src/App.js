@@ -1,7 +1,7 @@
 import Navbar from './components/Navbar';
 import LandingPage from './pages/landing-page';
-import PropertyCard from './components/PropertyCard';
-import PropertyDetailPage from './pages/property-detail-page';
+// import PropertyCard from './components/PropertyCard';
+// import PropertyDetailPage from './pages/property-detail-page';
 import './App.css';
 
 function App() {
@@ -11,7 +11,6 @@ function App() {
       {/* <PropertyCard /> */}
       <LandingPage />
       {/* <PropertyDetailPage/> */}
-
     </div>
   );
 }
