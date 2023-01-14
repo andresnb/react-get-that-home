@@ -181,9 +181,7 @@ function ListViewPage() {
   useEffect(() => {
     getProperties()
       .then((data) => {
-        // console.log("properties 18333333333",data);
         const params = localStorage.getItem("params");
-        console.log(params)
         setProperties(data);
       })
       .catch((error) => {
