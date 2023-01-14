@@ -4,7 +4,7 @@ import { RiMoneyDollarCircleLine } from "react-icons/ri";
 import { BiBed, BiBath, BiArea } from "react-icons/bi";
 import { MdOutlinePets } from "react-icons/md";
 import { RiBuildingLine } from "react-icons/ri";
-import { BsHeartFill } from "react-icons/bs";
+// import { BsHeartFill } from "react-icons/bs";
 import styled from 'styled-components';
 import { Link } from "react-router-dom";
 
@@ -30,7 +30,7 @@ const DetailsWrapper = styled.div`
 `;
 
 function PropertyCard({ image, id, name, operation_type, address, phone, price, property_type, bedrooms, bathrooms, area, pets, description }) {
-  
+
   return (
     <PropertyWrapper>
         <Link

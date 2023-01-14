@@ -1,12 +1,11 @@
 import styled from "styled-components";
 import PropertyCard from '../components/PropertyCard/propertyCard';
 import { FiSearch, FiChevronDown } from "react-icons/fi";
-import { AiOutlineMinus } from "react-icons/ai";
-import { RiMoneyDollarCircleFill } from "react-icons/ri";
+// import { AiOutlineMinus } from "react-icons/ai";
+// import { RiMoneyDollarCircleFill } from "react-icons/ri";
 import sampleProperty from "../assets/images/rental-image-example.png";
 import { useEffect, useState } from "react";
 import { getProperties } from "../services/property-service";
-import { useSearchParams } from "react-router-dom";
 
 const Wrapper = styled.div`
   display: flex;
@@ -53,116 +52,116 @@ const PinkFilterButton = styled("button")`
   color: #FFFFFF;
 `;
 
-const WhiteButton = styled("button")`
-  width: 50px;
-  height: 20px;
-  border: none;
-  background: #FFFFFF;
-  &:active {
-    background: #F48FB1;
-  }
-  padding: 0px 12px;
-`;
+// const WhiteButton = styled("button")`
+//   width: 50px;
+//   height: 20px;
+//   border: none;
+//   background: #FFFFFF;
+//   &:active {
+//     background: #F48FB1;
+//   }
+//   padding: 0px 12px;
+// `;
 
-const PinkDoneButton = styled("button")`
-  height: 32px;
-  width: 60px;
-  border: none;
-  background: #F48FB1;
-  border-radius: 8px;
-  font-family: 'Inter';
-  font-weight: 500;
-  font-size: 14px;
-  line-height: 24px;
-  letter-spacing: 1.25px;
-  color: #FFFFFF;
-  padding: 0px 8px;
-`;
+// const PinkDoneButton = styled("button")`
+//   height: 32px;
+//   width: 60px;
+//   border: none;
+//   background: #F48FB1;
+//   border-radius: 8px;
+//   font-family: 'Inter';
+//   font-weight: 500;
+//   font-size: 14px;
+//   line-height: 24px;
+//   letter-spacing: 1.25px;
+//   color: #FFFFFF;
+//   padding: 0px 8px;
+// `;
 
-const PriceFilter = styled.div`
-  border-radius: 8px;
-  display: flex;
-  flex-direction: column;
-  justify-content: left;
-  align-items: left;
-  width: 247px;
-  height: 116px
-  font-family: 'Inter';
-  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
-  padding: 8px;
-`;
+// const PriceFilter = styled.div`
+//   border-radius: 8px;
+//   display: flex;
+//   flex-direction: column;
+//   justify-content: left;
+//   align-items: left;
+//   width: 247px;
+//   height: 116px
+//   font-family: 'Inter';
+//   box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+//   padding: 8px;
+// `;
 
-const PropertyFilter = styled.div`
-  border-radius: 8px;
-  display: flex;
-  flex-direction: column;
-  justify-content: left;
-  align-items: left;
-  width: 211px;
-  height: 116px
-  font-family: 'Inter';
-  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
-  padding: 8px;
-`;
+// const PropertyFilter = styled.div`
+//   border-radius: 8px;
+//   display: flex;
+//   flex-direction: column;
+//   justify-content: left;
+//   align-items: left;
+//   width: 211px;
+//   height: 116px
+//   font-family: 'Inter';
+//   box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+//   padding: 8px;
+// `;
 
-const BedAndBathFilter = styled.div`
-  border-radius: 8px;
-  display: flex;
-  flex-direction: column;
-  justify-content: left;
-  align-items: left;
-  width: 270px;
-  height: 184px
-  font-family: 'Inter';
-  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
-  padding: 8px;
-`;
+// const BedAndBathFilter = styled.div`
+//   border-radius: 8px;
+//   display: flex;
+//   flex-direction: column;
+//   justify-content: left;
+//   align-items: left;
+//   width: 270px;
+//   height: 184px
+//   font-family: 'Inter';
+//   box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+//   padding: 8px;
+// `;
 
 
-const MoreFilter = styled.div`
-  border-radius: 8px;
-  display: flex;
-  flex-direction: column;
-  justify-content: left;
-  align-items: left;
-  width: 247px;
-  height: 168px
-  font-family: 'Inter';
-  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
-  padding: 8px;
-`;
+// const MoreFilter = styled.div`
+//   border-radius: 8px;
+//   display: flex;
+//   flex-direction: column;
+//   justify-content: left;
+//   align-items: left;
+//   width: 247px;
+//   height: 168px
+//   font-family: 'Inter';
+//   box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+//   padding: 8px;
+// `;
 
 
 // border: 1px solid #F48FB1;
-const ButtonFilterInput = styled.input`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  border: none;
-  width: 54px;
-  height: 18px;
-  font-family: 'Inter';
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 20px;
-  letter-spacing: 0.25px;
-  color: #8E8E8E;
-`;
+// const ButtonFilterInput = styled.input`
+//   display: flex;
+//   flex-direction: row;
+//   align-items: center;
+//   border: none;
+//   width: 54px;
+//   height: 18px;
+//   font-family: 'Inter';
+//   font-weight: 400;
+//   font-size: 14px;
+//   line-height: 20px;
+//   letter-spacing: 0.25px;
+//   color: #8E8E8E;
+// `;
 
-const ButtonFilterCheckbox = styled.input`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  border: 1px solid pink;
-  width: 20px;
-  height: 20px;
-  font-family: 'Inter';
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 20px;
-  letter-spacing: 0.25px;
-  color: #8E8E8E;
-`;
+// const ButtonFilterCheckbox = styled.input`
+//   display: flex;
+//   flex-direction: row;
+//   align-items: center;
+//   border: 1px solid pink;
+//   width: 20px;
+//   height: 20px;
+//   font-family: 'Inter';
+//   font-weight: 400;
+//   font-size: 14px;
+//   line-height: 20px;
+//   letter-spacing: 0.25px;
+//   color: #8E8E8E;
+// `;
 
 
 const PropertiesContainer = styled.div`
@@ -176,8 +175,6 @@ const PropertiesContainer = styled.div`
 
 function ListViewPage() {
   const [properties, setProperties] = useState([]);
-  const [error, setError] = useState(null);
-
   useEffect(() => {
     getProperties()
       .then((data) => {
@@ -185,7 +182,7 @@ function ListViewPage() {
         setProperties(data);
       })
       .catch((error) => {
-        setError("Access Denied");
+        console.log("error", error)
       });
   }, []);
 
@@ -220,11 +217,11 @@ function ListViewPage() {
             </PinkFilterButton>
           </FilterButtons>
 
-          <select name="relation"  style={{ border: "2px solid #F48FB1", height: "40px", fontFamily: "Inter", fontSize: "16px",
+          <select defaultValue="Both" name="relation"  style={{ border: "2px solid #F48FB1", height: "40px", fontFamily: "Inter", fontSize: "16px",
                 lineHeight: "24px", letterSpacing: "0.5px", color: "#373737", padding: "0px 8px 0px 4px", borderRadius: "8px"}}>;
               <option value="Rent">Renting</option>
               <option value="Buy">Buying</option>
-              <option selected value="Both">Buying & Renting</option>
+              <option value="Both">Buying & Renting</option>
           </select>
         </FiltersSection>
 

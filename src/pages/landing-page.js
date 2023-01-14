@@ -202,7 +202,7 @@ function LandingPage() {
 
           <SelectBox>
             <StyledSelectTitle>I WANT TO</StyledSelectTitle>
-            <select required name="operation_type"  style={{ border: "none", height: "24px", width: "160px", fontFamily: "Inter", fontSize: "16px",
+            <select required defaultValue="Rent" name="operation_type"  style={{ border: "none", height: "24px", width: "160px", fontFamily: "Inter", fontSize: "16px",
                 lineHeight: "24px", letterSpacing: "0.5px", color: "#373737"}}>
               <option value="Rent">Rent</option>
               <option value="Sale">Sale</option>
@@ -211,9 +211,9 @@ function LandingPage() {
 
           <SelectBox>
             <StyledSelectTitle>WHERE</StyledSelectTitle>
-            <select required name="district"  style={{ border: "none", height: "24px", width: "304px", fontFamily: "Inter", fontSize: "16px",
+            <select required defaultValue="Favorite district" name="district"  style={{ border: "none", height: "24px", width: "304px", fontFamily: "Inter", fontSize: "16px",
                 lineHeight: "24px", letterSpacing: "0.5px", color: "#373737"}}>
-              <option disabled selected hidden>Favorite district</option>
+              <option disabled hidden>Favorite district</option>
               <option value="Ancón">Ancón</option>
               <option value="Ate">Ate</option>
               <option value="Barranco">Barranco</option>
