@@ -166,7 +166,17 @@ function LandingPage() {
     event.preventDefault();
 
 
+   
+    const params = {
+      property_type: event.target.elements[0].value,
+      operation_type: event.target.elements[1].value,
+      district: event.target.elements[2].value
+    }
+
+    localStorage.setItem("params", JSON.stringify(params));
+
     navigate(`/properties?property_type${event.target.elements[0].value}=&operation_type=${event.target.elements[1].value}&district=${event.target.elements[2].value}`);
+    
   }
 
   return (
@@ -204,47 +214,47 @@ function LandingPage() {
             <select required name="district"  style={{ border: "none", height: "24px", width: "304px", fontFamily: "Inter", fontSize: "16px",
                 lineHeight: "24px", letterSpacing: "0.5px", color: "#373737"}}>
               <option disabled selected hidden>Favorite district</option>
-              <option value="Family">Ancón</option>
-              <option value="Family">Ate</option>
-              <option value="Friends">Barranco</option>
-              <option value="Work">Breña</option>
-              <option value="Acquaintance">Carabayllo</option>
-              <option value="Acquaintance">Cercado de Lima</option>
-              <option value="Acquaintance">Chorrillos</option>
-              <option value="Family">Cieneguilla</option>
-              <option value="Friends">Comas</option>
-              <option value="Work">El agustino</option>
-              <option value="Acquaintance">Independencia</option>
-              <option value="Acquaintance">La molina</option>
-              <option value="Acquaintance">La victoria</option>
-              <option value="Family">Lince</option>
-              <option value="Friends">Los olivos</option>
-              <option value="Work">Lurigancho</option>
-              <option value="Acquaintance">Lurín</option>
-              <option value="Acquaintance">Magdalena del mar</option>
-              <option value="Acquaintance">Miraflores</option>
-              <option value="Family">Pachacámac</option>
-              <option value="Family">Pucusana</option>
-              <option value="Friends">Pueblo libre</option>
-              <option value="Work">Puente piedra</option>
-              <option value="Acquaintance">Punta hermosa</option>
-              <option value="Acquaintance">Punta negra</option>
-              <option value="Acquaintance">Rímac</option>
-              <option value="Family">San bartolo</option>
-              <option value="Friends">San borja</option>
-              <option value="Work">San isidro</option>
-              <option value="Family">San Juan de Lurigancho</option>
-              <option value="Family">San Juan de Miraflores</option>
-              <option value="Friends">San Luis</option>
-              <option value="Work">San Martin de Porres</option>
-              <option value="Acquaintance">San Miguel</option>
-              <option value="Acquaintance">Santa Anita</option>
-              <option value="Acquaintance">Santa María del Mar</option>
-              <option value="Family">Santa Rosa</option>
-              <option value="Friends">Santiago de Surco</option>
-              <option value="Work">Surquillo</option>
-              <option value="Acquaintance">Villa el Salvador</option>
-              <option value="Acquaintance">Villa Maria del Triunfo</option>
+              <option value="Ancón">Ancón</option>
+              <option value="Ate">Ate</option>
+              <option value="Barranco">Barranco</option>
+              <option value="Breña">Breña</option>
+              <option value="Carabayllo">Carabayllo</option>
+              <option value="Cercado de Lima">Cercado de Lima</option>
+              <option value="Chorrillos">Chorrillos</option>
+              <option value="Cieneguilla">Cieneguilla</option>
+              <option value="Comas">Comas</option>
+              <option value="El agustino">El agustino</option>
+              <option value="Independencia">Independencia</option>
+              <option value="La molina">La molina</option>
+              <option value="La victoria">La victoria</option>
+              <option value="Lince">Lince</option>
+              <option value="Los olivos">Los olivos</option>
+              <option value="Lurigancho">Lurigancho</option>
+              <option value="Lurín">Lurín</option>
+              <option value="Magdalena del mar">Magdalena del mar</option>
+              <option value="Miraflores">Miraflores</option>
+              <option value="Pachacámac">Pachacámac</option>
+              <option value="Pucusana">Pucusana</option>
+              <option value="Pueblo libre">Pueblo libre</option>
+              <option value="Puente piedra">Puente piedra</option>
+              <option value="Punta hermosa">Punta hermosa</option>
+              <option value="Punta negra">Punta negra</option>
+              <option value="Rímac">Rímac</option>
+              <option value="San bartolo">San bartolo</option>
+              <option value="San borja">San borja</option>
+              <option value="San isidro">San isidro</option>
+              <option value="San Juan de Lurigancho">San Juan de Lurigancho</option>
+              <option value="San Juan de Miraflores">San Juan de Miraflores</option>
+              <option value="San Luis">San Luis</option>
+              <option value="San Martin de Porres">San Martin de Porres</option>
+              <option value="San Miguel">San Miguel</option>
+              <option value="Santa Anita">Santa Anita</option>
+              <option value="Santa María del Mar">Santa María del Mar</option>
+              <option value="Santa Rosa">Santa Rosa</option>
+              <option value="Santiago de Surco">Santiago de Surco</option>
+              <option value="Surquillo">Surquillo</option>
+              <option value="Villa el Salvador">Villa el Salvador</option>
+              <option value="Villa Maria del Triunfo">Villa Maria del Triunfo</option>
             </select>
           </SelectBox>
 

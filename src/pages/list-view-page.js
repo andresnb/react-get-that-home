@@ -6,6 +6,7 @@ import { RiMoneyDollarCircleFill } from "react-icons/ri";
 import sampleProperty from "../assets/images/rental-image-example.png";
 import { useEffect, useState } from "react";
 import { getProperties } from "../services/property-service";
+import { useSearchParams } from "react-router-dom";
 
 const Wrapper = styled.div`
   display: flex;
@@ -180,7 +181,9 @@ function ListViewPage() {
   useEffect(() => {
     getProperties()
       .then((data) => {
-        console.log("properties 18333333333",data);
+        // console.log("properties 18333333333",data);
+        const params = localStorage.getItem("params");
+        console.log(params)
         setProperties(data);
       })
       .catch((error) => {
