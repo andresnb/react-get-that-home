@@ -1,14 +1,7 @@
 import { useState } from "react";
-import styled from 'styled-components';
 import { useAuth } from "../../context/auth-context";
 import { Input} from "../Input/input";
-
-const Wrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-`;
+import styled from 'styled-components';
 
 const StyledButton = styled("button")`
   width: 300px;
@@ -24,10 +17,9 @@ const StyledForm = styled("form")`
   // align-items: center;
   // gap: 32px;
 `;
-
-function LoginForm() {
-  const { user, login } = useAuth();
-  console.log("line 30",user);
+// { onSignup }
+function SignupForm() {
+  const { signup } = useAuth();
   const [formData, setFormData] = useState({
         email: "",
         password: "",
@@ -41,7 +33,7 @@ function LoginForm() {
   function handleSubmit(event) {
     event.preventDefault();
 
-    login(formData);
+    signup(formData);
   }
 
   return (
@@ -63,10 +55,10 @@ function LoginForm() {
           placeholder="*******"
           label="Password"
         />
-        <StyledButton type="submit">Login</StyledButton>
+        <StyledButton type="submit">Sign-up</StyledButton>
       </StyledForm>
     </div>
   );
 }
 
-export default LoginForm;
+export default SignupForm;

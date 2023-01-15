@@ -1,11 +1,12 @@
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 import PropertyCard from '../components/PropertyCard/propertyCard';
 import { FiSearch, FiChevronDown } from "react-icons/fi";
 // import { AiOutlineMinus } from "react-icons/ai";
 // import { RiMoneyDollarCircleFill } from "react-icons/ri";
 import sampleProperty from "../assets/images/rental-image-example.png";
-import { useEffect, useState } from "react";
 import { getProperties } from "../services/property-service";
+import LoginForm from "../components/LoginForm/login-form";
 
 const Wrapper = styled.div`
   display: flex;
@@ -420,6 +421,8 @@ function ListViewPage() {
                 />
                 ))}
             </PropertiesContainer>
+
+            <LoginForm/>
       </PageContainer>
     </Wrapper>
   )
