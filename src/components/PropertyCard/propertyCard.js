@@ -4,9 +4,10 @@ import { RiMoneyDollarCircleLine } from "react-icons/ri";
 import { BiBed, BiBath, BiArea } from "react-icons/bi";
 import { MdOutlinePets } from "react-icons/md";
 import { RiBuildingLine } from "react-icons/ri";
-// import { BsHeartFill } from "react-icons/bs";
+import { BsHeartFill } from "react-icons/bs";
 import styled from 'styled-components';
 import { Link } from "react-router-dom";
+import { useAuth } from "../../context/auth-context";
 
 const PropertyWrapper = styled.div`
   border-radius: 8px;
@@ -29,7 +30,10 @@ const DetailsWrapper = styled.div`
   margin: 8px 6px 0px 6px;
 `;
 
-function PropertyCard({ image, id, name, operation_type, address, phone, price, property_type, bedrooms, bathrooms, area, pets, description }) {
+function PropertyCard({ image, id, name, operation_type, address, phone, price, property_type, bedrooms, bathrooms, area, pets, description, favorite }) {
+  const { currentDisplayedProperties } = useAuth();
+  console.log("BAEK DISPLAY PROPERTIES", currentDisplayedProperties)
+
 
   return (
     <PropertyWrapper>
@@ -74,7 +78,7 @@ function PropertyCard({ image, id, name, operation_type, address, phone, price, 
                 </div>
 
                 { pets? <MdOutlinePets style={{width: "20px", height: "17.5px", color: "#616161"}}/>: <MdOutlinePets style={{width: "20px", height: "17.5px", color: "#FFFFFF"}}/>}
-                {/* <BsHeartFill style={{width: "20px", height: "17.5px", color: "#F48FB1", marginRight: "10px"}}/> */}
+                { favorite===true && currentDisplayedProperties==="favorites"? <BsHeartFill style={{width: "20px", height: "17.5px", color: "#F48FB1"}}/>: <BsHeartFill style={{width: "20px", height: "17.5px", color: "#FFFFFF"}}/>}
               </div>
             </DetailsWrapper>
         </Link>
