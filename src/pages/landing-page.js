@@ -8,9 +8,12 @@ import anthonypic from "../assets/images/anthony-caceres-profile.png";
 import marthapic from "../assets/images/martha-huaman-profile.png";
 import {DiRuby, DiReact} from "react-icons/di";
 import {useNavigate} from 'react-router-dom';
-
-
 // import { ReactComponent as LandingBackground } from "../assets/svg/landing-background.svg";
+import LandingBackground from "../assets/svg/landing-background.svg";
+
+
+
+
 
 const Wrapper = styled.div`
   display: flex;
@@ -19,12 +22,26 @@ const Wrapper = styled.div`
   align-items: center;
 `;
 
+
+// const Section1 = styled.div`
+//     display: flex;
+//     flex-direction: column;
+//     align-items: center;
+
+//     width: 100%;
+//     height: 600px;
+//     left: 0px;
+//     top: 1588px;
+// `;
 const SearchSection = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: top;
   align-items: center;
   gap: 66px;
+  width: 100%;
+  height: 600px;
+  background: pink;
 `;
 
 const SamplePropertiesSection = styled.div`
@@ -160,13 +177,13 @@ const TeamMembersContainer = styled.div`
 
 function LandingPage() {
   const navigate = useNavigate();
-  
+
   function handleSubmit(event) {
-    
+
     event.preventDefault();
 
 
-   
+
     const params = {
       property_type: event.target.elements[0].value,
       operation_type: event.target.elements[1].value,
@@ -176,16 +193,16 @@ function LandingPage() {
     localStorage.setItem("params", JSON.stringify(params));
 
     navigate(`/properties?property_type${event.target.elements[0].value}=&operation_type=${event.target.elements[1].value}&district=${event.target.elements[2].value}`);
-    
+
   }
 
   return (
     <Wrapper>
       {/* <LandingBackground/> */}
-      <SearchSection>
+      <SearchSection style={{ backgroundImage: `url(${LandingBackground})`, backgroundPosition: 'center' }} >
         <Wrapper>
           <p style={{ fontFamily: "Montserrat", fontWeight: "300", fontSize: "64px",
-            lineHeight: "88px", letterSpacing: "-0.5px", color: "#373737"}}>Meet your new Home</p>
+            lineHeight: "88px", letterSpacing: "-0.5px", color: "#373737", marginTop: "60px"}}>Meet your new Home</p>
           <p style={{ fontFamily: "Montserrat", fontWeight: "400", fontSize: "24px",
             lineHeight: "32px", color: "#616161"}}>The easiest way to find where you belong</p>
         </Wrapper>
