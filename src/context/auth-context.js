@@ -13,7 +13,7 @@ function AuthProvider(props) {
     petAllowed: null,
     beds: 1,
     baths: 1,
-    operationType: [false, false], //buy, rent
+    operationType: [false, false], //rent, sale
     search: ""
   });
 

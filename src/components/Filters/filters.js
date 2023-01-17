@@ -212,16 +212,25 @@ const CheckDiv = styled.div`
   }
 `;
 
-export function Filters({
-  prices,
-  showFilters,
-  setShowFilters,
-  handlePrice,
-  handleDone,
-  setBeds,
-  setBaths
+  export function Filters({
+    prices,
+    areas,
+    petAllowed,
+    house,
+    apartment,
+    buy,
+    rent,
+    showFilters,
+    setShowFilters,
+    setPetAllowed,
+    handleOperationType,
+    handlePrice,
+    handleArea,
+    handleDone,
+    handleCheck,
+    setBeds,
+    setBaths
   }) {
-
 
   return (
     <>
@@ -308,6 +317,8 @@ export function Filters({
 
                 <div style={{ display: "flex", flexDirection: "row", justifyContent: "left", alignItems: "center", gap: "4px" }}>
                   <ButtonFilterCheckbox
+                    onChange={handleCheck}
+                    checked={house}
                     type="checkbox"
                     name="check-house"
                     id="check-house"
@@ -317,6 +328,8 @@ export function Filters({
 
                 <div style={{ display: "flex", flexDirection: "row", justifyContent: "left", alignItems: "center", gap: "4px" }}>
                   <ButtonFilterCheckbox
+                    onChange={handleCheck}
+                    checked={apartment}
                     type="checkbox"
                     name="check-apartment"
                     id="check-apartment"
@@ -325,8 +338,8 @@ export function Filters({
                 </div>
 
                 <div style={{ display: "flex", justifyContent: "right", alignItems: "right", gap: "4px", marginTop: "4px" }}>
-                  <PinkDoneButton onClick={handleDone} id={'a'}>
-                    <p>DONE</p>
+                  <PinkDoneButton onClick={handleDone} id='propertyType'>
+                    DONE
                   </PinkDoneButton>
                 </div>
               </PropertyFilter>
@@ -433,6 +446,8 @@ export function Filters({
               <MoreFilter>
                 <div style={{ display: "flex", flexDirection: "row", justifyContent: "left", alignItems: "center", gap: "4px", marginBottom: "24px" }}>
                   <ButtonFilterCheckbox
+                    onChange={handleCheck}
+                    checked={petAllowed}
                     type="checkbox"
                     name="check-pets-allowed"
                     id="check-pets-allowed"
@@ -451,14 +466,14 @@ export function Filters({
                     color: "#373737", padding: "0px 9.67px", borderRadius: "8px",
                     display: "flex", flexDirection: "row", justifyContent: "center", alignItems: "center", gap: "8px"
                   }}>
+
                     <ButtonFilterInput
                       name="min-amount"
                       type="number"
-                      // value={}
+                      value={areas.min}
                       placeholder="min"
-                    // onChange={(event) =>
-                    //   handleMinAmount(event)
-                    // }
+                      onChange={handleArea}
+                      id={"min-amount"}
                     />
                   </div>
                   <AiOutlineMinus />
@@ -470,18 +485,17 @@ export function Filters({
                     <ButtonFilterInput
                       name="max-amount"
                       type="number"
-                      // value={}
+                      value={areas.max}
                       placeholder="max"
-                    // onChange={(event) =>
-                    //   handleMaxAmount(event)
-                    // }
+                      onChange={handleArea}
+                      id={"max-amount"}
                     />
                   </div>
                 </div>
 
                 <div style={{ display: "flex", justifyContent: "right", alignItems: "right" }}>
-                  <PinkDoneButton onClick={handleDone} id={'c'}>
-                    <p>DONE</p>
+                  <PinkDoneButton onClick={handleDone} id='more'>
+                    DONE
                   </PinkDoneButton>
                 </div>
               </MoreFilter>
@@ -501,28 +515,28 @@ export function Filters({
               <CheckDiv>
                 <input
                   style={{ accentColor: "pink" }}
-                  // onChange={handleMode}
+                  onChange={handleOperationType}
                   type={"checkbox"}
                   id={"both"}
-                // checked={buy && rent}
+                  checked={buy && rent}
                 />
                 <label style={{ fontFamily: "Inter", fontStyle: "normal", fontWeight: "400px", fontSize: "14px", lineHeight: "20px", letterSpacing: "0.25px", color: "#616161" }} >Both</label>
               </CheckDiv>
               <CheckDiv>
                 <input style={{ accentColor: "pink", }}
-                  // onChange={handleMode}
+                  onChange={handleOperationType}
                   type={"checkbox"}
-                  id={"buy"}
-                // checked={buy}
+                  id={"check-buy"}
+                  checked={buy}
                 />
                 <label style={{ fontFamily: "Inter", fontStyle: "normal", fontWeight: "400px", fontSize: "14px", lineHeight: "20px", letterSpacing: "0.25px", color: "#616161" }}>Buying</label>
               </CheckDiv>
               <CheckDiv>
                 <input style={{ accentColor: "pink" }}
-                  // onChange={handleMode}
+                  onChange={handleOperationType}
                   type={"checkbox"}
-                  id={"rent"}
-                // checked={rent}
+                  id={"check-rent"}
+                  checked={rent}
                 />
                 <label style={{ fontFamily: "Inter", fontStyle: "normal", fontWeight: "400px", fontSize: "14px", lineHeight: "20px", letterSpacing: "0.25px", color: "#616161" }}>Renting</label>
               </CheckDiv>
