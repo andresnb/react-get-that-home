@@ -41,7 +41,6 @@ const SearchSection = styled.div`
   gap: 66px;
   width: 100%;
   height: 600px;
-  background: pink;
 `;
 
 const SamplePropertiesSection = styled.div`

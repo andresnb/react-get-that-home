@@ -115,6 +115,7 @@ function ListViewPage() {
   const [rent, setRent] = useState(false);
   const [buy, setBuy] = useState(false);
   const [both, setBoth] = useState(false);
+  const [query, setQuery] = useState("");
 
   let filterProperties = [...properties_data]?.filter(property => {
     if(property) return property.status
@@ -174,9 +175,13 @@ function ListViewPage() {
   if (filters.operationType[1]) return property.operation_type === "sale"
   })
 
+  // Filter for address
+  filterProperties = filterProperties.filter(property => {
+    return (property.address.toLowerCase().includes(filters.search))
+  })
+
 
   useEffect(() => {
-    console.log("HOLA USE EFFECT");
     getProperties()
       .then((data) => {
         const params = localStorage.getItem("params");
@@ -239,11 +244,17 @@ function ListViewPage() {
     if (id === "check-rent") setRent(!rent);
   }
 
+  function handleQuery(event) {
+    setQuery(event.target.value);
+  }
+
   useEffect(()=>{
     setFilters({...filters, "operationType":[buy, rent]})
   },[buy, rent, both])
 
-
+  useEffect(()=>{
+    setFilters({...filters, "search":query})
+  },[query])
 
   return (
     <Wrapper>
@@ -257,10 +268,12 @@ function ListViewPage() {
           buy={buy}
           rent={rent}
           both={both}
+          query={query}
           handlePrice={handlePrice}
           handleArea={handleArea}
           handleCheck={handleCheck}
-          handleOperationType = {handleOperationType}
+          handleOperationType={handleOperationType}
+          handleQuery={handleQuery}
           setBeds={setBeds}
           setBaths={setBaths}
           setPetAllowed={setPetAllowed}

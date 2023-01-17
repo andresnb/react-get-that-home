@@ -220,6 +220,7 @@ const CheckDiv = styled.div`
     apartment,
     buy,
     rent,
+    query,
     showFilters,
     setShowFilters,
     setPetAllowed,
@@ -228,6 +229,7 @@ const CheckDiv = styled.div`
     handleArea,
     handleDone,
     handleCheck,
+    handleQuery,
     setBeds,
     setBaths
   }) {
@@ -236,15 +238,21 @@ const CheckDiv = styled.div`
     <>
       <FiltersSection>
         <div style={{
-          display: "flex", flexDirection: "row", justifyContent: "left",
-          alignItems: "left", gap: "6px", border: "2px solid #F48FB1",
-          borderRadius: "8px", padding: "8px", width: "240px"
+          border: "2px solid #F48FB1", height: "32px", width: "78px", background: "#FFFFFF",
+          color: "#373737", borderRadius: "8px", width: "240px",
+          display: "flex", flexDirection: "row", justifyContent: "center", alignItems: "center", gap: "8px"
         }}>
-          <FiSearch style={{ color: "#616161" }} />
-          <p style={{
-            fontFamily: "Inter", fontWeight: "500", fontSize: "14px",
-            lineHeight: "24px", letterSpacing: "1.25px", color: "#616161"
-          }}>Search by adress</p>
+          <FiSearch style={{ color: "#8E8E8E" }} />
+          <ButtonFilterInput
+            name="search-address"
+            type="text"
+            value={query}
+            placeholder="Search by address"
+            onChange={handleQuery}
+            id={"search-address"}
+            style={{width: "196px"}}
+          />
+
         </div>
 
         <FilterButtons>
