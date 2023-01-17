@@ -19,7 +19,8 @@ const properties_data = [
     pets: true,
     status: true,
     phone: '5983764478928',
-    description: '3 Bedroom/2 Bathroom apartment available for ASAP move-in! Apartment features hardwood floors throughout, virtual doorman, Central AC/heat, dishwasher and a microwave. The kitchen has custom cabinetry and the living room is big enough to fit a dinner table, a couch and a tv set up.'
+    description: '3 Bedroom/2 Bathroom apartment available for ASAP move-in! Apartment features hardwood floors throughout, virtual doorman, Central AC/heat, dishwasher and a microwave. The kitchen has custom cabinetry and the living room is big enough to fit a dinner table, a couch and a tv set up.',
+    favorite: false
   },
   { name: 'Fransicsco de Paula Ugarriza 27',
     operation_type: 'sale',
@@ -32,7 +33,8 @@ const properties_data = [
     pets: true,
     status: true,
     phone: '5983764478928',
-    description: '3 Bedroom/2 Bathroom apartment available for ASAP move-in! Apartment features hardwood floors throughout, virtual doorman, Central AC/heat, dishwasher and a microwave. The kitchen has custom cabinetry and the living room is big enough to fit a dinner table, a couch and a tv set up.'
+    description: '3 Bedroom/2 Bathroom apartment available for ASAP move-in! Apartment features hardwood floors throughout, virtual doorman, Central AC/heat, dishwasher and a microwave. The kitchen has custom cabinetry and the living room is big enough to fit a dinner table, a couch and a tv set up.',
+    favorite: true
   },
   { name: 'Fransicsco de Paula Ugarriza 27',
     operation_type: 'sale',
@@ -45,7 +47,8 @@ const properties_data = [
     pets: false,
     status: true,
     phone: '5983764478928',
-    description: '3 Bedroom/2 Bathroom apartment available for ASAP move-in! Apartment features hardwood floors throughout, virtual doorman, Central AC/heat, dishwasher and a microwave. The kitchen has custom cabinetry and the living room is big enough to fit a dinner table, a couch and a tv set up.'
+    description: '3 Bedroom/2 Bathroom apartment available for ASAP move-in! Apartment features hardwood floors throughout, virtual doorman, Central AC/heat, dishwasher and a microwave. The kitchen has custom cabinetry and the living room is big enough to fit a dinner table, a couch and a tv set up.',
+    favorite: true
   },
   { name: 'Fransicsco de Paula Ugarriza 27',
     operation_type: 'rent',
@@ -58,7 +61,8 @@ const properties_data = [
     pets: false,
     status: true,
     phone: '5983764478928',
-    description: '3 Bedroom/2 Bathroom apartment available for ASAP move-in! Apartment features hardwood floors throughout, virtual doorman, Central AC/heat, dishwasher and a microwave. The kitchen has custom cabinetry and the living room is big enough to fit a dinner table, a couch and a tv set up.'
+    description: '3 Bedroom/2 Bathroom apartment available for ASAP move-in! Apartment features hardwood floors throughout, virtual doorman, Central AC/heat, dishwasher and a microwave. The kitchen has custom cabinetry and the living room is big enough to fit a dinner table, a couch and a tv set up.',
+    favorite: false
   },
 
 ]
@@ -90,7 +94,8 @@ const PropertiesContainer = styled.div`
 `;
 
 function ListViewPage() {
-  const { filters, setFilters } = useAuth();
+  const { filters, setFilters, setCurrentDisplayedProperties } = useAuth();
+  setCurrentDisplayedProperties("filtered");
   const [properties, setProperties] = useState([]);
   const [showFilters, setShowFilters] = useState({
     price: false,
@@ -296,6 +301,7 @@ function ListViewPage() {
                 image={sampleProperty}
                 // onPropertyClick={onPropertyClick}
                 {...property}
+
                 />
                 ))}
             </PropertiesContainer>

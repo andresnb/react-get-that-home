@@ -5,7 +5,8 @@ import * as sessionServices from "../services/session-service";
 const AuthContext = createContext();
 
 function AuthProvider(props) {
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState("test-user");  //user credentials
+  const [userType, setUserType] = useState("landlord");  // home-seeker or landlord
   const [filters, setFilters] = useState({
     prices: { min: null, max: null },
     areas: { min: null, max: null },
@@ -16,6 +17,7 @@ function AuthProvider(props) {
     operationType: [false, false], //rent, sale
     search: ""
   });
+  const [currentDisplayedProperties, setCurrentDisplayedProperties] = useState("landing");
 
 
   function login(credentials) {
@@ -32,12 +34,16 @@ function AuthProvider(props) {
 
   const value = {
     user,
+    userType,
     setUser,
     login,
     logout,
     signup,
     filters,
-    setFilters
+    setFilters,
+    setUserType,
+    currentDisplayedProperties,
+    setCurrentDisplayedProperties
   };
 
   return <AuthContext.Provider value={value} {...props} />;
