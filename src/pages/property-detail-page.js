@@ -1,9 +1,13 @@
 import styled from 'styled-components';
-import { AiOutlineLeft, AiOutlineRight } from "react-icons/ai";
+import { AiOutlineLeft, AiOutlineRight, AiOutlineUserAdd } from "react-icons/ai";
 import { RiMoneyDollarCircleLine } from "react-icons/ri";
-import { BiBed, BiBath, BiArea } from "react-icons/bi";
+import { BiBed, BiBath, BiArea, BiEdit } from "react-icons/bi";
+import { FiHeart } from "react-icons/fi"
 import {MdOutlinePets} from "react-icons/md";
 import { useParams } from 'react-router-dom';
+import { useEffect, useState } from "react";
+import { useAuth } from "../context/auth-context";
+
 
 const allData = [
   { name: '86872 Jacob Gateway',
@@ -210,16 +214,81 @@ const DetailsCard = styled.div`
   color: #373737;
 `;
 
+const PropertyWrapper = styled.div`
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+  align-items: left;
+  width: 300px;
+  font-family: 'Inter';
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0.5px;
+  color: #616161;
+  border-bottom: 7px solid #BF5F82;
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2)
+`;
+
+const NotLoggedInBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  width: 226px;
+  height: 184px;
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2)
+`;
+
+const LoggedInHomeseekerBox1 = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 27px;
+  width: 258px;
+  height: 148px;
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2)
+`;
+
+const LoggedInHomeseekerBox2 = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  width: 258px;
+  height: 172px;
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2)
+`;
+
+const LoggedInLandlordBox = styled.div`
+  width: 188px;
+  height: 40px;
+`;
+
+const PinkButton = styled("button")`
+  border: none;
+  background: #F48FB1;
+  border-radius: 16px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+`;
+
 function PropertyDetailPage() {
   const { id } = useParams();
+  const { savedProperties, setSavedProperties, user, userType} = useAuth();
+  const [contactedProperty, setContactedProperty] = useState(null);
+  const [contactedStatus, setContactedStatus] = useState(false);
   let currentProperty = allData.filter(property => property.id == id);
-  // console.log("11",currentProperty)
-  console.log("22",currentProperty["0"])
   const { name, operation_type, address, phone, price, property_type, bedrooms, bathrooms, area, pets, description, favorite } = currentProperty["0"]
-  console.log("33",description, area, operation_type)
 
   return (
-    <Wrapper>
+    <Wrapper style={{ flexDirection:"row", justifyContent:"top", alignItems: "top",gap: "16px" }}>
       <DetailsCard>
           <div style={{display: "flex", justifyContent: "center", alignItems: "center", gap: "71.22px"}}>
             <AiOutlineLeft/>
@@ -286,7 +355,67 @@ function PropertyDetailPage() {
           <iframe title="map" style={{ width: "100%", height: "760px"}} src="https://maps.google.com/maps?q=Francisco%20de%20Paula%20Ugarriza%2027,%20Miraflores,%20Lima&t=&z=15&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
         </div>
       </DetailsCard>
-    </Wrapper>
+      {user && userType === "home-seeker" && contactedStatus == false ? (
+       <Wrapper style={{padding:"32px 16px"}}>
+        <LoggedInHomeseekerBox1>
+          <PinkButton style={{ gap: "9px", width: "212px", height: "40px" }}>
+              <p style={{ fontFamily: "Inter", fontWeight: "500", fontSize: "14px",
+              lineHeight: "24px", letterSpacing: "1.25px", color: "#FFFFFF"}}>CONTACT ADVISER</p>
+          </PinkButton>
+          <Wrapper style={{ gap: "14.52px" }}>
+            <FiHeart style={{width: "20px", height: "18.48px", color: "#616161"}}/>
+            <p style={{ fontFamily: "Inter", fontWeight: "400", fontSize: "12px",
+              lineHeight: "16px", letterSpacing: "0.4px", color: "#616161"}}>Add to favorites</p>
+          </Wrapper>
+        </LoggedInHomeseekerBox1>
+       </Wrapper>
+      ) :
+       user && userType === "home-seeker" && contactedStatus == true ? (
+       <Wrapper style={{padding:"32px 16px"}}>
+        <LoggedInHomeseekerBox2>
+          <Wrapper style={{ gap: "14.52px" }}>
+            <p style={{ fontFamily: "Montserrat", fontWeight: "500", fontSize: "20px",
+              lineHeight: "28px", letterSpacing: "0.15px", color: "#373737"}}>Contact information</p>
+            <Wrapper style={{ gap: "3px" }}>
+              <p style={{ fontFamily: "Inter", fontWeight: "400", fontSize: "14px",
+              lineHeight: "20px", letterSpacing: "0.25px", color: "#BF5F82"}}>Email</p>
+              <p style={{ fontFamily: "Inter", fontWeight: "400", fontSize: "14px",
+              lineHeight: "20px", letterSpacing: "0.25px", color: "#373737"}}>dude@greathouse.com</p>
+            </Wrapper>
+            <Wrapper style={{ gap: "3px" }}>
+              <p style={{ fontFamily: "Inter", fontWeight: "400", fontSize: "14px",
+              lineHeight: "20px", letterSpacing: "0.25px", color: "#BF5F82"}}>Phone</p>
+              <p style={{ fontFamily: "Inter", fontWeight: "400", fontSize: "14px",
+              lineHeight: "20px", letterSpacing: "0.25px", color: "#373737"}}>999444333</p>
+            </Wrapper>
+          </Wrapper>
+        </LoggedInHomeseekerBox2>
+       </Wrapper>
+      ) :
+       user && userType === "landlord" ? (
+       <Wrapper>
+        <LoggedInLandlordBox>
+          <PinkButton style={{ gap: "11px", width: "188px", height: "40px" }}>
+              <BiEdit style={{width: "18px", height: "18px", color: "#FFFFFF"}}/>
+              <p style={{ fontFamily: "Inter", fontWeight: "500", fontSize: "14px",
+              lineHeight: "24px", letterSpacing: "1.25px", color: "#FFFFFF"}}>EDIT PROPERTY</p>
+          </PinkButton>
+        </LoggedInLandlordBox>
+       </Wrapper>
+       ) :
+       (
+       <Wrapper style={{padding:"32px"}}>
+        <NotLoggedInBox>
+          <p style={{width:"142px", textAlign:"center"}}>Log in or Join to contact the advertiser</p>
+          <PinkButton style={{ gap: "9px" }}>
+              <AiOutlineUserAdd style={{width: "19px", height: "21px", color: "#FFFFFF"}}/>
+              <p style={{ fontFamily: "Inter", fontWeight: "500", fontSize: "14px",
+              lineHeight: "24px", letterSpacing: "1.25px", color: "#FFFFFF"}}>LOGIN</p>
+          </PinkButton>
+        </NotLoggedInBox>
+       </Wrapper>
+       )}
+   </Wrapper>
   )
 }
 
