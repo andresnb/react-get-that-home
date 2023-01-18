@@ -64,6 +64,51 @@ const activeData = [
     description: '3 Bedroom/2 Bathroom apartment available for ASAP move-in! Apartment features hardwood floors throughout, virtual doorman, Central AC/heat, dishwasher and a microwave. The kitchen has custom cabinetry and the living room is big enough to fit a dinner table, a couch and a tv set up.',
     favorite: false
   },
+  { name: '86872 Jacob Gateway',
+    operation_type: 'rent',
+    address: '86872 Jacob Gateway',
+    price: 3000.00,
+    property_type: 'apartment',
+    bedrooms: 4,
+    bathrooms: 2,
+    area: 180,
+    pets: true,
+    status: true,
+    phone: '5983764478928',
+    description: '3 Bedroom/2 Bathroom apartment available for ASAP move-in! Apartment features hardwood floors throughout, virtual doorman, Central AC/heat, dishwasher and a microwave. The kitchen has custom cabinetry and the living room is big enough to fit a dinner table, a couch and a tv set up.',
+    favorite: false
+  }
+]
+
+const closedData = [
+  { name: 'Fransicsco de Paula Ugarriza 27',
+    operation_type: 'sale',
+    address: 'Fransicsco de Paula Ugarriza 27',
+    price: 80000,
+    property_type: 'house',
+    bedrooms: 2,
+    bathrooms: 1,
+    area: 150,
+    pets: false,
+    status: true,
+    phone: '5983764478928',
+    description: '3 Bedroom/2 Bathroom apartment available for ASAP move-in! Apartment features hardwood floors throughout, virtual doorman, Central AC/heat, dishwasher and a microwave. The kitchen has custom cabinetry and the living room is big enough to fit a dinner table, a couch and a tv set up.',
+    favorite: true
+  },
+  { name: 'Fransicsco de Paula Ugarriza 27',
+    operation_type: 'rent',
+    address: 'Fransicsco de Paula Ugarriza 27',
+    price: 250.00,
+    property_type: 'apartment',
+    bedrooms: 2,
+    bathrooms: 1,
+    area: 100,
+    pets: false,
+    status: true,
+    phone: '5983764478928',
+    description: '3 Bedroom/2 Bathroom apartment available for ASAP move-in! Apartment features hardwood floors throughout, virtual doorman, Central AC/heat, dishwasher and a microwave. The kitchen has custom cabinetry and the living room is big enough to fit a dinner table, a couch and a tv set up.',
+    favorite: false
+  },
 
 ]
 
@@ -93,14 +138,27 @@ const PropertiesContainer = styled.div`
   align-items: center;
 `;
 
+
 function MyProperties() {
-  const { currentDisplayedProperties, setCurrentDisplayedProperties } = useAuth();
+  const { currentDisplayedProperties, setCurrentDisplayedProperties,
+          myProperties, setMyProperties} = useAuth();
+  const [activeProperties, setActiveProperties] = useState(activeData);
+  const [closedProperties, setClosedProperties] = useState(closedData);
+  const [properties, setProperties] = useState([]);
+  console.log("activeProperties 11", activeProperties)
+  console.log("closedProperties 11", closedProperties)
 
   useEffect(() => {
     setCurrentDisplayedProperties("active")
   }, []);
 
-  const [activeProperties, setActiveProperties] = useState([activeData]);
+  useEffect(() => {
+    if (currentDisplayedProperties==="active") setProperties(activeProperties)
+    if (currentDisplayedProperties==="closed") setProperties(activeProperties)
+  }, [currentDisplayedProperties]);
+
+  console.log("PROPERTIESSS",properties)
+  console.log("currentDisplayedProperties",currentDisplayedProperties)
   // const [activeProperties, setActiveProperties] = useState([activeData]);
   // const [activeProperties, setActiveProperties] = useState([activeData]);
 
@@ -147,7 +205,7 @@ function MyProperties() {
             </p>
 
             <PropertiesContainer>
-               {activeData.map((property) => (
+               {properties.map((property) => (
                 <PropertyCard
                 key={property.id}
                 image={sampleProperty}

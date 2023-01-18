@@ -17,6 +17,15 @@ function AuthProvider(props) {
     operationType: [false, false], //rent, sale
     search: ""
   });
+
+  const [myProperties, setMyProperties] = useState({
+    active: [],
+    closed: []
+  });
+  const [savedProperties, setSavedProperties] = useState({
+    active: [],
+    closed: []
+  });
   const [currentDisplayedProperties, setCurrentDisplayedProperties] = useState("test");
 
 
@@ -43,7 +52,11 @@ function AuthProvider(props) {
     setFilters,
     setUserType,
     currentDisplayedProperties,
-    setCurrentDisplayedProperties
+    setCurrentDisplayedProperties,
+    myProperties,
+    setMyProperties,
+    savedProperties,
+    setSavedProperties
   };
 
   return <AuthContext.Provider value={value} {...props} />;
