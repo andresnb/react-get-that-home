@@ -17,7 +17,7 @@ function AuthProvider(props) {
     operationType: [false, false], //rent, sale
     search: ""
   });
-  const [currentDisplayedProperties, setCurrentDisplayedProperties] = useState("landing");
+  const [currentDisplayedProperties, setCurrentDisplayedProperties] = useState("test");
 
 
   function login(credentials) {
