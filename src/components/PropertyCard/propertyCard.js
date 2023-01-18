@@ -49,11 +49,11 @@ const DetailsWrapper = styled.div`
 `;
 
 function PropertyCard({ image, id, name, operation_type, address, phone, price, property_type, bedrooms, bathrooms, area, pets, description, favorite, handleDelete, handleClose, handleRestore }) {
-  const { currentDisplayedProperties } = useAuth();
+  const { displayedPropertiesType } = useAuth();
 
   return (
     <div>
-      {(currentDisplayedProperties === "active") ?
+      {(displayedPropertiesType === "active") ?
         (
           <MyPropertiesWrapper>
               <Link
@@ -97,7 +97,7 @@ function PropertyCard({ image, id, name, operation_type, address, phone, price, 
                       </div>
 
                       { pets? <MdOutlinePets style={{width: "20px", height: "17.5px", color: "#616161"}}/>: <MdOutlinePets style={{width: "20px", height: "17.5px", color: "#FFFFFF"}}/>}
-                      { favorite===true && (currentDisplayedProperties==="favorites" || currentDisplayedProperties==="contacted")? <BsHeartFill style={{width: "20px", height: "17.5px", color: "#F48FB1"}}/>: <BsHeartFill style={{width: "20px", height: "17.5px", color: "#FFFFFF"}}/>}
+                      { favorite===true && (displayedPropertiesType==="favorites" || displayedPropertiesType==="contacted")? <BsHeartFill style={{width: "20px", height: "17.5px", color: "#F48FB1"}}/>: <BsHeartFill style={{width: "20px", height: "17.5px", color: "#FFFFFF"}}/>}
                     </div>
                   </DetailsWrapper>
                 </Link>
@@ -124,7 +124,7 @@ function PropertyCard({ image, id, name, operation_type, address, phone, price, 
                 </div>
           </MyPropertiesWrapper>
         ) :
-        (currentDisplayedProperties === "closed") ?
+        (displayedPropertiesType === "closed") ?
         (
           <MyPropertiesWrapper>
               <Link
@@ -168,7 +168,7 @@ function PropertyCard({ image, id, name, operation_type, address, phone, price, 
                       </div>
 
                       { pets? <MdOutlinePets style={{width: "20px", height: "17.5px", color: "#616161"}}/>: <MdOutlinePets style={{width: "20px", height: "17.5px", color: "#FFFFFF"}}/>}
-                      { favorite===true && (currentDisplayedProperties==="favorites" || currentDisplayedProperties==="contacted")? <BsHeartFill style={{width: "20px", height: "17.5px", color: "#F48FB1"}}/>: <BsHeartFill style={{width: "20px", height: "17.5px", color: "#FFFFFF"}}/>}
+                      { favorite===true && (displayedPropertiesType==="favorites" || displayedPropertiesType==="contacted")? <BsHeartFill style={{width: "20px", height: "17.5px", color: "#F48FB1"}}/>: <BsHeartFill style={{width: "20px", height: "17.5px", color: "#FFFFFF"}}/>}
                     </div>
                   </DetailsWrapper>
                 </Link>
@@ -240,7 +240,7 @@ function PropertyCard({ image, id, name, operation_type, address, phone, price, 
                     </div>
 
                     { pets? <MdOutlinePets style={{width: "20px", height: "17.5px", color: "#616161"}}/>: <MdOutlinePets style={{width: "20px", height: "17.5px", color: "#FFFFFF"}}/>}
-                    { favorite===true && (currentDisplayedProperties==="favorites" || currentDisplayedProperties==="contacted")? <BsHeartFill style={{width: "20px", height: "17.5px", color: "#F48FB1"}}/>: <BsHeartFill style={{width: "20px", height: "17.5px", color: "#FFFFFF"}}/>}
+                    { favorite===true && (displayedPropertiesType==="favorites" || displayedPropertiesType==="contacted")? <BsHeartFill style={{width: "20px", height: "17.5px", color: "#F48FB1"}}/>: <BsHeartFill style={{width: "20px", height: "17.5px", color: "#FFFFFF"}}/>}
                   </div>
                 </DetailsWrapper>
             </Link>

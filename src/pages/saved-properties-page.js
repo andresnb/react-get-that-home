@@ -85,42 +85,42 @@ const PropertiesContainer = styled.div`
 `;
 
 function SavedProperties() {
-  const { currentDisplayedProperties,
-          setCurrentDisplayedProperties,
+  const { displayedPropertiesType,
+          setDisplayedPropertiesType,
           savedProperties, setSavedProperties} = useAuth();
   const [favoriteProperties, setFavoriteProperties] = useState( savedProperties.favorites || favoritesData);
   const [contactedProperties, setContactedProperties] = useState( savedProperties.contacted || contactedData);
-  const [properties, setProperties] = useState(favoriteProperties);
+  const [showProperties, setShowProperties] = useState(favoriteProperties);
 
   useEffect(() => {
-    setCurrentDisplayedProperties("favorites")
+    setDisplayedPropertiesType("favorites")
   }, []);
 
   useEffect(() => {
-    if (currentDisplayedProperties === "contacted") {
-      setProperties(contactedProperties);
+    if (displayedPropertiesType === "contacted") {
+      setShowProperties(contactedProperties);
       setSavedProperties({...savedProperties, "contacted": contactedProperties})
 
     } else {
-      setProperties(favoriteProperties);
+      setShowProperties(favoriteProperties);
       setSavedProperties({...savedProperties, "favorites": favoriteProperties})
     }
-  }, [currentDisplayedProperties, favoriteProperties, contactedProperties]);
+  }, [displayedPropertiesType, favoriteProperties, contactedProperties]);
 
   return (
     <Wrapper>
       <PageContainer>
 
         <div style={{width: '1136px'}}>
-            {currentDisplayedProperties === "contacted" ? (
+            {displayedPropertiesType === "contacted" ? (
                 <div style={{width: '144px', display:"flex", flexDirection:"row", gap:"24px"}}>
-                  <div style={{borderBottom: "2px solid #BDBDBD"}} onClick={() => setCurrentDisplayedProperties("favorites")}>
+                  <div style={{borderBottom: "2px solid #BDBDBD"}} onClick={() => setDisplayedPropertiesType("favorites")}>
                     <p style={{ fontFamily: "Inter", fontWeight: "500", fontSize: "14px",
                     lineHeight: "24px", letterSpacing:"1.25px", color: "#BDBDBD", textAlign: "center"}}>
                       FAVORITES
                     </p>
                   </div>
-                  <div style={{borderBottom: "2px solid #F48FB1"}} onClick={() => setCurrentDisplayedProperties("contacted")}>
+                  <div style={{borderBottom: "2px solid #F48FB1"}} onClick={() => setDisplayedPropertiesType("contacted")}>
                     <p style={{ fontFamily: "Inter", fontWeight: "500", fontSize: "14px",
                       lineHeight: "24px", letterSpacing:"1.25px", color: "#373737", textAlign: "center"}}>
                       CONTACTED
@@ -129,13 +129,13 @@ function SavedProperties() {
                   </div>
                 ): (
                 <div style={{width: '144px', display:"flex", flexDirection:"row", gap:"24px"}}>
-                  <div style={{ borderBottom: "2px solid #F48FB1" }} onClick={() => setCurrentDisplayedProperties("favorites")}>
+                  <div style={{ borderBottom: "2px solid #F48FB1" }} onClick={() => setDisplayedPropertiesType("favorites")}>
                     <p style={{ fontFamily: "Inter", fontWeight: "500", fontSize: "14px",
                     lineHeight: "24px", letterSpacing:"1.25px", color: "#373737", textAlign: "center"}}>
                       FAVORITES
                     </p>
                   </div>
-                  <div style={{borderBottom: "2px solid #BDBDBD"}} onClick={() => setCurrentDisplayedProperties("contacted")}>
+                  <div style={{borderBottom: "2px solid #BDBDBD"}} onClick={() => setDisplayedPropertiesType("contacted")}>
                     <p style={{ fontFamily: "Inter", fontWeight: "500", fontSize: "14px",
                     lineHeight: "24px", letterSpacing:"1.25px", color: "#BDBDBD", textAlign: "center"}}>
                       CONTACTED
@@ -151,7 +151,7 @@ function SavedProperties() {
             </p>
 
             <PropertiesContainer>
-               {properties.map((property) => (
+               {showProperties.map((property) => (
                 <PropertyCard
                 key={property.id}
                 image={sampleProperty}

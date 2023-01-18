@@ -147,27 +147,27 @@ const PropertiesContainer = styled.div`
 
 
 function MyProperties() {
-  const { currentDisplayedProperties,
-          setCurrentDisplayedProperties,
+  const { displayedPropertiesType,
+          setDisplayedPropertiesType,
           myProperties, setMyProperties} = useAuth();
   const [activeProperties, setActiveProperties] = useState( myProperties.active || activeData);
-  const [closedProperties, setClosedProperties] = useState( myProperties.closed ||closedData);
-  const [properties, setProperties] = useState(activeProperties);
+  const [closedProperties, setClosedProperties] = useState( myProperties.closed || closedData);
+  const [showProperties, setShowProperties] = useState(activeProperties);
 
   useEffect(() => {
-    setCurrentDisplayedProperties("active")
+    setDisplayedPropertiesType("active")
   }, []);
 
   useEffect(() => {
-    if (currentDisplayedProperties === "closed") {
-      setProperties(closedProperties);
+    if (displayedPropertiesType === "closed") {
+      setShowProperties(closedProperties);
       setMyProperties({...myProperties, "closed": closedProperties})
 
     } else {
-      setProperties(activeProperties);
+      setShowProperties(activeProperties);
       setMyProperties({...myProperties, "active": activeProperties})
     }
-  }, [currentDisplayedProperties, activeProperties, closedProperties]);
+  }, [displayedPropertiesType, activeProperties, closedProperties]);
 
   function handleDelete(propertyId) {
     let filteredClosed = closedProperties.filter(property => property.id !== propertyId);
@@ -192,15 +192,15 @@ function MyProperties() {
     <Wrapper>
       <PageContainer>
         <div style={{width: '1136px'}}>
-              {currentDisplayedProperties === "closed" ? (
+              {displayedPropertiesType === "closed" ? (
                 <div style={{width: '144px', display:"flex", flexDirection:"row", gap:"24px"}}>
-                  <div style={{borderBottom: "2px solid #BDBDBD"}} onClick={() => setCurrentDisplayedProperties("active")}>
+                  <div style={{borderBottom: "2px solid #BDBDBD"}} onClick={() => setDisplayedPropertiesType("active")}>
                     <p style={{ fontFamily: "Inter", fontWeight: "500", fontSize: "14px",
                     lineHeight: "24px", letterSpacing:"1.25px", color: "#BDBDBD", textAlign: "center"}}>
                       ACTIVE
                     </p>
                   </div>
-                  <div style={{borderBottom: "2px solid #F48FB1"}} onClick={() => setCurrentDisplayedProperties("closed")}>
+                  <div style={{borderBottom: "2px solid #F48FB1"}} onClick={() => setDisplayedPropertiesType("closed")}>
                     <p style={{ fontFamily: "Inter", fontWeight: "500", fontSize: "14px",
                       lineHeight: "24px", letterSpacing:"1.25px", color: "#373737", textAlign: "center"}}>
                         CLOSED
@@ -209,13 +209,13 @@ function MyProperties() {
                   </div>
                 ): (
                 <div style={{width: '144px', display:"flex", flexDirection:"row", gap:"24px"}}>
-                  <div style={{ borderBottom: "2px solid #F48FB1" }} onClick={() => setCurrentDisplayedProperties("active")}>
+                  <div style={{ borderBottom: "2px solid #F48FB1" }} onClick={() => setDisplayedPropertiesType("active")}>
                     <p style={{ fontFamily: "Inter", fontWeight: "500", fontSize: "14px",
                     lineHeight: "24px", letterSpacing:"1.25px", color: "#373737", textAlign: "center"}}>
                       ACTIVE
                     </p>
                   </div>
-                  <div style={{borderBottom: "2px solid #BDBDBD"}} onClick={() => setCurrentDisplayedProperties("closed")}>
+                  <div style={{borderBottom: "2px solid #BDBDBD"}} onClick={() => setDisplayedPropertiesType("closed")}>
                     <p style={{ fontFamily: "Inter", fontWeight: "500", fontSize: "14px",
                     lineHeight: "24px", letterSpacing:"1.25px", color: "#BDBDBD", textAlign: "center"}}>
                       CLOSED
@@ -231,7 +231,7 @@ function MyProperties() {
             </p>
 
             <PropertiesContainer>
-               {properties.map((property) => (
+               {showProperties.map((property) => (
                 <PropertyCard
                 key={property.id}
                 image={sampleProperty}

@@ -176,10 +176,10 @@ const TeamMembersContainer = styled.div`
 `;
 
 function LandingPage() {
-  const { setCurrentDisplayedProperties } = useAuth();
+  const { setDisplayedPropertiesType } = useAuth();
   const navigate = useNavigate();
 
-  setCurrentDisplayedProperties("test");
+  setDisplayedPropertiesType("test");
 
   function handleSubmit(event) {
 

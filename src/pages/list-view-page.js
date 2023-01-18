@@ -113,8 +113,8 @@ const PropertiesContainer = styled.div`
 `;
 
 function ListViewPage() {
-  const { filters, setFilters, setCurrentDisplayedProperties } = useAuth();
-  setCurrentDisplayedProperties("filtered");
+  const { filters, setFilters, setDisplayedPropertiesType } = useAuth();
+  setDisplayedPropertiesType("filtered");
   const [properties, setProperties] = useState([]);
   const [showFilters, setShowFilters] = useState({
     price: false,

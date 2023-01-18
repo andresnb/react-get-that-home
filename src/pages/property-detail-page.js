@@ -8,128 +8,7 @@ import { useParams } from 'react-router-dom';
 import { useEffect, useState } from "react";
 import { useAuth } from "../context/auth-context";
 
-
-const allData = [
-  { name: '86872 Jacob Gateway',
-    operation_type: 'rent',
-    address: '86872 Jacob Gateway',
-    price: 3000.00,
-    property_type: 'apartment',
-    bedrooms: 4,
-    bathrooms: 2,
-    area: 180,
-    pets: true,
-    status: true,
-    phone: '5983764478928',
-    description: '3 Bedroom/2 Bathroom apartment available for ASAP move-in! Apartment features hardwood floors throughout, virtual doorman, Central AC/heat, dishwasher and a microwave. The kitchen has custom cabinetry and the living room is big enough to fit a dinner table, a couch and a tv set up.',
-    favorite: false,
-    id: 1
-  },
-  { name: 'Fransicsco de Paula Ugarriza 27',
-    operation_type: 'sale',
-    address: 'Fransicsco de Paula Ugarriza 27',
-    price: 25000.00,
-    property_type: 'house',
-    bedrooms: 4,
-    bathrooms: 2,
-    area: 220,
-    pets: true,
-    status: true,
-    phone: '5983764478928',
-    description: '3 Bedroom/2 Bathroom apartment available for ASAP move-in! Apartment features hardwood floors throughout, virtual doorman, Central AC/heat, dishwasher and a microwave. The kitchen has custom cabinetry and the living room is big enough to fit a dinner table, a couch and a tv set up.',
-    favorite: true,
-    id: 2
-  },
-  { name: 'Fransicsco de Paula Ugarriza 27',
-    operation_type: 'sale',
-    address: 'Fransicsco de Paula Ugarriza 27',
-    price: 80000,
-    property_type: 'house',
-    bedrooms: 2,
-    bathrooms: 1,
-    area: 150,
-    pets: false,
-    status: true,
-    phone: '5983764478928',
-    description: '3 Bedroom/2 Bathroom apartment available for ASAP move-in! Apartment features hardwood floors throughout, virtual doorman, Central AC/heat, dishwasher and a microwave. The kitchen has custom cabinetry and the living room is big enough to fit a dinner table, a couch and a tv set up.',
-    favorite: true,
-    id: 3
-  },
-  { name: 'Fransicsco de Paula Ugarriza 27',
-    operation_type: 'rent',
-    address: 'Fransicsco de Paula Ugarriza 27',
-    price: 250.00,
-    property_type: 'apartment',
-    bedrooms: 2,
-    bathrooms: 1,
-    area: 100,
-    pets: false,
-    status: true,
-    phone: '5983764478928',
-    description: '3 Bedroom/2 Bathroom apartment available for ASAP move-in! Apartment features hardwood floors throughout, virtual doorman, Central AC/heat, dishwasher and a microwave. The kitchen has custom cabinetry and the living room is big enough to fit a dinner table, a couch and a tv set up.',
-    favorite: false,
-    id: 4
-  },
-  { name: '86872 Jacob Gateway',
-    operation_type: 'rent',
-    address: '86872 Jacob Gateway',
-    price: 3000.00,
-    property_type: 'apartment',
-    bedrooms: 4,
-    bathrooms: 2,
-    area: 180,
-    pets: true,
-    status: true,
-    phone: '5983764478928',
-    description: '3 Bedroom/2 Bathroom apartment available for ASAP move-in! Apartment features hardwood floors throughout, virtual doorman, Central AC/heat, dishwasher and a microwave. The kitchen has custom cabinetry and the living room is big enough to fit a dinner table, a couch and a tv set up.',
-    favorite: false,
-    id: 5
-  },
-  { name: 'Fransicsco de Paula Ugarriza 27',
-    operation_type: 'sale',
-    address: 'Fransicsco de Paula Ugarriza 27',
-    price: 80000,
-    property_type: 'house',
-    bedrooms: 2,
-    bathrooms: 1,
-    area: 150,
-    pets: false,
-    status: true,
-    phone: '5983764478928',
-    description: '3 Bedroom/2 Bathroom apartment available for ASAP move-in! Apartment features hardwood floors throughout, virtual doorman, Central AC/heat, dishwasher and a microwave. The kitchen has custom cabinetry and the living room is big enough to fit a dinner table, a couch and a tv set up.',
-    favorite: true,
-    id: 6,
-  },
-  { name: 'Fransicsco de Paula Ugarriza 27',
-    operation_type: 'rent',
-    address: 'Fransicsco de Paula Ugarriza 27',
-    price: 250.00,
-    property_type: 'apartment',
-    bedrooms: 2,
-    bathrooms: 1,
-    area: 100,
-    pets: false,
-    status: true,
-    phone: '5983764478928',
-    description: '3 Bedroom/2 Bathroom apartment available for ASAP move-in! Apartment features hardwood floors throughout, virtual doorman, Central AC/heat, dishwasher and a microwave. The kitchen has custom cabinetry and the living room is big enough to fit a dinner table, a couch and a tv set up.',
-    favorite: false,
-    id: 7
-  },
-  { name: '86872 Jacob Gateway',
-    operation_type: 'rent',
-    address: '86872 Jacob Gateway',
-    price: 3000.00,
-    property_type: 'apartment',
-    bedrooms: 4,
-    bathrooms: 2,
-    area: 180,
-    pets: true,
-    status: true,
-    phone: '5983764478928',
-    description: '3 Bedroom/2 Bathroom apartment available for ASAP move-in! Apartment features hardwood floors throughout, virtual doorman, Central AC/heat, dishwasher and a microwave. The kitchen has custom cabinetry and the living room is big enough to fit a dinner table, a couch and a tv set up.',
-    favorite: false,
-    id: 8
-  },
+const favoritesData = [
   { name: 'Fransicsco de Paula Ugarriza 27',
     operation_type: 'sale',
     address: 'Fransicsco de Paula Ugarriza 27',
@@ -159,37 +38,26 @@ const allData = [
     description: '3 Bedroom/2 Bathroom apartment available for ASAP move-in! Apartment features hardwood floors throughout, virtual doorman, Central AC/heat, dishwasher and a microwave. The kitchen has custom cabinetry and the living room is big enough to fit a dinner table, a couch and a tv set up.',
     favorite: true,
     id: 10
-  },
+  }
+]
+
+const contactedData = [
   { name: 'Fransicsco de Paula Ugarriza 27',
-    operation_type: 'rent',
+    operation_type: 'sale',
     address: 'Fransicsco de Paula Ugarriza 27',
-    price: 250.00,
-    property_type: 'apartment',
-    bedrooms: 2,
-    bathrooms: 1,
-    area: 100,
-    pets: false,
+    price: 25000.00,
+    property_type: 'house',
+    bedrooms: 4,
+    bathrooms: 2,
+    area: 220,
+    pets: true,
     status: true,
     phone: '5983764478928',
     description: '3 Bedroom/2 Bathroom apartment available for ASAP move-in! Apartment features hardwood floors throughout, virtual doorman, Central AC/heat, dishwasher and a microwave. The kitchen has custom cabinetry and the living room is big enough to fit a dinner table, a couch and a tv set up.',
-    favorite: false,
-    id: 11
+    favorite: true,
+    id: 9
   },
-  { name: 'Fransicsco de Paula Ugarriza 27',
-    operation_type: 'rent',
-    address: 'Fransicsco de Paula Ugarriza 27',
-    price: 250.00,
-    property_type: 'apartment',
-    bedrooms: 2,
-    bathrooms: 1,
-    area: 100,
-    pets: false,
-    status: true,
-    phone: '5983764478928',
-    description: '3 Bedroom/2 Bathroom apartment available for ASAP move-in! Apartment features hardwood floors throughout, virtual doorman, Central AC/heat, dishwasher and a microwave. The kitchen has custom cabinetry and the living room is big enough to fit a dinner table, a couch and a tv set up.',
-    favorite: false,
-    id: 12
-  },
+
 ]
 
 const Wrapper = styled.div`
@@ -281,11 +149,22 @@ const PinkButton = styled("button")`
 
 function PropertyDetailPage() {
   const { id } = useParams();
-  const { savedProperties, setSavedProperties, user, userType} = useAuth();
-  const [contactedProperty, setContactedProperty] = useState(null);
+  const { savedProperties, setSavedProperties, user, userType, allProperties} = useAuth();
   const [contactedStatus, setContactedStatus] = useState(false);
-  let currentProperty = allData.filter(property => property.id == id);
+  const [favoriteProperties, setFavoriteProperties] = useState( savedProperties.favorites || favoritesData);
+  const [contactedProperties, setContactedProperties] = useState( savedProperties.contacted || contactedData);
+  let currentProperty = allProperties.filter(property => property.id == id);
   const { name, operation_type, address, phone, price, property_type, bedrooms, bathrooms, area, pets, description, favorite } = currentProperty["0"]
+  let foundInContactedList = contactedProperties.filter(property => property.id == id);
+
+  useEffect(() => {
+    if (foundInContactedList == 1) setContactedStatus(true)
+  }, []);
+
+  console.log("FAV11", favoriteProperties);
+  console.log("CONTACTED22", contactedProperties);
+  console.log("CURRENT PROPERTY IN CONTACTED LIST", foundInContactedList)
+  console.log("LENGTH RESULT CONTACTED", foundInContactedList.length)
 
   return (
     <Wrapper style={{ flexDirection:"row", justifyContent:"top", alignItems: "top",gap: "16px" }}>
