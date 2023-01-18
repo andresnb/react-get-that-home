@@ -65,6 +65,7 @@ function Navbar(){
                 lineHeight: "24px", letterSpacing: "1.25px", color: "#616161"}}>FIND A HOME</p>
             </Link>
           </div>
+          <Link to="/signup" >
           <WhiteButton>
             <div style={{display: "flex", flexDirection: "row", justifyContent: "center", alignItems: "center", gap: "4px"}}>
               <AiOutlineUserAdd style={{width: "19px", height: "21px", color: "#616161"}}/>
@@ -72,6 +73,8 @@ function Navbar(){
               lineHeight: "24px", letterSpacing: "1.25px", color: "#616161"}}>JOIN</p>
             </div>
           </WhiteButton>
+          </Link>
+          
           <PinkButton>
             <div style={{display: "flex", flexDirection: "row", justifyContent: "center", alignItems: "center", gap: "4px"}}>
               <AiOutlineUserAdd style={{width: "19px", height: "21px", color: "#FFFFFF"}}/>

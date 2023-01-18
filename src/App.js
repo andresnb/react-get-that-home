@@ -4,7 +4,7 @@ import LandingPage from "./pages/landing-page";
 import PropertyDetailPage from './pages/property-detail-page';
 import Navbar from './components/Navbar';
 import LoginForm from "./components/LoginForm/login-form";
-import SignupForm from "./components/SignupForm/signup-form";
+import SignUp from "./components/SignupForm/signup-form";
 import { useAuth } from "./context/auth-context";
 import './App.css';
 
@@ -19,6 +19,7 @@ function App() {
       <Routes>
         <Route index element = {<Navigate to = "landing" />} />
         <Route path = "/landing" element ={<LandingPage />} />
+        <Route path = "/signup" element ={<SignUp />} />
         <Route path = "/properties" element ={<ListViewPage />} />
         <Route path = "/properties/:id" element ={<PropertyDetailPage />} />
       </Routes>

@@ -1,44 +1,65 @@
 import { useState } from "react";
-import { useAuth } from "../../context/auth-context";
-import { Input} from "../Input/input";
-import styled from 'styled-components';
+import styled from "styled-components";
+import Payment from "../Payment/Payment";
+import UsersForm from "../Use form/Use-form";
+function SignUpForm() {
+	const [step, setStep] = useState(1);
+	const [typeUser, setTypeUser] = useState("");
+	return (
+		<StyledContainer>
+			<StyledBody>
+				{step === 1 ? (
+					<StyledContainerPayment>
+            <Payment setType={setTypeUser} nextStep={setStep} type="landlord" />
+						<Payment setType={setTypeUser} nextStep={setStep} type="homeseeker" />
+					</StyledContainerPayment>
+				) : (
+					<StyledContainerForm>
+						<UsersForm id={1} typeUser={typeUser}/>
+					</StyledContainerForm>
+				)}
+			</StyledBody>
+		</StyledContainer>
+	);
+}
 
-const StyledButton = styled("button")`
-  width: 300px;
-  height: 36px;
-  border: none;
-  background: #FA4A0C;
-  border-radius: 30px;
+  
+const StyledContainer = styled.div`
+	width: 100%;
+	height: 100vh;
+	border: 1px solid red;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
 `;
 
-const StyledForm = styled("form")`
-  display: flex;
-  flex-direction: column;
-  // align-items: center;
-  // gap: 32px;
+
+const StyledBody = styled.div`
+	flex: 1;
+	display: flex;
+	justify-content: center;
+	background: linear-gradient(to bottom, pink 50%, white 50%);
 `;
-// { onSignup }
-function SignupForm() {
-  const { signup } = useAuth();
-  const [formData, setFormData] = useState({
-        email: "",
-        password: "",
-    });
 
-  function handleChange(event) {
-    const { name, value } = event.target;
-    setFormData({ ...formData, [name]: value });
-  }
+const StyledContainerPayment = styled.div`
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 20px;
+	height: 100%;
+`;
 
-  function handleSubmit(event) {
-    event.preventDefault();
+const StyledContainerForm = styled.div`
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 20px;
+	height: 100%;
+	width: 460px;
+`;
 
-    signup(formData);
-  }
-
-  return (
-    <div>
-      <StyledForm onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: "40px"}}>
+export default SignUpForm;
+/* <StyledForm onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: "40px"}}>
         <Input
           name="email"
           type="email"
@@ -56,9 +77,4 @@ function SignupForm() {
           label="Password"
         />
         <StyledButton type="submit">Sign-up</StyledButton>
-      </StyledForm>
-    </div>
-  );
-}
-
-export default SignupForm;
+      </StyledForm> */      
