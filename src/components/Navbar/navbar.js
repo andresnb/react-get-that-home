@@ -2,7 +2,7 @@ import styled from 'styled-components';
 // import PropertyCard from '../PropertyCard';
 import getThatHomeLogo from "../../assets/images/get-that-home-logo.png";
 import { AiOutlineUserAdd } from "react-icons/ai";
-import {RiHome8Line} from "react-icons/ri";
+import {RiHome8Line, RiLogoutCircleLine} from "react-icons/ri";
 import { BsHeartFill } from "react-icons/bs";
 import { FiSearch } from "react-icons/fi";
 import { Link } from "react-router-dom";
@@ -106,6 +106,13 @@ export function LandlordNavbar(){
                 lineHeight: "24px", letterSpacing: "1.25px", color: "#616161"}}>FIND A HOME</p>
             </Link>
           </div>
+          <WhiteButton>
+            <div style={{ display: "flex", flexDirection: "row", justifyContent: "center", alignItems: "center", gap: "4px" }}>
+              <RiLogoutCircleLine style={{width: "19px", height: "21px", color: "#616161"}}/>
+              <p style={{ fontFamily: "Inter", fontWeight: "500", fontSize: "14px",
+              lineHeight: "24px", letterSpacing: "1.25px", color: "#616161"}}>LOGOUT</p>
+            </div>
+          </WhiteButton>
           <PinkButton>
             <div style={{ display: "flex", flexDirection: "row", justifyContent: "center", alignItems: "center", gap: "4px" }}>
               <RiHome8Line style={{width: "19px", height: "21px", color: "#FFFFFF"}}/>
@@ -147,6 +154,13 @@ export function HomeSeekerNavbar(){
                 lineHeight: "24px", letterSpacing: "1.25px", color: "#616161"}}>FIND A HOME</p>
             </Link>
           </div>
+          <WhiteButton>
+            <div style={{ display: "flex", flexDirection: "row", justifyContent: "center", alignItems: "center", gap: "4px" }}>
+              <RiLogoutCircleLine style={{width: "19px", height: "21px", color: "#616161"}}/>
+              <p style={{ fontFamily: "Inter", fontWeight: "500", fontSize: "14px",
+              lineHeight: "24px", letterSpacing: "1.25px", color: "#616161"}}>LOGOUT</p>
+            </div>
+          </WhiteButton>
           <PinkButton>
             <div style={{ display: "flex", flexDirection: "row", justifyContent: "center", alignItems: "center", gap: "4px" }}>
               <BsHeartFill style={{width: "19px", height: "21px", color: "#FFFFFF"}}/>
