@@ -2,7 +2,8 @@ import styled from 'styled-components';
 import { AiOutlineLeft, AiOutlineRight, AiOutlineUserAdd } from "react-icons/ai";
 import { RiMoneyDollarCircleLine } from "react-icons/ri";
 import { BiBed, BiBath, BiArea, BiEdit } from "react-icons/bi";
-import { FiHeart } from "react-icons/fi"
+import { FiHeart } from "react-icons/fi";
+import { FaHeart } from "react-icons/fa";
 import {MdOutlinePets} from "react-icons/md";
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from "react";
@@ -128,7 +129,7 @@ const LoggedInHomeseekerBox2 = styled.div`
   align-items: center;
   gap: 16px;
   width: 258px;
-  height: 172px;
+  height: 230px;
   box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2)
 `;
 
@@ -150,21 +151,31 @@ const PinkButton = styled("button")`
 function PropertyDetailPage() {
   const { id } = useParams();
   const { savedProperties, setSavedProperties, user, userType, allProperties} = useAuth();
-  const [contactedStatus, setContactedStatus] = useState(false);
   const [favoriteProperties, setFavoriteProperties] = useState( savedProperties.favorites || favoritesData);
-  const [contactedProperties, setContactedProperties] = useState( savedProperties.contacted || contactedData);
-  let currentProperty = allProperties.filter(property => property.id == id);
-  const { name, operation_type, address, phone, price, property_type, bedrooms, bathrooms, area, pets, description, favorite } = currentProperty["0"]
+  const [contactedProperties, setContactedProperties] = useState(savedProperties.contacted || contactedData);
+
+  let currentProperty = allProperties.filter(property => property.id == id)["0"];
+  const { name, operation_type, address, phone, price, property_type, bedrooms,
+          bathrooms, area, pets, description, favorite } = currentProperty
   let foundInContactedList = contactedProperties.filter(property => property.id == id);
+  const [contactedStatus, setContactedStatus] = useState(foundInContactedList.length == 1);
+  let foundInFavoritesList = favoriteProperties.filter(property => property.id == id);
+  const [favoriteStatus, setFavoriteStatus] = useState(foundInFavoritesList.length == 1);
+
 
   useEffect(() => {
-    if (foundInContactedList == 1) setContactedStatus(true)
-  }, []);
+     setSavedProperties({...savedProperties, "favorites": favoriteProperties, "contacted": contactedProperties })
+  }, [favoriteProperties, contactedProperties]);
 
-  console.log("FAV11", favoriteProperties);
-  console.log("CONTACTED22", contactedProperties);
-  console.log("CURRENT PROPERTY IN CONTACTED LIST", foundInContactedList)
-  console.log("LENGTH RESULT CONTACTED", foundInContactedList.length)
+  function addToContactedProperties(currentProperty) {
+    setContactedStatus(true);
+    setContactedProperties([...contactedProperties, currentProperty]);
+  }
+
+  function addToFavoriteProperties(currentProperty) {
+    setFavoriteStatus(true);
+    setFavoriteProperties([...favoriteProperties, currentProperty]);
+  }
 
   return (
     <Wrapper style={{ flexDirection:"row", justifyContent:"top", alignItems: "top",gap: "16px" }}>
@@ -238,14 +249,24 @@ function PropertyDetailPage() {
        <Wrapper style={{padding:"32px 16px"}}>
         <LoggedInHomeseekerBox1>
           <PinkButton style={{ gap: "9px", width: "212px", height: "40px" }}>
-              <p style={{ fontFamily: "Inter", fontWeight: "500", fontSize: "14px",
-              lineHeight: "24px", letterSpacing: "1.25px", color: "#FFFFFF"}}>CONTACT ADVISER</p>
+              <div onClick={()=> addToContactedProperties(currentProperty)}>
+                <p style={{ fontFamily: "Inter", fontWeight: "500", fontSize: "14px",
+                lineHeight: "24px", letterSpacing: "1.25px", color: "#FFFFFF"}}>CONTACT ADVISER</p>
+              </div>
           </PinkButton>
-          <Wrapper style={{ gap: "14.52px" }}>
-            <FiHeart style={{width: "20px", height: "18.48px", color: "#616161"}}/>
-            <p style={{ fontFamily: "Inter", fontWeight: "400", fontSize: "12px",
-              lineHeight: "16px", letterSpacing: "0.4px", color: "#616161"}}>Add to favorites</p>
-          </Wrapper>
+            {favoriteStatus ? (
+             <Wrapper style={{ gap: "14.52px" }}>
+                <FaHeart style={{width: "20px", height: "18.48px", color: "#616161"}}/>
+                <p style={{ fontFamily: "Inter", fontWeight: "400", fontSize: "12px",
+                  lineHeight: "16px", letterSpacing: "0.4px", color: "#616161"}}>Saved in favorites</p>
+             </Wrapper>
+             ): (
+             <Wrapper style={{ gap: "14.52px" }} onClick={()=> addToFavoriteProperties(currentProperty)}>
+                <FiHeart style={{width: "20px", height: "18.48px", color: "#616161"}}/>
+                <p style={{ fontFamily: "Inter", fontWeight: "400", fontSize: "12px",
+                  lineHeight: "16px", letterSpacing: "0.4px", color: "#616161"}}>Add to favorites</p>
+             </Wrapper>
+             )}
         </LoggedInHomeseekerBox1>
        </Wrapper>
       ) :
@@ -267,6 +288,19 @@ function PropertyDetailPage() {
               <p style={{ fontFamily: "Inter", fontWeight: "400", fontSize: "14px",
               lineHeight: "20px", letterSpacing: "0.25px", color: "#373737"}}>999444333</p>
             </Wrapper>
+            {favoriteStatus ? (
+             <Wrapper style={{ gap: "6px" }}>
+                <FaHeart style={{width: "20px", height: "18.48px", color: "#F48FB1"}}/>
+                <p style={{ fontFamily: "Inter", fontWeight: "400", fontSize: "12px",
+                  lineHeight: "16px", letterSpacing: "0.4px", color: "#F48FB1"}}>Saved in favorites</p>
+             </Wrapper>
+             ): (
+             <Wrapper style={{ gap: "6px" }} onClick={()=> addToFavoriteProperties(currentProperty)}>
+                <FiHeart style={{width: "20px", height: "18.48px", color: "#616161"}}/>
+                <p style={{ fontFamily: "Inter", fontWeight: "400", fontSize: "12px",
+                  lineHeight: "16px", letterSpacing: "0.4px", color: "#616161"}}>Add to favorites</p>
+             </Wrapper>
+             )}
           </Wrapper>
         </LoggedInHomeseekerBox2>
        </Wrapper>
