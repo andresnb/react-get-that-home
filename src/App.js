@@ -5,8 +5,8 @@ import './App.css';
 import ListViewPage from "./pages/list-view-page";
 import LandingPage from "./pages/landing-page";
 import PropertyDetailPage from './pages/property-detail-page';
-import MyProperties from "./pages/landlord-owned-properties.js";
-import SavedProperties from "./pages/homeseeker-saved-properties.js";
+import MyProperties from "./pages/my-properties-page.js";
+import SavedProperties from "./pages/saved-properties-page.js";
 import { useAuth } from "./context/auth-context";
 
 function App() {
