@@ -6,22 +6,7 @@ import { getProperties } from "../services/property-service";
 import { Filters } from "../components/Filters/filters";
 import { useAuth } from "../context/auth-context";
 
-const properties_data = [
-
-  { name: '86872 Jacob Gateway',
-    operation_type: 'rent',
-    address: '86872 Jacob Gateway',
-    price: 3000.00,
-    property_type: 'apartment',
-    bedrooms: 4,
-    bathrooms: 2,
-    area: 180,
-    pets: true,
-    status: true,
-    phone: '5983764478928',
-    description: '3 Bedroom/2 Bathroom apartment available for ASAP move-in! Apartment features hardwood floors throughout, virtual doorman, Central AC/heat, dishwasher and a microwave. The kitchen has custom cabinetry and the living room is big enough to fit a dinner table, a couch and a tv set up.',
-    favorite: false
-  },
+const favoritesData = [
   { name: 'Fransicsco de Paula Ugarriza 27',
     operation_type: 'sale',
     address: 'Fransicsco de Paula Ugarriza 27',
@@ -34,7 +19,8 @@ const properties_data = [
     status: true,
     phone: '5983764478928',
     description: '3 Bedroom/2 Bathroom apartment available for ASAP move-in! Apartment features hardwood floors throughout, virtual doorman, Central AC/heat, dishwasher and a microwave. The kitchen has custom cabinetry and the living room is big enough to fit a dinner table, a couch and a tv set up.',
-    favorite: true
+    favorite: true,
+    id: 9
   },
   { name: 'Fransicsco de Paula Ugarriza 27',
     operation_type: 'sale',
@@ -48,21 +34,26 @@ const properties_data = [
     status: true,
     phone: '5983764478928',
     description: '3 Bedroom/2 Bathroom apartment available for ASAP move-in! Apartment features hardwood floors throughout, virtual doorman, Central AC/heat, dishwasher and a microwave. The kitchen has custom cabinetry and the living room is big enough to fit a dinner table, a couch and a tv set up.',
-    favorite: true
-  },
+    favorite: true,
+    id: 10
+  }
+]
+
+const contactedData = [
   { name: 'Fransicsco de Paula Ugarriza 27',
-    operation_type: 'rent',
+    operation_type: 'sale',
     address: 'Fransicsco de Paula Ugarriza 27',
-    price: 250.00,
-    property_type: 'apartment',
-    bedrooms: 2,
-    bathrooms: 1,
-    area: 100,
-    pets: false,
+    price: 25000.00,
+    property_type: 'house',
+    bedrooms: 4,
+    bathrooms: 2,
+    area: 220,
+    pets: true,
     status: true,
     phone: '5983764478928',
     description: '3 Bedroom/2 Bathroom apartment available for ASAP move-in! Apartment features hardwood floors throughout, virtual doorman, Central AC/heat, dishwasher and a microwave. The kitchen has custom cabinetry and the living room is big enough to fit a dinner table, a couch and a tv set up.',
-    favorite: false
+    favorite: true,
+    id: 9
   },
 
 ]
@@ -94,11 +85,27 @@ const PropertiesContainer = styled.div`
 `;
 
 function SavedProperties() {
-  const { currentDisplayedProperties,setCurrentDisplayedProperties } = useAuth();
+  const { currentDisplayedProperties,
+          setCurrentDisplayedProperties,
+          savedProperties, setSavedProperties} = useAuth();
+  const [favoriteProperties, setFavoriteProperties] = useState( savedProperties.favorites || favoritesData);
+  const [contactedProperties, setContactedProperties] = useState( savedProperties.contacted || contactedData);
+  const [properties, setProperties] = useState(favoriteProperties);
 
   useEffect(() => {
     setCurrentDisplayedProperties("favorites")
   }, []);
+
+  useEffect(() => {
+    if (currentDisplayedProperties === "contacted") {
+      setProperties(contactedProperties);
+      setSavedProperties({...savedProperties, "contacted": contactedProperties})
+
+    } else {
+      setProperties(favoriteProperties);
+      setSavedProperties({...savedProperties, "favorites": favoriteProperties})
+    }
+  }, [currentDisplayedProperties, favoriteProperties, contactedProperties]);
 
   return (
     <Wrapper>
@@ -144,7 +151,7 @@ function SavedProperties() {
             </p>
 
             <PropertiesContainer>
-               {properties_data.map((property) => (
+               {properties.map((property) => (
                 <PropertyCard
                 key={property.id}
                 image={sampleProperty}
