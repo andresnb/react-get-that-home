@@ -20,7 +20,8 @@ const activeData = [
     status: true,
     phone: '5983764478928',
     description: '3 Bedroom/2 Bathroom apartment available for ASAP move-in! Apartment features hardwood floors throughout, virtual doorman, Central AC/heat, dishwasher and a microwave. The kitchen has custom cabinetry and the living room is big enough to fit a dinner table, a couch and a tv set up.',
-    favorite: false
+    favorite: false,
+    id: 1
   },
   { name: 'Fransicsco de Paula Ugarriza 27',
     operation_type: 'sale',
@@ -34,7 +35,8 @@ const activeData = [
     status: true,
     phone: '5983764478928',
     description: '3 Bedroom/2 Bathroom apartment available for ASAP move-in! Apartment features hardwood floors throughout, virtual doorman, Central AC/heat, dishwasher and a microwave. The kitchen has custom cabinetry and the living room is big enough to fit a dinner table, a couch and a tv set up.',
-    favorite: true
+    favorite: true,
+    id: 2
   },
   { name: 'Fransicsco de Paula Ugarriza 27',
     operation_type: 'sale',
@@ -48,7 +50,8 @@ const activeData = [
     status: true,
     phone: '5983764478928',
     description: '3 Bedroom/2 Bathroom apartment available for ASAP move-in! Apartment features hardwood floors throughout, virtual doorman, Central AC/heat, dishwasher and a microwave. The kitchen has custom cabinetry and the living room is big enough to fit a dinner table, a couch and a tv set up.',
-    favorite: true
+    favorite: true,
+    id: 3
   },
   { name: 'Fransicsco de Paula Ugarriza 27',
     operation_type: 'rent',
@@ -62,7 +65,8 @@ const activeData = [
     status: true,
     phone: '5983764478928',
     description: '3 Bedroom/2 Bathroom apartment available for ASAP move-in! Apartment features hardwood floors throughout, virtual doorman, Central AC/heat, dishwasher and a microwave. The kitchen has custom cabinetry and the living room is big enough to fit a dinner table, a couch and a tv set up.',
-    favorite: false
+    favorite: false,
+    id: 4
   },
   { name: '86872 Jacob Gateway',
     operation_type: 'rent',
@@ -76,7 +80,8 @@ const activeData = [
     status: true,
     phone: '5983764478928',
     description: '3 Bedroom/2 Bathroom apartment available for ASAP move-in! Apartment features hardwood floors throughout, virtual doorman, Central AC/heat, dishwasher and a microwave. The kitchen has custom cabinetry and the living room is big enough to fit a dinner table, a couch and a tv set up.',
-    favorite: false
+    favorite: false,
+    id: 5
   }
 ]
 
@@ -93,7 +98,8 @@ const closedData = [
     status: true,
     phone: '5983764478928',
     description: '3 Bedroom/2 Bathroom apartment available for ASAP move-in! Apartment features hardwood floors throughout, virtual doorman, Central AC/heat, dishwasher and a microwave. The kitchen has custom cabinetry and the living room is big enough to fit a dinner table, a couch and a tv set up.',
-    favorite: true
+    favorite: true,
+    id: 6,
   },
   { name: 'Fransicsco de Paula Ugarriza 27',
     operation_type: 'rent',
@@ -107,7 +113,8 @@ const closedData = [
     status: true,
     phone: '5983764478928',
     description: '3 Bedroom/2 Bathroom apartment available for ASAP move-in! Apartment features hardwood floors throughout, virtual doorman, Central AC/heat, dishwasher and a microwave. The kitchen has custom cabinetry and the living room is big enough to fit a dinner table, a couch and a tv set up.',
-    favorite: false
+    favorite: false,
+    id: 7
   },
 
 ]
@@ -140,27 +147,46 @@ const PropertiesContainer = styled.div`
 
 
 function MyProperties() {
-  const { currentDisplayedProperties, setCurrentDisplayedProperties,
+  const { currentDisplayedProperties,
+          setCurrentDisplayedProperties,
           myProperties, setMyProperties} = useAuth();
-  const [activeProperties, setActiveProperties] = useState(activeData);
-  const [closedProperties, setClosedProperties] = useState(closedData);
-  const [properties, setProperties] = useState([]);
-  console.log("activeProperties 11", activeProperties)
-  console.log("closedProperties 11", closedProperties)
+  const [activeProperties, setActiveProperties] = useState( myProperties.active || activeData);
+  const [closedProperties, setClosedProperties] = useState( myProperties.closed ||closedData);
+  const [properties, setProperties] = useState(activeProperties);
 
   useEffect(() => {
     setCurrentDisplayedProperties("active")
   }, []);
 
   useEffect(() => {
-    if (currentDisplayedProperties==="active") setProperties(activeProperties)
-    if (currentDisplayedProperties==="closed") setProperties(activeProperties)
-  }, [currentDisplayedProperties]);
+    if (currentDisplayedProperties === "closed") {
+      setProperties(closedProperties);
+      setMyProperties({...myProperties, "closed": closedProperties})
 
-  console.log("PROPERTIESSS",properties)
-  console.log("currentDisplayedProperties",currentDisplayedProperties)
-  // const [activeProperties, setActiveProperties] = useState([activeData]);
-  // const [activeProperties, setActiveProperties] = useState([activeData]);
+    } else {
+      setProperties(activeProperties);
+      setMyProperties({...myProperties, "active": activeProperties})
+    }
+  }, [currentDisplayedProperties, activeProperties, closedProperties]);
+
+  function handleDelete(propertyId) {
+    let filteredClosed = closedProperties.filter(property => property.id !== propertyId);
+    setClosedProperties(filteredClosed);
+  }
+
+  function handleClose(propertyId) {
+    let filteredActive = activeProperties.filter(property => property.id !== propertyId);
+    let newClosed = activeProperties.filter(property => property.id === propertyId);
+    setActiveProperties(filteredActive);
+    setClosedProperties([...closedProperties , newClosed["0"]]);
+  }
+
+  function handleRestore(propertyId) {
+    let filteredClosed = closedProperties.filter(property => property.id !== propertyId);
+    let newActive = closedProperties.filter(property => property.id === propertyId);
+    setClosedProperties(filteredClosed);
+    setActiveProperties([...activeProperties, newActive["0"]]);
+  }
 
   return (
     <Wrapper>
@@ -209,9 +235,10 @@ function MyProperties() {
                 <PropertyCard
                 key={property.id}
                 image={sampleProperty}
-                // onPropertyClick={onPropertyClick}
+                handleDelete={handleDelete}
+                handleClose={handleClose}
+                handleRestore={handleRestore}
                 {...property}
-
                 />
                 ))}
             </PropertiesContainer>

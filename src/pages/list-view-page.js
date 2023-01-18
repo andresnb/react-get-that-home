@@ -20,7 +20,8 @@ const properties_data = [
     status: true,
     phone: '5983764478928',
     description: '3 Bedroom/2 Bathroom apartment available for ASAP move-in! Apartment features hardwood floors throughout, virtual doorman, Central AC/heat, dishwasher and a microwave. The kitchen has custom cabinetry and the living room is big enough to fit a dinner table, a couch and a tv set up.',
-    favorite: false
+    favorite: false,
+    id: 8
   },
   { name: 'Fransicsco de Paula Ugarriza 27',
     operation_type: 'sale',
@@ -34,7 +35,8 @@ const properties_data = [
     status: true,
     phone: '5983764478928',
     description: '3 Bedroom/2 Bathroom apartment available for ASAP move-in! Apartment features hardwood floors throughout, virtual doorman, Central AC/heat, dishwasher and a microwave. The kitchen has custom cabinetry and the living room is big enough to fit a dinner table, a couch and a tv set up.',
-    favorite: true
+    favorite: true,
+    id: 9
   },
   { name: 'Fransicsco de Paula Ugarriza 27',
     operation_type: 'sale',
@@ -48,7 +50,8 @@ const properties_data = [
     status: true,
     phone: '5983764478928',
     description: '3 Bedroom/2 Bathroom apartment available for ASAP move-in! Apartment features hardwood floors throughout, virtual doorman, Central AC/heat, dishwasher and a microwave. The kitchen has custom cabinetry and the living room is big enough to fit a dinner table, a couch and a tv set up.',
-    favorite: true
+    favorite: true,
+    id: 10
   },
   { name: 'Fransicsco de Paula Ugarriza 27',
     operation_type: 'rent',
@@ -62,7 +65,8 @@ const properties_data = [
     status: true,
     phone: '5983764478928',
     description: '3 Bedroom/2 Bathroom apartment available for ASAP move-in! Apartment features hardwood floors throughout, virtual doorman, Central AC/heat, dishwasher and a microwave. The kitchen has custom cabinetry and the living room is big enough to fit a dinner table, a couch and a tv set up.',
-    favorite: false
+    favorite: false,
+    id: 11
   },
 
 ]

@@ -48,7 +48,7 @@ const DetailsWrapper = styled.div`
   margin: 8px 6px 0px 6px;
 `;
 
-function PropertyCard({ image, id, name, operation_type, address, phone, price, property_type, bedrooms, bathrooms, area, pets, description, favorite }) {
+function PropertyCard({ image, id, name, operation_type, address, phone, price, property_type, bedrooms, bathrooms, area, pets, description, favorite, handleDelete, handleClose, handleRestore }) {
   const { currentDisplayedProperties } = useAuth();
 
   return (
@@ -114,10 +114,12 @@ function PropertyCard({ image, id, name, operation_type, address, phone, price, 
                   </div>
                   <div style={{display: "flex", flexDirection: "row", justifyContent: "center", alignItems: "center", gap: "11px"}}>
                     <AiOutlineCloseCircle style={{color:"FFFFFF", width:"18px", height:"18px"}}/>
-                    <p style={{
-                      fontFamily: "Inter", fontWeight: "500", fontSize: "14px",
-                      lineHeight: "24px", letterSpacing: "1.25px", color: "#FFFFFF"
-                    }}>CLOSE</p>
+                    <div onClick={()=>handleClose(id)}>
+                      <p style={{
+                        fontFamily: "Inter", fontWeight: "500", fontSize: "14px",
+                        lineHeight: "24px", letterSpacing: "1.25px", color: "#FFFFFF"
+                      }}>CLOSE</p>
+                    </div>
                   </div>
                 </div>
           </MyPropertiesWrapper>
@@ -176,17 +178,21 @@ function PropertyCard({ image, id, name, operation_type, address, phone, price, 
                 }}>
                   <div style={{ display: "flex", flexDirection: "row", justifyContent: "center", alignItems: "center", gap: "11px" }}>
                     <RiUploadLine style={{color:"FFFFFF", width:"18px", height:"19px"}} />
-                    <p style={{
-                      fontFamily: "Inter", fontWeight: "500", fontSize: "14px",
-                      lineHeight: "24px", letterSpacing: "1.25px", color: "#FFFFFF"
-                    }}>RESTORE</p>
+                    <div onClick={()=>handleRestore(id)}>
+                      <p style={{
+                        fontFamily: "Inter", fontWeight: "500", fontSize: "14px",
+                        lineHeight: "24px", letterSpacing: "1.25px", color: "#FFFFFF"
+                      }}>RESTORE</p>
+                    </div>
                   </div>
                   <div style={{display: "flex", flexDirection: "row", justifyContent: "center", alignItems: "center", gap: "11px"}}>
                     <RiDeleteBin6Line style={{color:"FFFFFF", width:"20px", height:"20px"}}/>
-                    <p style={{
-                      fontFamily: "Inter", fontWeight: "500", fontSize: "14px",
-                      lineHeight: "24px", letterSpacing: "1.25px", color: "#FFFFFF"
-                    }}>DELETE</p>
+                    <div onClick={()=>handleDelete(id)}>
+                      <p style={{
+                        fontFamily: "Inter", fontWeight: "500", fontSize: "14px",
+                        lineHeight: "24px", letterSpacing: "1.25px", color: "#FFFFFF"
+                      }}>DELETE</p>
+                    </div>
                   </div>
                 </div>
           </MyPropertiesWrapper>

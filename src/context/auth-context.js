@@ -19,13 +19,14 @@ function AuthProvider(props) {
   });
 
   const [myProperties, setMyProperties] = useState({
-    active: [],
-    closed: []
+    active: "",
+    closed: ""
   });
   const [savedProperties, setSavedProperties] = useState({
-    active: [],
-    closed: []
+    favorites: "",
+    contacted: ""
   });
+
   const [currentDisplayedProperties, setCurrentDisplayedProperties] = useState("test");
 
 
