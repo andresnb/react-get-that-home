@@ -106,13 +106,15 @@ export function LandlordNavbar(){
                 lineHeight: "24px", letterSpacing: "1.25px", color: "#616161"}}>FIND A HOME</p>
             </Link>
           </div>
-          <WhiteButton>
-            <div style={{display: "flex", flexDirection: "row", justifyContent: "center", alignItems: "center", gap: "4px"}}>
-              <RiHome8Line style={{width: "19px", height: "21px", color: "#616161"}}/>
-              <p style={{ fontFamily: "Inter", fontWeight: "500", fontSize: "14px",
-              lineHeight: "24px", letterSpacing: "1.25px", color: "#616161"}}>MY PROPERTIES</p>
+          <PinkButton>
+            <div style={{ display: "flex", flexDirection: "row", justifyContent: "center", alignItems: "center", gap: "4px" }}>
+              <RiHome8Line style={{width: "19px", height: "21px", color: "#FFFFFF"}}/>
+              <Link to={"/my-properties"}>
+                <p style={{ fontFamily: "Inter", fontWeight: "500", fontSize: "14px",
+                lineHeight: "24px", letterSpacing: "1.25px", color: "#FFFFFF"}}>MY PROPERTIES</p>
+              </Link>
             </div>
-          </WhiteButton>
+          </PinkButton>
           <PinkButton>
             <div style={{display: "flex", flexDirection: "row", justifyContent: "center", alignItems: "center", gap: "4px"}}>
               <AiOutlineUserAdd style={{width: "19px", height: "21px", color: "#FFFFFF"}}/>
@@ -145,13 +147,15 @@ export function HomeSeekerNavbar(){
                 lineHeight: "24px", letterSpacing: "1.25px", color: "#616161"}}>FIND A HOME</p>
             </Link>
           </div>
-          <WhiteButton>
-            <div style={{display: "flex", flexDirection: "row", justifyContent: "center", alignItems: "center", gap: "4px"}}>
+          <PinkButton>
+            <div style={{ display: "flex", flexDirection: "row", justifyContent: "center", alignItems: "center", gap: "4px" }}>
               <BsHeartFill style={{width: "19px", height: "21px", color: "#FFFFFF"}}/>
-              <p style={{ fontFamily: "Inter", fontWeight: "500", fontSize: "14px",
-              lineHeight: "24px", letterSpacing: "1.25px", color: "#616161"}}>SAVED PROPERTIES</p>
+              <Link to={"/saved-properties"}>
+                <p style={{ fontFamily: "Inter", fontWeight: "500", fontSize: "14px",
+                lineHeight: "24px", letterSpacing: "1.25px", color: "#FFFFFF"}}>SAVED PROPERTIES</p>
+              </Link>
             </div>
-          </WhiteButton>
+          </PinkButton>
           <PinkButton>
             <div style={{display: "flex", flexDirection: "row", justifyContent: "center", alignItems: "center", gap: "4px"}}>
               <AiOutlineUserAdd style={{width: "19px", height: "21px", color: "#FFFFFF"}}/>

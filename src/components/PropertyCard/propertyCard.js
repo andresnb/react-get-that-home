@@ -32,7 +32,7 @@ const DetailsWrapper = styled.div`
 
 function PropertyCard({ image, id, name, operation_type, address, phone, price, property_type, bedrooms, bathrooms, area, pets, description, favorite }) {
   const { currentDisplayedProperties } = useAuth();
-  console.log("BAEK DISPLAY PROPERTIES", currentDisplayedProperties)
+  console.log("BAEK DISPLAY PROPERTIES 35", currentDisplayedProperties)
 
 
   return (
@@ -78,7 +78,7 @@ function PropertyCard({ image, id, name, operation_type, address, phone, price, 
                 </div>
 
                 { pets? <MdOutlinePets style={{width: "20px", height: "17.5px", color: "#616161"}}/>: <MdOutlinePets style={{width: "20px", height: "17.5px", color: "#FFFFFF"}}/>}
-                { favorite===true && currentDisplayedProperties==="favorites"? <BsHeartFill style={{width: "20px", height: "17.5px", color: "#F48FB1"}}/>: <BsHeartFill style={{width: "20px", height: "17.5px", color: "#FFFFFF"}}/>}
+                { favorite===true && (currentDisplayedProperties==="favorites" || currentDisplayedProperties==="contacted")? <BsHeartFill style={{width: "20px", height: "17.5px", color: "#F48FB1"}}/>: <BsHeartFill style={{width: "20px", height: "17.5px", color: "#FFFFFF"}}/>}
               </div>
             </DetailsWrapper>
         </Link>

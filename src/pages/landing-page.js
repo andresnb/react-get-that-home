@@ -10,6 +10,7 @@ import {DiRuby, DiReact} from "react-icons/di";
 import {useNavigate} from 'react-router-dom';
 // import { ReactComponent as LandingBackground } from "../assets/svg/landing-background.svg";
 import LandingBackground from "../assets/svg/landing-background.svg";
+import { useAuth } from "../context/auth-context";
 
 
 
@@ -175,7 +176,10 @@ const TeamMembersContainer = styled.div`
 `;
 
 function LandingPage() {
+  const { setCurrentDisplayedProperties } = useAuth();
   const navigate = useNavigate();
+
+  setCurrentDisplayedProperties("test");
 
   function handleSubmit(event) {
 
