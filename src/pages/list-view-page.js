@@ -1,168 +1,84 @@
 import styled from "styled-components";
 import PropertyCard from '../components/PropertyCard/propertyCard';
-import { FiSearch, FiChevronDown } from "react-icons/fi";
-// import { AiOutlineMinus } from "react-icons/ai";
-// import { RiMoneyDollarCircleFill } from "react-icons/ri";
 import sampleProperty from "../assets/images/rental-image-example.png";
 import { useEffect, useState } from "react";
 import { getProperties } from "../services/property-service";
+import { Filters } from "../components/Filters/filters";
+import { useAuth } from "../context/auth-context";
+
+const properties_data = [
+
+  { name: '86872 Jacob Gateway',
+    operation_type: 'rent',
+    address: '86872 Jacob Gateway',
+    price: 3000.00,
+    property_type: 'apartment',
+    bedrooms: 4,
+    bathrooms: 2,
+    area: 180,
+    pets: true,
+    status: true,
+    phone: '5983764478928',
+    description: '3 Bedroom/2 Bathroom apartment available for ASAP move-in! Apartment features hardwood floors throughout, virtual doorman, Central AC/heat, dishwasher and a microwave. The kitchen has custom cabinetry and the living room is big enough to fit a dinner table, a couch and a tv set up.'
+  },
+  { name: 'Fransicsco de Paula Ugarriza 27',
+    operation_type: 'sale',
+    address: 'Fransicsco de Paula Ugarriza 27',
+    price: 25000.00,
+    property_type: 'house',
+    bedrooms: 4,
+    bathrooms: 2,
+    area: 220,
+    pets: true,
+    status: true,
+    phone: '5983764478928',
+    description: '3 Bedroom/2 Bathroom apartment available for ASAP move-in! Apartment features hardwood floors throughout, virtual doorman, Central AC/heat, dishwasher and a microwave. The kitchen has custom cabinetry and the living room is big enough to fit a dinner table, a couch and a tv set up.'
+  },
+  { name: 'Fransicsco de Paula Ugarriza 27',
+    operation_type: 'sale',
+    address: 'Fransicsco de Paula Ugarriza 27',
+    price: 80000,
+    property_type: 'house',
+    bedrooms: 2,
+    bathrooms: 1,
+    area: 150,
+    pets: false,
+    status: true,
+    phone: '5983764478928',
+    description: '3 Bedroom/2 Bathroom apartment available for ASAP move-in! Apartment features hardwood floors throughout, virtual doorman, Central AC/heat, dishwasher and a microwave. The kitchen has custom cabinetry and the living room is big enough to fit a dinner table, a couch and a tv set up.'
+  },
+  { name: 'Fransicsco de Paula Ugarriza 27',
+    operation_type: 'rent',
+    address: 'Fransicsco de Paula Ugarriza 27',
+    price: 250.00,
+    property_type: 'apartment',
+    bedrooms: 2,
+    bathrooms: 1,
+    area: 100,
+    pets: false,
+    status: true,
+    phone: '5983764478928',
+    description: '3 Bedroom/2 Bathroom apartment available for ASAP move-in! Apartment features hardwood floors throughout, virtual doorman, Central AC/heat, dishwasher and a microwave. The kitchen has custom cabinetry and the living room is big enough to fit a dinner table, a couch and a tv set up.'
+  },
+
+]
 
 const Wrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
 `;
 
 const PageContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 1136px;
-  margin:16px 0px;
-  gap: 16px;
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+width: 1136px;
+margin:16px 0px;
+gap: 16px;
 `;
-
-const FiltersSection = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  width: 1136px;
-`;
-
-const FilterButtons = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  gap: 8px;
-`;
-
-const PinkFilterButton = styled("button")`
-  height: 40px;
-  border: none;
-  background: #F48FB1;
-  border-radius: 16px;
-  font-family: 'Inter';
-  font-weight: 500;
-  font-size: 14px;
-  line-height: 24px;
-  letter-spacing: 1.25px;
-  color: #FFFFFF;
-`;
-
-// const WhiteButton = styled("button")`
-//   width: 50px;
-//   height: 20px;
-//   border: none;
-//   background: #FFFFFF;
-//   &:active {
-//     background: #F48FB1;
-//   }
-//   padding: 0px 12px;
-// `;
-
-// const PinkDoneButton = styled("button")`
-//   height: 32px;
-//   width: 60px;
-//   border: none;
-//   background: #F48FB1;
-//   border-radius: 8px;
-//   font-family: 'Inter';
-//   font-weight: 500;
-//   font-size: 14px;
-//   line-height: 24px;
-//   letter-spacing: 1.25px;
-//   color: #FFFFFF;
-//   padding: 0px 8px;
-// `;
-
-// const PriceFilter = styled.div`
-//   border-radius: 8px;
-//   display: flex;
-//   flex-direction: column;
-//   justify-content: left;
-//   align-items: left;
-//   width: 247px;
-//   height: 116px
-//   font-family: 'Inter';
-//   box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
-//   padding: 8px;
-// `;
-
-// const PropertyFilter = styled.div`
-//   border-radius: 8px;
-//   display: flex;
-//   flex-direction: column;
-//   justify-content: left;
-//   align-items: left;
-//   width: 211px;
-//   height: 116px
-//   font-family: 'Inter';
-//   box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
-//   padding: 8px;
-// `;
-
-// const BedAndBathFilter = styled.div`
-//   border-radius: 8px;
-//   display: flex;
-//   flex-direction: column;
-//   justify-content: left;
-//   align-items: left;
-//   width: 270px;
-//   height: 184px
-//   font-family: 'Inter';
-//   box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
-//   padding: 8px;
-// `;
-
-
-// const MoreFilter = styled.div`
-//   border-radius: 8px;
-//   display: flex;
-//   flex-direction: column;
-//   justify-content: left;
-//   align-items: left;
-//   width: 247px;
-//   height: 168px
-//   font-family: 'Inter';
-//   box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
-//   padding: 8px;
-// `;
-
-
-// border: 1px solid #F48FB1;
-// const ButtonFilterInput = styled.input`
-//   display: flex;
-//   flex-direction: row;
-//   align-items: center;
-//   border: none;
-//   width: 54px;
-//   height: 18px;
-//   font-family: 'Inter';
-//   font-weight: 400;
-//   font-size: 14px;
-//   line-height: 20px;
-//   letter-spacing: 0.25px;
-//   color: #8E8E8E;
-// `;
-
-// const ButtonFilterCheckbox = styled.input`
-//   display: flex;
-//   flex-direction: row;
-//   align-items: center;
-//   border: 1px solid pink;
-//   width: 20px;
-//   height: 20px;
-//   font-family: 'Inter';
-//   font-weight: 400;
-//   font-size: 14px;
-//   line-height: 20px;
-//   letter-spacing: 0.25px;
-//   color: #8E8E8E;
-// `;
-
 
 const PropertiesContainer = styled.div`
   width: fit-content;
@@ -174,7 +90,97 @@ const PropertiesContainer = styled.div`
 `;
 
 function ListViewPage() {
+  const { filters, setFilters } = useAuth();
   const [properties, setProperties] = useState([]);
+  const [showFilters, setShowFilters] = useState({
+    price: false,
+    propertyType: false,
+    bedBath: false,
+    more:false,
+    operationType:false,
+  });
+  const [prices, setPrices] = useState({
+    min: "",
+    max: ""
+  });
+  const [areas, setAreas] = useState({
+    min: "",
+    max: ""
+  });
+  const [baths, setBaths] = useState(1);
+  const [beds, setBeds] = useState(1);
+  const [petAllowed, setPetAllowed] = useState(false);
+  const [apartment, setApartment] = useState(false);
+  const [house, setHouse] = useState(false);
+  const [rent, setRent] = useState(false);
+  const [buy, setBuy] = useState(false);
+  const [both, setBoth] = useState(false);
+  const [query, setQuery] = useState("");
+
+  let filterProperties = [...properties_data]?.filter(property => {
+    if(property) return property.status
+  });
+
+  // Filter for max and min prices
+  filterProperties = filterProperties.filter(property => {
+      if (!(filters.prices.max)) return true;
+      return (property.price <= filters.prices.max)
+  })
+
+  filterProperties = filterProperties.filter(property => {
+    if (!(filters.prices.min)) return true;
+    return (property.price >= filters.prices.min)
+  })
+
+  // Filter for min number of bedrooms
+  filterProperties = filterProperties.filter(property => {
+    return (property.bedrooms >= filters.beds)
+  })
+
+  // Filter for min number of bathrooms
+  filterProperties = filterProperties.filter(property => {
+    return (property.bathrooms >= filters.baths)
+  })
+
+  // Filter for max and min areas
+  filterProperties = filterProperties.filter(property => {
+    if (!(filters.areas.max)) return true;
+    return (property.area <= filters.areas.max)
+  })
+
+  filterProperties = filterProperties.filter(property => {
+    if (!(filters.areas.min)) return true;
+    return (property.area >= filters.areas.min)
+  })
+
+  // Filter for pet allowed
+  filterProperties = filterProperties.filter(property => {
+    if (!filters.petAllowed) return true;
+    return (property.pets)
+  })
+
+  // Filter for property type on check
+  filterProperties = filterProperties.filter(property => {
+    if (!(filters.propertyType[0] || filters.propertyType[1])) return true;
+    if (filters.propertyType[0] && filters.propertyType[1]) return true;
+    if (filters.propertyType[1]) return property.property_type === "apartment"
+    if (filters.propertyType[0]) return property.property_type === "house"
+  })
+
+  // Filter for operation type on check
+  filterProperties = filterProperties.filter(property => {
+  if (!(filters.operationType[0] || filters.operationType[1])) return true;
+  if (filters.operationType[0] && filters.operationType[1]) return true;
+  if (filters.operationType[0]) return property.operation_type === "rent"
+  if (filters.operationType[1]) return property.operation_type === "sale"
+  })
+
+  // Filter for address
+  filterProperties = filterProperties.filter(property => {
+    return (property.address.toLowerCase().includes(filters.search))
+  })
+
+
   useEffect(() => {
     getProperties()
       .then((data) => {
@@ -186,232 +192,105 @@ function ListViewPage() {
       });
   }, []);
 
+  function handlePrice(event) {
+    event.preventDefault();
+
+    const {name, value} = event.target;
+    setPrices({ ...prices, [name.replace("-amount","")]: value });
+  }
+
+  function handleArea(event) {
+    event.preventDefault();
+
+    const {name, value} = event.target;
+    setAreas({ ...areas, [name.replace("-amount","")]: value });
+  }
+
+  function handleDone(event){
+    event.preventDefault();
+
+    const id = event.target.id
+    if(id==='prices') setFilters({...filters, [id]: prices});
+    if(id === "bathsbeds") setFilters({...filters, "beds": beds, "baths":baths});
+    if (id === "more") setFilters({ ...filters, "petAllowed": petAllowed, "areas": areas })
+    if (id === "propertyType") setFilters({ ...filters, "propertyType": [house, apartment]})
+
+    setShowFilters({
+      ...showFilters,
+      more: false,
+      price: false,
+      bedBath: false,
+      propertyType: false
+    });
+
+  }
+
+  function handleCheck(event) {
+    const id = event.target.id
+    if (id === "check-pets-allowed") setPetAllowed(event.target.checked);
+    if (id === "check-house") setHouse(event.target.checked);
+    if (id === "check-apartment") setApartment(event.target.checked);
+  }
+
+  function handleOperationType(event){
+    const id = event.target.id
+
+    if (id === "both") {
+      setBoth(!both)
+      setBuy(!both);
+      setRent(!both);
+    };
+    if (id === "check-buy") setBuy(!buy);
+    if (id === "check-rent") setRent(!rent);
+  }
+
+  function handleQuery(event) {
+    setQuery(event.target.value);
+  }
+
+  useEffect(()=>{
+    setFilters({...filters, "operationType":[buy, rent]})
+  },[buy, rent, both])
+
+  useEffect(()=>{
+    setFilters({...filters, "search":query})
+  },[query])
+
   return (
     <Wrapper>
       <PageContainer>
-        <FiltersSection>
-          <div style={{
-            display: "flex", flexDirection: "row", justifyContent: "left",
-            alignItems: "left", gap: "6px", border: "2px solid #F48FB1",
-            borderRadius: "8px", padding: "8px", width: "240px"}}>
-              <FiSearch style={{color: "#616161"}}/>
-              <p style={{ fontFamily: "Inter", fontWeight: "500", fontSize: "14px",
-                lineHeight: "24px", letterSpacing: "1.25px", color: "#616161"}}>Search by adress</p>
-          </div>
+        <Filters
+          prices={prices}
+          areas={areas}
+          house={house}
+          apartment={apartment}
+          petAllowed={petAllowed}
+          buy={buy}
+          rent={rent}
+          both={both}
+          query={query}
+          handlePrice={handlePrice}
+          handleArea={handleArea}
+          handleCheck={handleCheck}
+          handleOperationType={handleOperationType}
+          handleQuery={handleQuery}
+          setBeds={setBeds}
+          setBaths={setBaths}
+          setPetAllowed={setPetAllowed}
+          handleDone={handleDone}
+          showFilters={showFilters}
+          setShowFilters={setShowFilters}
+        />
 
-          <FilterButtons>
-            <PinkFilterButton>
-                <p>PRICE</p>
-            </PinkFilterButton>
-            <PinkFilterButton>
-                <p>PROPERTY TYPE</p>
-            </PinkFilterButton>
-            <PinkFilterButton>
-                <p>BEDS & BATHS</p>
-            </PinkFilterButton>
-            <PinkFilterButton>
-              <div style={{display: "flex", flexDirection: "row", justifyContent: "center", alignItems: "center", gap: "8px"}}>
-                <p>MORE</p>
-                <FiChevronDown style={{width: "17px", height: "17px", color: "#FFFFFF"}}/>
-              </div>
-            </PinkFilterButton>
-          </FilterButtons>
+        <div style={{width: '1136px'}}>
+            <div>
+              <p style={{ fontFamily: "Montserrat", fontWeight: "500", fontSize: "20px",
+              lineHeight: "28px", color: "#616161", marginBottom: "22px", textAlign: "left"}}>4 properties found
+              </p>
+            </div>
 
-          <select defaultValue="Both" name="relation"  style={{ border: "2px solid #F48FB1", height: "40px", fontFamily: "Inter", fontSize: "16px",
-                lineHeight: "24px", letterSpacing: "0.5px", color: "#373737", padding: "0px 8px 0px 4px", borderRadius: "8px"}}>;
-              <option value="Rent">Renting</option>
-              <option value="Buy">Buying</option>
-              <option value="Both">Buying & Renting</option>
-          </select>
-        </FiltersSection>
-
-        {/* <PriceFilter>
-          <p style={{ fontFamily: "Inter", fontWeight: "400", fontSize: "10px",
-              lineHeight: "12.1px", letterSpacing: "1.5px", color: "#616161", marginBottom: "4px"}}>PRICE RANGE</p>
-
-          <div style={{display: "flex", flexDirection: "row", justifyContent: "left", alignItems: "center", gap: "8px", marginBottom: "16px"}}>
-              <div style={{
-                border: "2px solid #F48FB1", height: "32px", width: "78px", background: "#FFFFFF",
-                color: "#373737", padding: "0px 9.67px", borderRadius: "8px",
-                display: "flex", flexDirection: "row", justifyContent: "center", alignItems: "center", gap: "8px"}}>
-                  <RiMoneyDollarCircleFill style={{width: "26.67px", height: "26.67px", color: "#8E8E8E"}}/>
-                  <ButtonFilterInput
-                    name="min-amount"
-                    type="number"
-                    // value={}
-                    placeholder="min"
-                    // onChange={(event) =>
-                    //   handleMinAmount(event)
-                    // }
-                  />
-              </div>
-              <AiOutlineMinus />
-              <div style={{
-                border: "2px solid #F48FB1", height: "32px", width: "78px", background: "#FFFFFF",
-                color: "#373737", padding: "0px 9.67px", borderRadius: "8px",
-                display: "flex", flexDirection: "row", justifyContent: "center", alignItems: "center", gap: "8px"}}>
-                  <RiMoneyDollarCircleFill style={{width: "16.67px", height: "16.67px", color: "#8E8E8E"}}/>
-                  <ButtonFilterInput
-                    name="max-amount"
-                    type="number"
-                    // value={}
-                    placeholder="max"
-                    // onChange={(event) =>
-                    //   handleMaxAmount(event)
-                    // }
-                  />
-              </div>
-          </div>
-
-          <div style={{display: "flex", justifyContent: "right", alignItems: "right"}}>
-            <PinkDoneButton>
-              <p>PRICE</p>
-            </PinkDoneButton>
-          </div>
-        </PriceFilter> */}
-
-        {/* <PropertyFilter>
-          <p style={{ fontFamily: "Inter", fontWeight: "400", fontSize: "10px",
-              lineHeight: "12.1px", letterSpacing: "1.5px", color: "#616161", marginBottom: "12px"}}>PROPERTY TYPE</p>
-
-          <div style={{display: "flex", flexDirection: "row", justifyContent: "left", alignItems: "center", gap: "4px"}}>
-            <ButtonFilterCheckbox
-              type="checkbox"
-              name="check-house"
-              id="check-house"
-              />
-            <label for="check-house">Houses</label>
-          </div>
-
-          <div style={{display: "flex", flexDirection: "row", justifyContent: "left", alignItems: "center", gap: "4px"}}>
-            <ButtonFilterCheckbox
-              type="checkbox"
-              name="check-apartment"
-              id="check-apartment"
-              />
-            <label for="check-apartment">Apartments</label>
-          </div>
-
-          <div style={{display: "flex", justifyContent: "right", alignItems: "right", gap: "4px", marginTop: "4px"}}>
-            <PinkDoneButton>
-              <p>PRICE</p>
-            </PinkDoneButton>
-          </div>
-        </PropertyFilter> */}
-
-        {/* <MoreFilter>
-          <div style={{display: "flex", flexDirection: "row", justifyContent: "left", alignItems: "center", gap: "4px", marginBottom: "24px"}}>
-            <ButtonFilterCheckbox
-              type="checkbox"
-              name="check-pets-allowed"
-              id="check-pets-allowed"
-              />
-            <label for="check-pets-allowed">Pets allowed</label>
-          </div>
-
-          <p style={{ fontFamily: "Inter", fontWeight: "400", fontSize: "10px",
-              lineHeight: "12.1px", letterSpacing: "1.5px", color: "#616161", marginBottom: "4px"}}>AREA IN M2</p>
-
-          <div style={{display: "flex", flexDirection: "row", justifyContent: "left", alignItems: "center", gap: "8px", marginBottom: "16px"}}>
-              <div style={{
-                border: "2px solid #F48FB1", height: "32px", width: "78px", background: "#FFFFFF",
-                color: "#373737", padding: "0px 9.67px", borderRadius: "8px",
-                display: "flex", flexDirection: "row", justifyContent: "center", alignItems: "center", gap: "8px"}}>
-                  <ButtonFilterInput
-                    name="min-amount"
-                    type="number"
-                    // value={}
-                    placeholder="min"
-                    // onChange={(event) =>
-                    //   handleMinAmount(event)
-                    // }
-                  />
-              </div>
-              <AiOutlineMinus />
-              <div style={{
-                border: "2px solid #F48FB1", height: "32px", width: "78px", background: "#FFFFFF",
-                color: "#373737", padding: "0px 9.67px", borderRadius: "8px",
-                display: "flex", flexDirection: "row", justifyContent: "center", alignItems: "center", gap: "8px"}}>
-                  <ButtonFilterInput
-                    name="max-amount"
-                    type="number"
-                    // value={}
-                    placeholder="max"
-                    // onChange={(event) =>
-                    //   handleMaxAmount(event)
-                    // }
-                  />
-              </div>
-          </div>
-
-          <div style={{display: "flex", justifyContent: "right", alignItems: "right"}}>
-            <PinkDoneButton>
-              <p>PRICE</p>
-            </PinkDoneButton>
-          </div>
-        </MoreFilter> */}
-
-        {/* <BedAndBathFilter>
-          <p style={{ fontFamily: "Inter", fontWeight: "400", fontSize: "10px",
-              lineHeight: "12.1px", letterSpacing: "1.5px", color: "#616161", marginBottom: "4px"}}>BEDS</p>
-          <div style={{display: "flex", flexDirection: "row", justifyContent: "left", alignItems: "center", marginBottom: "12px"}}>
-            <WhiteButton>
-              <p style={{ fontFamily: "Montserrat", fontWeight: "400",
-              fontSize: "14px", lineHeight: "20px", color: "#616161"}}>Any</p>
-            </WhiteButton>
-            <WhiteButton>
-              <p style={{ fontFamily: "Montserrat", fontWeight: "400",
-              fontSize: "14px", lineHeight: "20px", color: "#616161"}}>1+</p>
-            </WhiteButton>
-            <WhiteButton>
-              <p style={{ fontFamily: "Montserrat", fontWeight: "400",
-              fontSize: "14px", lineHeight: "20px", color: "#616161"}}>2+</p>
-            </WhiteButton>
-            <WhiteButton>
-              <p style={{ fontFamily: "Montserrat", fontWeight: "400",
-              fontSize: "14px", lineHeight: "20px", color: "#616161"}}>3+</p>
-            </WhiteButton>
-            <WhiteButton>
-              <p style={{ fontFamily: "Montserrat", fontWeight: "400",
-              fontSize: "14px", lineHeight: "20px", color: "#616161"}}>4+</p>
-            </WhiteButton>
-          </div>
-          <p style={{ fontFamily: "Inter", fontWeight: "400", fontSize: "10px",
-              lineHeight: "12.1px", letterSpacing: "1.5px", color: "#616161", marginBottom: "4px"}}>BATHS</p>
-          <div style={{display: "flex", flexDirection: "row", justifyContent: "left", alignItems: "center"}}>
-            <WhiteButton>
-              <p style={{ fontFamily: "Montserrat", fontWeight: "400",
-              fontSize: "14px", lineHeight: "20px", color: "#616161"}}>Any</p>
-            </WhiteButton>
-            <WhiteButton>
-              <p style={{ fontFamily: "Montserrat", fontWeight: "400",
-              fontSize: "14px", lineHeight: "20px", color: "#616161"}}>1+</p>
-            </WhiteButton>
-            <WhiteButton>
-              <p style={{ fontFamily: "Montserrat", fontWeight: "400",
-              fontSize: "14px", lineHeight: "20px", color: "#616161"}}>2+</p>
-            </WhiteButton>
-            <WhiteButton>
-              <p style={{ fontFamily: "Montserrat", fontWeight: "400",
-              fontSize: "14px", lineHeight: "20px", color: "#616161"}}>3+</p>
-            </WhiteButton>
-            <WhiteButton>
-              <p style={{ fontFamily: "Montserrat", fontWeight: "400",
-              fontSize: "14px", lineHeight: "20px", color: "#616161"}}>4+</p>
-            </WhiteButton>
-          </div>
-
-          <div style={{display: "flex", justifyContent: "right", alignItems: "right", marginTop: "16px"}}>
-            <PinkDoneButton>
-              <p>PRICE</p>
-            </PinkDoneButton>
-          </div>
-        </BedAndBathFilter> */}
-
-            <p style={{ fontFamily: "Montserrat", fontWeight: "500", fontSize: "20px",
-                lineHeight: "28px", color: "#616161", marginTop: "16px", marginBottom: "22px", textAlign: "left"}}>4 properties found</p>
             <PropertiesContainer>
-               {properties.map((property) => (
+               {filterProperties.map((property) => (
                 <PropertyCard
                 key={property.id}
                 image={sampleProperty}
@@ -420,6 +299,7 @@ function ListViewPage() {
                 />
                 ))}
             </PropertiesContainer>
+        </div>
       </PageContainer>
     </Wrapper>
   )
