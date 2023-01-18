@@ -1,7 +1,10 @@
 import styled from "styled-components";
 import { useState } from "react";
+import { signup } from "../../services/session-service";
+import { useNavigate } from "react-router";
 
 export default function UsersForm({ id, typeUser }) {
+    const navigate= useNavigate();
 	const [form, setForm] = useState({
 		email: "",
 		password: "",
@@ -9,9 +12,11 @@ export default function UsersForm({ id, typeUser }) {
 		username: "",
 		role: typeUser.toLowerCase(),
 	});
-	const handleSubmit = (e) => {
+	const handleSubmit = async (e) => {
 		e.preventDefault();
-		console.log(form);
+        await signup(form);
+        navigate("/landing");
+		
 	};
 
 	const { email, password, name, username } = form;
