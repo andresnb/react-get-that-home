@@ -23,3 +23,4 @@ export async function logout() {
   await apiFetch("logout", { method: "DELETE" });
   sessionStorage.removeItem(tokenKey);
 }
+
