@@ -68,6 +68,12 @@ const Wrapper = styled.div`
   align-items: center;
 `;
 
+const Wrapper3 = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+`;
+
 const DetailsCard = styled.div`
   display: flex;
   flex-direction: column;
@@ -119,7 +125,7 @@ const LoggedInHomeseekerBox1 = styled.div`
   gap: 27px;
   width: 258px;
   height: 148px;
-  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2)
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
 `;
 
 const LoggedInHomeseekerBox2 = styled.div`
@@ -257,7 +263,7 @@ function PropertyDetailPage() {
       </DetailsCard>
 
       {user && userType === "home-seeker" && contactedStatus == false ? (
-       <Wrapper style={{padding:"32px 16px"}}>
+       <Wrapper style={{padding:"32px 16px", height: "100%", alignSelf: "flex-start", alignItems: "normal"}}>
         <LoggedInHomeseekerBox1>
           <PinkButton style={{ gap: "9px", width: "212px", height: "40px" }}>
               <div onClick={()=> addToContactedProperties(currentProperty)}>
@@ -282,7 +288,7 @@ function PropertyDetailPage() {
        </Wrapper>
       ) :
        user && userType === "home-seeker" && contactedStatus == true ? (
-       <Wrapper style={{padding:"32px 16px"}}>
+       <Wrapper style={{padding:"32px 16px", height: "100%", alignSelf: "flex-start", alignItems: "normal"}}>
         <LoggedInHomeseekerBox2>
           <Wrapper style={{ gap: "14.52px" }}>
             <p style={{ fontFamily: "Montserrat", fontWeight: "500", fontSize: "20px",
@@ -317,7 +323,7 @@ function PropertyDetailPage() {
        </Wrapper>
       ) :
        user && userType === "landlord" ? (
-       <Wrapper>
+       <Wrapper style={{ height: "100%", alignSelf: "flex-start", alignItems: "normal"}}>
         <LoggedInLandlordBox>
           <PinkButton style={{ gap: "11px", width: "188px", height: "40px" }}>
               <BiEdit style={{width: "18px", height: "18px", color: "#FFFFFF"}}/>
@@ -328,7 +334,7 @@ function PropertyDetailPage() {
        </Wrapper>
        ) :
        (
-       <Wrapper style={{padding:"32px"}}>
+       <Wrapper style={{padding:"32px", height: "100%", alignSelf: "flex-start", alignItems: "normal"}}>
         <NotLoggedInBox>
           <p style={{width:"142px", textAlign:"center"}}>Log in or Join to contact the advertiser</p>
           <PinkButton style={{ gap: "9px" }}>

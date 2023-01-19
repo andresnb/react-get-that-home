@@ -13,17 +13,6 @@ import LandingBackground from "../assets/svg/landing-background.svg";
 import { useAuth } from "../context/auth-context";
 
 
-
-
-
-const Wrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-`;
-
-
 // const Section1 = styled.div`
 //     display: flex;
 //     flex-direction: column;
@@ -51,6 +40,7 @@ const SamplePropertiesSection = styled.div`
   align-items: center;
   margin-top: 66.07px;
   margin-bottom: 66.07px;
+  width: 100%;
 `;
 
 const SignupSection = styled.div`
@@ -63,13 +53,14 @@ const SignupSection = styled.div`
   padding-top: 64px;
   padding-bottom: 64px;
   background-color: rgba(244, 143, 177, 0.15);
+  width: 100%;
 `;
 
 const LandingFooter = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 1440px;
+  width: 100%;
   padding-top: 16px;
   padding-bottom: 16px;
   background-color: #F5F5F6;
@@ -80,7 +71,7 @@ const LandingDetailsContainer = styled.div`
   flex-direction: row;
   justify-content: top;
   align-items: top;
-  width: 1000px;
+  width: 69%;
   padding-top: 8px;
   padding-bottom: 8px;
   background-color: #F5F5F6;
@@ -94,6 +85,7 @@ const TeamMembersSection = styled.div`
   align-items: center;
   padding-top: 64px;
   padding-bottom: 64px;
+  width: 100%;
 `;
 
 const StyledForm = styled("form")`
@@ -102,41 +94,6 @@ const StyledForm = styled("form")`
   align-items: center;
   padding: 8px 0px 8px 0px;
   box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
-`;
-
-const SelectBox = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: left;
-  align-items: left;
-  padding: 0px 8px 0px 16px;
-  border-right: 1px solid #E1E2E1;
-`;
-
-const ButtonBox = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 10px 16px 10px 8px;
-`;
-
-const SearchButton = styled("button")`
-  width: 96px;
-  height: 40px;
-  border: none;
-  background: #F48FB1;
-  border-radius: 16px;
-  padding: 0px;
-`;
-
-const SignupButton = styled("button")`
-  width: 264px;
-  height: 56px;
-  border: none;
-  background: #F48FB1;
-  border-radius: 16px;
-  padding: 0px;
 `;
 
 const StyledSelectTitle = styled.p`
@@ -175,6 +132,37 @@ const TeamMembersContainer = styled.div`
   align-items: center;
 `;
 
+const Wrapper1 = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
+
+const Wrapper2 = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+`;
+
+const Wrapper3 = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+  align-items: left;
+`;
+
+const PinkButton = styled("button")`
+  border: none;
+  background: #F48FB1;
+  border-radius: 16px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+`;
+
 function LandingPage() {
   const { setDisplayedPropertiesType } = useAuth();
   const navigate = useNavigate();
@@ -200,36 +188,35 @@ function LandingPage() {
   }
 
   return (
-    <Wrapper>
-      {/* <LandingBackground/> */}
+    <Wrapper1>
       <SearchSection style={{ backgroundImage: `url(${LandingBackground})`, backgroundPosition: 'center' }} >
-        <Wrapper>
+        <Wrapper1>
           <p style={{ fontFamily: "Montserrat", fontWeight: "300", fontSize: "64px",
             lineHeight: "88px", letterSpacing: "-0.5px", color: "#373737", marginTop: "60px"}}>Meet your new Home</p>
           <p style={{ fontFamily: "Montserrat", fontWeight: "400", fontSize: "24px",
             lineHeight: "32px", color: "#616161"}}>The easiest way to find where you belong</p>
-        </Wrapper>
+        </Wrapper1>
 
         <StyledForm onSubmit={handleSubmit} >
-          <SelectBox>
+          <Wrapper3 style={{padding: "0px 8px 0px 16px", borderRight: "1px solid #E1E2E1"}}>
             <StyledSelectTitle>I'M LOOKING FOR</StyledSelectTitle>
             <select required name="property_type"  style={{ border: "none", height: "24px", width: "160px", fontFamily: "Inter", fontSize: "16px",
                 lineHeight: "24px", letterSpacing: "0.5px", color: "#373737"}}>
               <option value="Apartment">An apartment</option>
               <option value="House">A house</option>
             </select>
-          </SelectBox>
+          </Wrapper3>
 
-          <SelectBox>
+          <Wrapper3 style={{padding: "0px 8px 0px 16px", borderRight: "1px solid #E1E2E1"}}>
             <StyledSelectTitle>I WANT TO</StyledSelectTitle>
             <select required defaultValue="Rent" name="operation_type"  style={{ border: "none", height: "24px", width: "160px", fontFamily: "Inter", fontSize: "16px",
                 lineHeight: "24px", letterSpacing: "0.5px", color: "#373737"}}>
               <option value="Rent">Rent</option>
               <option value="Sale">Sale</option>
             </select>
-          </SelectBox>
+          </Wrapper3>
 
-          <SelectBox>
+          <Wrapper3 style={{padding: "0px 8px 0px 16px", borderRight: "1px solid #E1E2E1"}}>
             <StyledSelectTitle>WHERE</StyledSelectTitle>
             <select required defaultValue="Favorite district" name="district"  style={{ border: "none", height: "24px", width: "304px", fontFamily: "Inter", fontSize: "16px",
                 lineHeight: "24px", letterSpacing: "0.5px", color: "#373737"}}>
@@ -276,23 +263,23 @@ function LandingPage() {
               <option value="Villa el Salvador">Villa el Salvador</option>
               <option value="Villa Maria del Triunfo">Villa Maria del Triunfo</option>
             </select>
-          </SelectBox>
+          </Wrapper3>
 
-          <ButtonBox>
-            <SearchButton type="submit">
+          <Wrapper1 style={{padding: "10px 16px 10px 8px"}}>
+            <PinkButton type="submit" style={{ width: "96px", height: "40px"}}>
               <ButtonText> Search </ButtonText>
-            </SearchButton>
-          </ButtonBox>
+            </PinkButton>
+          </Wrapper1>
         </StyledForm>
       </SearchSection>
 
       <SamplePropertiesSection>
-        <Wrapper>
+        <Wrapper1>
           <p style={{ fontFamily: "Montserrat", fontWeight: "500", fontSize: "14px",
             lineHeight: "20px", letterSpacing: "0.1px", color: "#373737"}}>Find an Apartment you Love</p>
           <p style={{ fontFamily: "Montserrat", fontWeight: "400", fontSize: "36px",
             lineHeight: "48px", color: "#BF5F82", marginTop: "16.07px", marginBottom: "32px"}}>Homes for rent at the best prices</p>
-        </Wrapper>
+        </Wrapper1>
         <PropertiesContainer>
           <PropertyCard image={sampleProperty} />
           <PropertyCard image={sampleProperty} />
@@ -303,12 +290,12 @@ function LandingPage() {
       <SignupSection>
         <p style={{ fontFamily: "Montserrat", fontWeight: "400", fontSize: "36px",
           lineHeight: "48px", letterSpacing: "0.25px", color: "#373737",
-          marginBottom: "32px", width: "823px", textAlign: "center"
+          marginBottom: "32px", width: "57%", textAlign: "center"
         }}>Getting someone to rent your apartment has never been this easy</p>
-        <SignupButton>
+        <PinkButton style={{width: "18.4%", height: "56px"}}>
           <p style={{ fontFamily: "Inter", fontWeight: "500", fontSize: "14px",
             lineHeight: "24px", letterSpacing: "1.25px", color: "#FFFFFF"}}>CREATE AN ACCOUNT NOW</p>
-        </SignupButton>
+        </PinkButton>
       </SignupSection>
 
       <TeamMembersSection>
@@ -335,23 +322,23 @@ function LandingPage() {
       <LandingFooter>
         <LandingDetailsContainer>
           <p>© 2023 - Find That Home</p>
-          <div style={{display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", gap: "2px"}}>
+          <Wrapper1 style={{gap: "2px"}}>
             <p>Source Code</p>
-            <div style={{display: "flex", flexDirection: "row", justifyContent: "center", alignItems: "center", gap: "5px"}}>
-              <div style={{display: "flex", flexDirection: "row", justifyContent: "center", alignItems: "center", gap: "3.67px"}}>
+            <Wrapper2 style={{ gap: "5px" }}>
+              <Wrapper2 style={{ gap: "3.67px" }}>
                 <DiRuby style={{width: "20px", height: "19px", color: "#616161"}}/>
                 <p>Ruby on Rails REST API</p>
-              </div>
-              <div style={{display: "flex", flexDirection: "row", justifyContent: "center", alignItems: "center", gap: "3.67px"}}>
+              </Wrapper2>
+              <Wrapper2 style={{ gap: "3.67px" }}>
                 <DiReact style={{width: "20px", height: "19px", color: "#616161"}}/>
                 <p>React Responsive SPA</p>
-              </div>
-            </div>
-          </div>
+              </Wrapper2>
+            </Wrapper2>
+          </Wrapper1>
           <p>Codeable - Cohort 8 Final Project</p>
         </LandingDetailsContainer>
       </LandingFooter>
-    </Wrapper>
+    </Wrapper1>
   )
 }
 

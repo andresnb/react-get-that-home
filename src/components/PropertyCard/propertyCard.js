@@ -3,7 +3,7 @@
 import { RiMoneyDollarCircleLine } from "react-icons/ri";
 import { BiBed, BiBath, BiArea } from "react-icons/bi";
 import { MdOutlinePets } from "react-icons/md";
-import { RiBuildingLine, RiUploadLine, RiDeleteBin6Line } from "react-icons/ri";
+import { RiBuildingLine, RiUploadLine, RiDeleteBin6Line, RiCoinsFill } from "react-icons/ri";
 import { BsHeartFill } from "react-icons/bs";
 import { BiEdit } from "react-icons/bi";
 import {AiOutlineCloseCircle} from "react-icons/ai"
@@ -25,7 +25,8 @@ const PropertyWrapper = styled.div`
   letter-spacing: 0.5px;
   color: #616161;
   border-bottom: 7px solid #BF5F82;
-  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2)
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+  position: relative;
 `;
 
 const MyPropertiesWrapper = styled.div`
@@ -41,7 +42,15 @@ const MyPropertiesWrapper = styled.div`
   line-height: 24px;
   letter-spacing: 0.5px;
   color: #616161;
-  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2)
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+  position: relative;
+`;
+
+const Wrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
 `;
 
 const DetailsWrapper = styled.div`
@@ -58,12 +67,29 @@ function PropertyCard({ image, id, name, operation_type, address, phone, price, 
           <MyPropertiesWrapper>
               <Link
                 to={"/properties/" + id}
+                style={{color:"#616161"}}
               >
+                  <Wrapper style={{position: "absolute", right:"0px", background: "#F48FB1", width:"110px", height:"28px", borderTopRightRadius:"8px"}}>
+                   <RiCoinsFill style={{width: "16.67px", height: "16.66px", color: "#FFFFFF"}}/>
+                   {operation_type == 'rent'? (
+                    <p style={{ fontFamily: "Inter", fontWeight: "400", fontSize: "14px",
+                      lineHeight: "20px", letterSpacing: "0.25px", color: "#FFFFFF"}}>
+                      For Rental
+                    </p>
+                   ):(
+                     <p style={{ fontFamily: "Inter", fontWeight: "400", fontSize: "14px",
+                      lineHeight: "20px", letterSpacing: "0.25px", color: "#FFFFFF"}}>
+                      For Sale
+                    </p>
+                   ) }
+                  </Wrapper>
+
                   <img
                   src={image}
                   alt="Property"
                   style={{ height: "200px", width: "300px", borderTopLeftRadius:"8px", borderTopRightRadius: "8px"}}
                   />
+
                   <DetailsWrapper>
                     <div style={{ display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
                       <div style={{display: "flex", flexDirection: "row", justifyContent: "center", alignItems: "center", gap: "10.66px"}}>
@@ -129,12 +155,29 @@ function PropertyCard({ image, id, name, operation_type, address, phone, price, 
           <MyPropertiesWrapper>
               <Link
                 to={"/properties/" + id}
+                style={{color:"#616161"}}
               >
+                  <Wrapper style={{position: "absolute", right:"0px", background: "#F48FB1", width:"110px", height:"28px", borderTopRightRadius:"8px"}}>
+                   <RiCoinsFill style={{width: "16.67px", height: "16.66px", color: "#FFFFFF"}}/>
+                   {operation_type == 'rent'? (
+                    <p style={{ fontFamily: "Inter", fontWeight: "400", fontSize: "14px",
+                      lineHeight: "20px", letterSpacing: "0.25px", color: "#FFFFFF"}}>
+                      For Rental
+                    </p>
+                   ):(
+                     <p style={{ fontFamily: "Inter", fontWeight: "400", fontSize: "14px",
+                      lineHeight: "20px", letterSpacing: "0.25px", color: "#FFFFFF"}}>
+                      For Sale
+                    </p>
+                   ) }
+                  </Wrapper>
+
                   <img
                   src={image}
                   alt="Property"
                   style={{ height: "200px", width: "300px", borderTopLeftRadius:"8px", borderTopRightRadius: "8px"}}
                   />
+
                   <DetailsWrapper>
                     <div style={{ display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
                       <div style={{display: "flex", flexDirection: "row", justifyContent: "center", alignItems: "center", gap: "10.66px"}}>
@@ -201,12 +244,29 @@ function PropertyCard({ image, id, name, operation_type, address, phone, price, 
           <PropertyWrapper>
             <Link
               to={"/properties/" + id}
-            >
+              style={{color:"#616161"}}
+              >
+                <Wrapper style={{position: "absolute", right:"0px", background: "#F48FB1", width:"110px", height:"28px", borderTopRightRadius:"8px"}}>
+                  <RiCoinsFill style={{width: "16.67px", height: "16.66px", color: "#FFFFFF"}}/>
+                   {operation_type == 'rent'? (
+                    <p style={{ fontFamily: "Inter", fontWeight: "400", fontSize: "14px",
+                      lineHeight: "20px", letterSpacing: "0.25px", color: "#FFFFFF"}}>
+                      For Rental
+                    </p>
+                   ):(
+                     <p style={{ fontFamily: "Inter", fontWeight: "400", fontSize: "14px",
+                      lineHeight: "20px", letterSpacing: "0.25px", color: "#FFFFFF"}}>
+                      For Sale
+                    </p>
+                   ) }
+                </Wrapper>
+
                 <img
                 src={image}
                 alt="Property"
                 style={{ height: "200px", width: "300px", borderTopLeftRadius:"8px", borderTopRightRadius: "8px"}}
                 />
+
                 <DetailsWrapper>
                   <div style={{ display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
                     <div style={{display: "flex", flexDirection: "row", justifyContent: "center", alignItems: "center", gap: "10.66px"}}>
