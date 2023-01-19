@@ -150,7 +150,7 @@ const PinkButton = styled("button")`
 
 function PropertyDetailPage() {
   const { id } = useParams();
-  const { savedProperties, setSavedProperties, user, userType, allProperties} = useAuth();
+  const { savedProperties, setSavedProperties, user, userType, allProperties, setAllProperties} = useAuth();
   const [favoriteProperties, setFavoriteProperties] = useState( savedProperties.favorites || favoritesData);
   const [contactedProperties, setContactedProperties] = useState(savedProperties.contacted || contactedData);
 
@@ -174,7 +174,17 @@ function PropertyDetailPage() {
 
   function addToFavoriteProperties(currentProperty) {
     setFavoriteStatus(true);
-    setFavoriteProperties([...favoriteProperties, currentProperty]);
+    setFavoriteProperties([...favoriteProperties, {...currentProperty, favorite: true}]);
+    let newDataBase = allProperties.filter(property => property.id !== id);
+    setAllProperties([...newDataBase,{...currentProperty, favorite: true}])
+  }
+
+  function removeFromFavoriteProperties(propertyId) {
+    setFavoriteStatus(false);
+    let newFavoritesList = favoriteProperties.filter(property => property.id !== propertyId);
+    setFavoriteProperties(newFavoritesList);
+    let newDataBase = allProperties.filter(property => property.id !== id);
+    setAllProperties([...newDataBase, {...currentProperty, favorite: false}])
   }
 
   return (
@@ -245,6 +255,7 @@ function PropertyDetailPage() {
           <iframe title="map" style={{ width: "100%", height: "760px"}} src="https://maps.google.com/maps?q=Francisco%20de%20Paula%20Ugarriza%2027,%20Miraflores,%20Lima&t=&z=15&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
         </div>
       </DetailsCard>
+
       {user && userType === "home-seeker" && contactedStatus == false ? (
        <Wrapper style={{padding:"32px 16px"}}>
         <LoggedInHomeseekerBox1>
@@ -255,7 +266,7 @@ function PropertyDetailPage() {
               </div>
           </PinkButton>
             {favoriteStatus ? (
-             <Wrapper style={{ gap: "14.52px" }}>
+             <Wrapper style={{ gap: "14.52px" }} onClick={()=> removeFromFavoriteProperties(id)}>
                 <FaHeart style={{width: "20px", height: "18.48px", color: "#616161"}}/>
                 <p style={{ fontFamily: "Inter", fontWeight: "400", fontSize: "12px",
                   lineHeight: "16px", letterSpacing: "0.4px", color: "#616161"}}>Saved in favorites</p>
@@ -289,7 +300,7 @@ function PropertyDetailPage() {
               lineHeight: "20px", letterSpacing: "0.25px", color: "#373737"}}>999444333</p>
             </Wrapper>
             {favoriteStatus ? (
-             <Wrapper style={{ gap: "6px" }}>
+             <Wrapper style={{ gap: "6px" }} onClick={()=> removeFromFavoriteProperties(id)}>
                 <FaHeart style={{width: "20px", height: "18.48px", color: "#F48FB1"}}/>
                 <p style={{ fontFamily: "Inter", fontWeight: "400", fontSize: "12px",
                   lineHeight: "16px", letterSpacing: "0.4px", color: "#F48FB1"}}>Saved in favorites</p>

@@ -87,7 +87,7 @@ const PropertiesContainer = styled.div`
 function SavedProperties() {
   const { displayedPropertiesType,
           setDisplayedPropertiesType,
-          savedProperties, setSavedProperties} = useAuth();
+          savedProperties, setSavedProperties, allProperties} = useAuth();
   const [favoriteProperties, setFavoriteProperties] = useState( savedProperties.favorites || favoritesData);
   const [contactedProperties, setContactedProperties] = useState( savedProperties.contacted || contactedData);
   const [showProperties, setShowProperties] = useState(favoriteProperties);
