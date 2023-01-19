@@ -13,11 +13,6 @@ export async function login(credentials) {
   return user;
 }
 
-export async function logout() {
-  await apiFetch("logout", { method: "DELETE" });
-  sessionStorage.removeItem(tokenKey);
-}
-
 export async function signup(newCredentials) {
   const { token, ...user } = await apiFetch("/users", {
     body: newCredentials,
@@ -26,3 +21,9 @@ export async function signup(newCredentials) {
   sessionStorage.setItem(tokenKey, token);
   return user;
 }
+
+export async function logout() {
+  await apiFetch("logout", { method: "DELETE" });
+  sessionStorage.removeItem(tokenKey);
+}
+

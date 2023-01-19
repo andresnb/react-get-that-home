@@ -38,6 +38,7 @@ function AuthProvider(props) {
     signup,
     filters,
     setFilters
+
   };
 
   return <AuthContext.Provider value={value} {...props} />;

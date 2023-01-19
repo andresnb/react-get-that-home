@@ -1,8 +1,9 @@
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 import PropertyCard from '../components/PropertyCard/propertyCard';
 import sampleProperty from "../assets/images/rental-image-example.png";
-import { useEffect, useState } from "react";
 import { getProperties } from "../services/property-service";
+import LoginForm from "../components/LoginForm/login-form";
 import { Filters } from "../components/Filters/filters";
 import { useAuth } from "../context/auth-context";
 
@@ -299,7 +300,9 @@ function ListViewPage() {
                 />
                 ))}
             </PropertiesContainer>
+
         </div>
+
       </PageContainer>
     </Wrapper>
   )

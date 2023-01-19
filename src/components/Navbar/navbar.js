@@ -83,6 +83,7 @@ function Navbar() {
               </p>
             </Link>
           </div>
+          <Link to="/signup" >
           <WhiteButton>
             <div
               style={{
@@ -110,6 +111,7 @@ function Navbar() {
               </p>
             </div>
           </WhiteButton>
+         </Link>
           <Link to="/login">
             <PinkButton>
               <div
