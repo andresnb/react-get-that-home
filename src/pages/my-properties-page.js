@@ -119,21 +119,37 @@ const closedData = [
 
 ]
 
-const Wrapper = styled.div`
-display: flex;
-flex-direction: column;
-justify-content: center;
-align-items: center;
+const Wrapper1 = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
+
+const Wrapper2 = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+`;
+
+const Wrapper3 = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+  align-items: left;
+  self-align: left;
 `;
 
 const PageContainer = styled.div`
-display: flex;
-flex-direction: column;
-justify-content: center;
-align-items: center;
-width: 1136px;
-margin:16px 0px;
-gap: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 1136px;
+  margin:16px 0px;
+  gap: 16px;
+  width: 77%;
 `;
 
 const PropertiesContainer = styled.div`
@@ -189,9 +205,9 @@ function MyProperties() {
   }
 
   return (
-    <Wrapper>
+    <Wrapper1>
       <PageContainer>
-        <div style={{width: '1136px'}}>
+        <Wrapper3 style={{ width:"100%"}}>
               {displayedPropertiesType === "closed" ? (
                 <div style={{width: '144px', display:"flex", flexDirection:"row", gap:"24px"}}>
                   <div style={{borderBottom: "2px solid #BDBDBD"}} onClick={() => setDisplayedPropertiesType("active")}>
@@ -227,24 +243,24 @@ function MyProperties() {
 
             <p style={{ fontFamily: "Montserrat", fontWeight: "500", fontSize: "20px", lineHeight: "28px",
             color: "#616161", marginBottom: "22px", marginTop:"16px", textAlign: "left"}}>
-              4 properties found
+              {showProperties.length} properties found
             </p>
+          </Wrapper3>
 
-            <PropertiesContainer>
-               {showProperties.map((property) => (
-                <PropertyCard
-                key={property.id}
-                image={sampleProperty}
-                handleDelete={handleDelete}
-                handleClose={handleClose}
-                handleRestore={handleRestore}
-                {...property}
-                />
-                ))}
-            </PropertiesContainer>
-        </div>
+          <PropertiesContainer>
+              {showProperties.map((property) => (
+              <PropertyCard
+              key={property.id}
+              image={sampleProperty}
+              handleDelete={handleDelete}
+              handleClose={handleClose}
+              handleRestore={handleRestore}
+              {...property}
+              />
+              ))}
+          </PropertiesContainer>
       </PageContainer>
-    </Wrapper>
+    </Wrapper1>
   )
 }
 

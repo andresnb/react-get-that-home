@@ -58,21 +58,36 @@ const contactedData = [
 
 ]
 
-const Wrapper = styled.div`
-display: flex;
-flex-direction: column;
-justify-content: center;
-align-items: center;
+const Wrapper1 = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
+
+const Wrapper2 = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+`;
+
+const Wrapper3 = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+  align-items: left;
+  self-align: left;
 `;
 
 const PageContainer = styled.div`
-display: flex;
-flex-direction: column;
-justify-content: center;
-align-items: center;
-width: 1136px;
-margin:16px 0px;
-gap: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 76.5%;
+  margin:16px 0px;
+  gap: 16px;
 `;
 
 const PropertiesContainer = styled.div`
@@ -83,6 +98,7 @@ const PropertiesContainer = styled.div`
   justify-content:center;
   align-items: center;
 `;
+
 
 function SavedProperties() {
   const { displayedPropertiesType,
@@ -108,10 +124,9 @@ function SavedProperties() {
   }, [displayedPropertiesType, favoriteProperties, contactedProperties]);
 
   return (
-    <Wrapper>
+    <Wrapper1>
       <PageContainer>
-
-        <div style={{width: '1136px'}}>
+        <Wrapper3 style={{ width:"100%"}}>
             {displayedPropertiesType === "contacted" ? (
                 <div style={{width: '144px', display:"flex", flexDirection:"row", gap:"24px"}}>
                   <div style={{borderBottom: "2px solid #BDBDBD"}} onClick={() => setDisplayedPropertiesType("favorites")}>
@@ -147,23 +162,23 @@ function SavedProperties() {
 
             <p style={{ fontFamily: "Montserrat", fontWeight: "500", fontSize: "20px", lineHeight: "28px",
             color: "#616161", marginBottom: "22px", marginTop:"16px", textAlign: "left"}}>
-              4 properties found
+              {showProperties.length} properties found
             </p>
+        </Wrapper3>
 
-            <PropertiesContainer>
-               {showProperties.map((property) => (
-                <PropertyCard
-                key={property.id}
-                image={sampleProperty}
-                // onPropertyClick={onPropertyClick}
-                {...property}
+        <PropertiesContainer>
+            {showProperties.map((property) => (
+            <PropertyCard
+            key={property.id}
+            image={sampleProperty}
+            // onPropertyClick={onPropertyClick}
+            {...property}
 
-                />
-                ))}
-            </PropertiesContainer>
-        </div>
+            />
+            ))}
+        </PropertiesContainer>
       </PageContainer>
-    </Wrapper>
+    </Wrapper1>
   )
 }
 

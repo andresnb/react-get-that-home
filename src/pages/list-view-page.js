@@ -6,25 +6,40 @@ import { getProperties } from "../services/property-service";
 import { Filters } from "../components/Filters/filters";
 import { useAuth } from "../context/auth-context";
 
-const Wrapper = styled.div`
-display: flex;
-flex-direction: column;
-justify-content: center;
-align-items: center;
+
+const Wrapper1 = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
+
+const Wrapper2 = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+`;
+
+const Wrapper3 = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+  align-items: left;
 `;
 
 const PageContainer = styled.div`
-display: flex;
-flex-direction: column;
-justify-content: center;
-align-items: center;
-width: 1136px;
-margin:16px 0px;
-gap: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 77.5%;
+  margin:16px 0px;
+  gap: 16px;
 `;
 
 const PropertiesContainer = styled.div`
-  width: fit-content;
+  width: 74.5%;
   display: grid;
   gap: 48px;
   grid-template-columns: repeat(3, 300px);
@@ -201,7 +216,7 @@ function ListViewPage() {
   },[query])
 
   return (
-    <Wrapper>
+    <Wrapper1>
       <PageContainer>
         <Filters
           prices={prices}
@@ -224,29 +239,28 @@ function ListViewPage() {
           handleDone={handleDone}
           showFilters={showFilters}
           setShowFilters={setShowFilters}
+          style={{ width: '100%'}}
         />
 
-        <div style={{width: '1136px'}}>
-            <div>
-              <p style={{ fontFamily: "Montserrat", fontWeight: "500", fontSize: "20px",
-              lineHeight: "28px", color: "#616161", marginBottom: "22px", textAlign: "left"}}>4 properties found
-              </p>
-            </div>
-
-            <PropertiesContainer>
-               {filterProperties.map((property) => (
-                <PropertyCard
-                key={property.id}
-                image={sampleProperty}
-                // onPropertyClick={onPropertyClick}
-                {...property}
-
-                />
-                ))}
-            </PropertiesContainer>
+        <div style={{ width: '100%'}}>
+            <p style={{ fontFamily: "Montserrat", fontWeight: "500", fontSize: "20px",
+            lineHeight: "28px", color: "#616161", marginBottom: "22px", textAlign: "left"}}>{filterProperties.length} properties found
+            </p>
         </div>
+
+        <PropertiesContainer>
+            {filterProperties.map((property) => (
+            <PropertyCard
+            key={property.id}
+            image={sampleProperty}
+            // onPropertyClick={onPropertyClick}
+            {...property}
+
+            />
+            ))}
+        </PropertiesContainer>
       </PageContainer>
-    </Wrapper>
+    </Wrapper1>
   )
 }
 

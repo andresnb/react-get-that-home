@@ -8,7 +8,7 @@ const FiltersSection = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  width: 1136px;
+  width: 100%;
 `;
 
 const FilterButtons = styled.div`

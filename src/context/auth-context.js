@@ -189,7 +189,7 @@ const AuthContext = createContext();
 
 function AuthProvider(props) {
   const [user, setUser] = useState("test-user");  //user credentials
-  const [userType, setUserType] = useState("home-seeker");  // home-seeker or landlord
+  const [userType, setUserType] = useState("landlord");  // home-seeker or landlord
   const [filters, setFilters] = useState({
     prices: { min: null, max: null },
     areas: { min: null, max: null },

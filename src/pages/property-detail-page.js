@@ -61,9 +61,16 @@ const contactedData = [
 
 ]
 
-const Wrapper = styled.div`
+const Wrapper1 = styled.div`
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
+
+const Wrapper2 = styled.div`
+  display: flex;
+  flex-direction: row;
   justify-content: center;
   align-items: center;
 `;
@@ -71,7 +78,15 @@ const Wrapper = styled.div`
 const Wrapper3 = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: left;
+  align-items: left;
+`;
+
+const Wrapper4 = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: top;
+  align-items: top;
 `;
 
 const DetailsCard = styled.div`
@@ -194,9 +209,9 @@ function PropertyDetailPage() {
   }
 
   return (
-    <Wrapper style={{ flexDirection:"row", justifyContent:"top", alignItems: "top",gap: "16px" }}>
+    <Wrapper2 style={{ gap: "16px" }}>
       <DetailsCard>
-          <div style={{display: "flex", justifyContent: "center", alignItems: "center", gap: "71.22px"}}>
+          <Wrapper2 style={{gap: "71.22px"}}>
             <AiOutlineLeft/>
             <img
               src={require("../../src/assets/images/property-image-example.png")}
@@ -204,8 +219,8 @@ function PropertyDetailPage() {
                 style={{ height: "384px", width: "512px"}}
               />
             <AiOutlineRight/>
-          </div>
-          <div style={{ display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "solid 1px #BF5F82", paddingBottom: "16px"}}>
+          </Wrapper2>
+          <Wrapper2 style={{ justifyContent: "space-between", borderBottom: "solid 1px #BF5F82", paddingBottom: "16px"}}>
             <div>
               <p style={{ fontFamily: "Montserrat", fontSize: "36px",
               lineHeight: "48px", letterSpacing: "0.25px"}}>
@@ -213,44 +228,44 @@ function PropertyDetailPage() {
               <p style={{ letterSpacing: "0.15px", color: "#616161"}}>
               Lima </p>
             </div>
-            <div style={{display: "flex", flexDirection: "column", justifyContent: "left", alignItems: "left"}}>
-              <div style={{display: "flex", flexDirection: "row", justifyContent: "center", alignItems: "center", gap: "12px"}}>
+            <Wrapper3>
+              <Wrapper2 style={{gap: "12px"}}>
                 <RiMoneyDollarCircleLine style={{width: "40px", height: "40px", color: "#616161"}}/>
                 <p style={{ fontFamily: "Montserrat", fontSize: "36px",
                 lineHeight: "48px", letterSpacing: "0.25px"}}>
                 {price}</p>
-              </div>
-              <div style={{display: "flex", flexDirection: "column", justifyContent: "left", alignItems: "left", width: "52px"}}>
+              </Wrapper2>
+              <Wrapper3 style={{width: "52px"}}>
                 <p style={{
                   letterSpacing: "0.15px", color: "#616161", fontWeight: "500",
                   fontSize: "20px", lineHeight: "28px", width: "52px"}}>+100</p>
-              </div>
-            </div>
-        </div>
-        <div style={{ display: "flex", flexDirection: "row", justifyContent: "space-between", borderBottom: "solid 1px #BF5F82", paddingBottom: "16px", paddingTop: "16px"}}>
-            <div style={{display: "flex", flexDirection: "row", justifyContent: "center", alignItems: "center", gap: "6.67px"}}>
+              </Wrapper3>
+            </Wrapper3>
+        </Wrapper2>
+        <Wrapper2 style={{justifyContent: "space-between", borderBottom: "solid 1px #BF5F82", paddingBottom: "16px", paddingTop: "16px"}}>
+            <Wrapper2 style={{display: "flex", flexDirection: "row", justifyContent: "center", alignItems: "center", gap: "6.67px"}}>
               <BiBed style={{width: "26.67px", height: "25.33px", color: "#616161"}}/>
               <p style={{ fontFamily: "Montserrat", fontSize: "24px",
               lineHeight: "32px", letterSpacing: "0px", color: "#616161"}}> {bedrooms} bedrooms </p>
-            </div>
-            <div style={{display: "flex", flexDirection: "row", justifyContent: "center", alignItems: "center", gap: "6.67px"}}>
+            </Wrapper2>
+            <Wrapper2 style={{gap: "6.67px"}}>
               <BiBath style={{width: "26.67px", height: "25.33px", color: "#616161"}}/>
               <p style={{ fontFamily: "Montserrat", fontSize: "24px",
               lineHeight: "32px", letterSpacing: "0px", color: "#616161"}}> {bathrooms} bathrooms </p>
-            </div>
-            <div style={{display: "flex", flexDirection: "row", justifyContent: "center", alignItems: "center", gap: "8px"}}>
+            </Wrapper2>
+            <Wrapper2 style={{gap: "8px"}}>
               <BiArea style={{width: "24px", height: "24px", color: "#616161"}}/>
               <p style={{ fontFamily: "Montserrat", fontSize: "24px",
               lineHeight: "32px", letterSpacing: "0px", color: "#616161"}}> {area} m2 </p>
-          </div>
+          </Wrapper2>
           {pets && (
-            <div style={{display: "flex", flexDirection: "row", justifyContent: "center", alignItems: "center", gap: "6.67px"}}>
+            <Wrapper2 style={{gap: "6.67px"}}>
               <MdOutlinePets/>
               <p style={{ fontFamily: "Montserrat", fontSize: "24px",
               lineHeight: "32px", letterSpacing: "0px", color: "#616161"}}> Pets allowed </p>
-            </div>
+            </Wrapper2>
           )}
-        </div>
+        </Wrapper2>
         <p style={{ fontFamily: "Montserrat", fontWeight: "500", fontSize: "20px",
         lineHeight: "28px", letterSpacing: "0.15px", color: "#BF5F82", paddingBottom: "8px", paddingTop: "16px"}}> About this property </p>
         <p>{ description }</p>
@@ -263,7 +278,7 @@ function PropertyDetailPage() {
       </DetailsCard>
 
       {user && userType === "home-seeker" && contactedStatus == false ? (
-       <Wrapper style={{padding:"32px 16px", height: "100%", alignSelf: "flex-start", alignItems: "normal"}}>
+       <Wrapper1 style={{padding:"32px 16px", height: "100%", alignSelf: "flex-start", alignItems: "normal"}}>
         <LoggedInHomeseekerBox1>
           <PinkButton style={{ gap: "9px", width: "212px", height: "40px" }}>
               <div onClick={()=> addToContactedProperties(currentProperty)}>
@@ -272,58 +287,58 @@ function PropertyDetailPage() {
               </div>
           </PinkButton>
             {favoriteStatus ? (
-             <Wrapper style={{ gap: "14.52px" }} onClick={()=> removeFromFavoriteProperties(id)}>
+             <Wrapper1 style={{ gap: "14.52px" }} onClick={()=> removeFromFavoriteProperties(id)}>
                 <FaHeart style={{width: "20px", height: "18.48px", color: "#616161"}}/>
                 <p style={{ fontFamily: "Inter", fontWeight: "400", fontSize: "12px",
                   lineHeight: "16px", letterSpacing: "0.4px", color: "#616161"}}>Saved in favorites</p>
-             </Wrapper>
+             </Wrapper1>
              ): (
-             <Wrapper style={{ gap: "14.52px" }} onClick={()=> addToFavoriteProperties(currentProperty)}>
+             <Wrapper1 style={{ gap: "14.52px" }} onClick={()=> addToFavoriteProperties(currentProperty)}>
                 <FiHeart style={{width: "20px", height: "18.48px", color: "#616161"}}/>
                 <p style={{ fontFamily: "Inter", fontWeight: "400", fontSize: "12px",
                   lineHeight: "16px", letterSpacing: "0.4px", color: "#616161"}}>Add to favorites</p>
-             </Wrapper>
+             </Wrapper1>
              )}
         </LoggedInHomeseekerBox1>
-       </Wrapper>
+       </Wrapper1>
       ) :
        user && userType === "home-seeker" && contactedStatus == true ? (
-       <Wrapper style={{padding:"32px 16px", height: "100%", alignSelf: "flex-start", alignItems: "normal"}}>
+       <Wrapper1 style={{padding:"32px 16px", height: "100%", alignSelf: "flex-start", alignItems: "normal"}}>
         <LoggedInHomeseekerBox2>
-          <Wrapper style={{ gap: "14.52px" }}>
+          <Wrapper1 style={{ gap: "14.52px" }}>
             <p style={{ fontFamily: "Montserrat", fontWeight: "500", fontSize: "20px",
               lineHeight: "28px", letterSpacing: "0.15px", color: "#373737"}}>Contact information</p>
-            <Wrapper style={{ gap: "3px" }}>
+            <Wrapper1 style={{ gap: "3px" }}>
               <p style={{ fontFamily: "Inter", fontWeight: "400", fontSize: "14px",
               lineHeight: "20px", letterSpacing: "0.25px", color: "#BF5F82"}}>Email</p>
               <p style={{ fontFamily: "Inter", fontWeight: "400", fontSize: "14px",
               lineHeight: "20px", letterSpacing: "0.25px", color: "#373737"}}>dude@greathouse.com</p>
-            </Wrapper>
-            <Wrapper style={{ gap: "3px" }}>
+            </Wrapper1>
+            <Wrapper1 style={{ gap: "3px" }}>
               <p style={{ fontFamily: "Inter", fontWeight: "400", fontSize: "14px",
               lineHeight: "20px", letterSpacing: "0.25px", color: "#BF5F82"}}>Phone</p>
               <p style={{ fontFamily: "Inter", fontWeight: "400", fontSize: "14px",
               lineHeight: "20px", letterSpacing: "0.25px", color: "#373737"}}>999444333</p>
-            </Wrapper>
+            </Wrapper1>
             {favoriteStatus ? (
-             <Wrapper style={{ gap: "6px" }} onClick={()=> removeFromFavoriteProperties(id)}>
+             <Wrapper1 style={{ gap: "6px" }} onClick={()=> removeFromFavoriteProperties(id)}>
                 <FaHeart style={{width: "20px", height: "18.48px", color: "#F48FB1"}}/>
                 <p style={{ fontFamily: "Inter", fontWeight: "400", fontSize: "12px",
                   lineHeight: "16px", letterSpacing: "0.4px", color: "#F48FB1"}}>Saved in favorites</p>
-             </Wrapper>
+             </Wrapper1>
              ): (
-             <Wrapper style={{ gap: "6px" }} onClick={()=> addToFavoriteProperties(currentProperty)}>
+             <Wrapper1 style={{ gap: "6px" }} onClick={()=> addToFavoriteProperties(currentProperty)}>
                 <FiHeart style={{width: "20px", height: "18.48px", color: "#616161"}}/>
                 <p style={{ fontFamily: "Inter", fontWeight: "400", fontSize: "12px",
                   lineHeight: "16px", letterSpacing: "0.4px", color: "#616161"}}>Add to favorites</p>
-             </Wrapper>
+             </Wrapper1>
              )}
-          </Wrapper>
+          </Wrapper1>
         </LoggedInHomeseekerBox2>
-       </Wrapper>
+       </Wrapper1>
       ) :
        user && userType === "landlord" ? (
-       <Wrapper style={{ height: "100%", alignSelf: "flex-start", alignItems: "normal"}}>
+       <Wrapper1 style={{ height: "100%", alignSelf: "flex-start", alignItems: "normal"}}>
         <LoggedInLandlordBox>
           <PinkButton style={{ gap: "11px", width: "188px", height: "40px" }}>
               <BiEdit style={{width: "18px", height: "18px", color: "#FFFFFF"}}/>
@@ -331,10 +346,10 @@ function PropertyDetailPage() {
               lineHeight: "24px", letterSpacing: "1.25px", color: "#FFFFFF"}}>EDIT PROPERTY</p>
           </PinkButton>
         </LoggedInLandlordBox>
-       </Wrapper>
+       </Wrapper1>
        ) :
        (
-       <Wrapper style={{padding:"32px", height: "100%", alignSelf: "flex-start", alignItems: "normal"}}>
+       <Wrapper1 style={{padding:"32px", height: "100%", alignSelf: "flex-start", alignItems: "normal"}}>
         <NotLoggedInBox>
           <p style={{width:"142px", textAlign:"center"}}>Log in or Join to contact the advertiser</p>
           <PinkButton style={{ gap: "9px" }}>
@@ -343,9 +358,9 @@ function PropertyDetailPage() {
               lineHeight: "24px", letterSpacing: "1.25px", color: "#FFFFFF"}}>LOGIN</p>
           </PinkButton>
         </NotLoggedInBox>
-       </Wrapper>
+       </Wrapper1>
        )}
-   </Wrapper>
+   </Wrapper2>
   )
 }
 

@@ -23,6 +23,7 @@ function App() {
         <Route path="/properties/:id" element={<PropertyDetailPage />} />
         <Route path="/my-properties" element={<MyProperties />} />
         <Route path = "/saved-properties" element ={<SavedProperties />} />
+        <Route path="*" element={<LandingPage />} />
       </Routes>
     </div>
   );
