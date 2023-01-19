@@ -20,8 +20,10 @@ function App() {
         <Route index element = {<Navigate to = "landing" />} />
         <Route path = "/landing" element ={<LandingPage />} />
         <Route path = "/signup" element ={<SignUp />} />
+        <Route path="/login" element={<LoginForm />} />
         <Route path = "/properties" element ={<ListViewPage />} />
         <Route path = "/properties/:id" element ={<PropertyDetailPage />} />
+
       </Routes>
     </div>
   );

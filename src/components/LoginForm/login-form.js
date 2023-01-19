@@ -1,70 +1,48 @@
 import { useState } from "react";
-import styled from 'styled-components';
-import { useAuth } from "../../context/auth-context";
-import { Input} from "../Input/input";
-
-const Wrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-`;
-
-const StyledButton = styled("button")`
-  width: 300px;
-  height: 36px;
-  border: none;
-  background: #FA4A0C;
-  border-radius: 30px;
-`;
-
-const StyledForm = styled("form")`
-  display: flex;
-  flex-direction: column;
-  // align-items: center;
-  // gap: 32px;
-`;
+import { Input } from "../Input/input";
+import { login } from "../../services/session-service";
+import "./Login.css";
+import { useNavigate } from "react-router";
 
 function LoginForm() {
-  const { user, login } = useAuth();
-  console.log("line 30",user);
-  const [formData, setFormData] = useState({
-        email: "",
-        password: "",
+  const navigate = useNavigate();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const handleChangeInputEmail = (e) => {
+    setEmail(e.target.value);
+  };
+  const handleChangeInputPassword = (e) => {
+    setPassword(e.target.value);
+  };
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    await login({
+      email: email,
+      password: password,
     });
-
-  function handleChange(event) {
-    const { name, value } = event.target;
-    setFormData({ ...formData, [name]: value });
-  }
-
-  function handleSubmit(event) {
-    event.preventDefault();
-
-    login(formData);
-  }
-
+    navigate("/landing");
+  };
   return (
-    <div>
-      <StyledForm onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: "40px"}}>
+    <div className="login-container">
+      <form onSubmit={handleSubmit} className="login-form">
         <Input
           name="email"
           type="email"
-          value={formData.email}
-          onChange={handleChange}
-          placeholder="my_mail@mail.com"
-          label="Email address"
+          value={email}
+          onChange={handleChangeInputEmail}
+          placeholder="example@mail.com"
+          label="Email"
         />
         <Input
           name="password"
           type="password"
-          value={formData.password}
-          onChange={handleChange}
+          value={password}
+          onChange={handleChangeInputPassword}
           placeholder="*******"
           label="Password"
         />
-        <StyledButton type="submit">Login</StyledButton>
-      </StyledForm>
+        <button type="submit">Login</button>
+      </form>
     </div>
   );
 }
