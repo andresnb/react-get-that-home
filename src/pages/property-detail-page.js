@@ -171,7 +171,8 @@ const PinkButton = styled("button")`
 
 function PropertyDetailPage() {
   const { id } = useParams();
-  const { savedProperties, setSavedProperties, user, userType, allProperties, setAllProperties} = useAuth();
+  const { savedProperties, setSavedProperties, user, userType,
+          allProperties, setAllProperties, myProperties } = useAuth();
   const [favoriteProperties, setFavoriteProperties] = useState( savedProperties.favorites || favoritesData);
   const [contactedProperties, setContactedProperties] = useState(savedProperties.contacted || contactedData);
 
@@ -182,6 +183,8 @@ function PropertyDetailPage() {
   const [contactedStatus, setContactedStatus] = useState(foundInContactedList.length == 1);
   let foundInFavoritesList = favoriteProperties.filter(property => property.id == id);
   const [favoriteStatus, setFavoriteStatus] = useState(foundInFavoritesList.length == 1);
+  let foundInMyPropertiesList = myProperties.active.filter(property => property.id == id);
+  const [isMyPropertyStatus, setIsMyPropertyStatus] = useState(foundInMyPropertiesList.length == 1);
 
 
   useEffect(() => {
@@ -277,7 +280,7 @@ function PropertyDetailPage() {
         </div>
       </DetailsCard>
 
-      {user && userType === "home-seeker" && contactedStatus == false ? (
+      {user && (userType === "home-seeker" || (userType === "landlord" && isMyPropertyStatus ===false)) && contactedStatus == false ? (
        <Wrapper1 style={{padding:"32px 16px", height: "100%", alignSelf: "flex-start", alignItems: "normal"}}>
         <LoggedInHomeseekerBox1>
           <PinkButton style={{ gap: "9px", width: "212px", height: "40px" }}>
@@ -302,7 +305,7 @@ function PropertyDetailPage() {
         </LoggedInHomeseekerBox1>
        </Wrapper1>
       ) :
-       user && userType === "home-seeker" && contactedStatus == true ? (
+       user && (userType === "home-seeker" || (userType === "landlord" && isMyPropertyStatus ===false)) && contactedStatus == true ? (
        <Wrapper1 style={{padding:"32px 16px", height: "100%", alignSelf: "flex-start", alignItems: "normal"}}>
         <LoggedInHomeseekerBox2>
           <Wrapper1 style={{ gap: "14.52px" }}>
@@ -337,7 +340,7 @@ function PropertyDetailPage() {
         </LoggedInHomeseekerBox2>
        </Wrapper1>
       ) :
-       user && userType === "landlord" ? (
+       user && userType === "landlord" && isMyPropertyStatus ===true ? (
        <Wrapper1 style={{ height: "100%", alignSelf: "flex-start", alignItems: "normal"}}>
         <LoggedInLandlordBox>
           <PinkButton style={{ gap: "11px", width: "188px", height: "40px" }}>

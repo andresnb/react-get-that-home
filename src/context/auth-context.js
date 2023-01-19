@@ -185,6 +185,58 @@ const propertiesData = [
   },
 ]
 
+const activeData = [
+  { name: 'Fransicsco de Paula Ugarriza 27',
+    operation_type: 'rent',
+    address: 'Fransicsco de Paula Ugarriza 27',
+    price: 250.00,
+    property_type: 'apartment',
+    bedrooms: 2,
+    bathrooms: 1,
+    area: 100,
+    pets: false,
+    status: true,
+    phone: '5983764478928',
+    description: '3 Bedroom/2 Bathroom apartment available for ASAP move-in! Apartment features hardwood floors throughout, virtual doorman, Central AC/heat, dishwasher and a microwave. The kitchen has custom cabinetry and the living room is big enough to fit a dinner table, a couch and a tv set up.',
+    favorite: false,
+    id: 4
+  },
+  { name: '86872 Jacob Gateway',
+    operation_type: 'rent',
+    address: '86872 Jacob Gateway',
+    price: 3000.00,
+    property_type: 'apartment',
+    bedrooms: 4,
+    bathrooms: 2,
+    area: 180,
+    pets: true,
+    status: true,
+    phone: '5983764478928',
+    description: '3 Bedroom/2 Bathroom apartment available for ASAP move-in! Apartment features hardwood floors throughout, virtual doorman, Central AC/heat, dishwasher and a microwave. The kitchen has custom cabinetry and the living room is big enough to fit a dinner table, a couch and a tv set up.',
+    favorite: false,
+    id: 5
+  }
+]
+
+const closedData = [
+  { name: 'Fransicsco de Paula Ugarriza 27',
+    operation_type: 'sale',
+    address: 'Fransicsco de Paula Ugarriza 27',
+    price: 80000,
+    property_type: 'house',
+    bedrooms: 2,
+    bathrooms: 1,
+    area: 150,
+    pets: false,
+    status: true,
+    phone: '5983764478928',
+    description: '3 Bedroom/2 Bathroom apartment available for ASAP move-in! Apartment features hardwood floors throughout, virtual doorman, Central AC/heat, dishwasher and a microwave. The kitchen has custom cabinetry and the living room is big enough to fit a dinner table, a couch and a tv set up.',
+    favorite: true,
+    id: 6,
+  },
+
+]
+
 const AuthContext = createContext();
 
 function AuthProvider(props) {
@@ -202,13 +254,14 @@ function AuthProvider(props) {
   });
 
   const [myProperties, setMyProperties] = useState({
-    active: "",
-    closed: ""
+    active: activeData,
+    closed: closedData
   });
   const [savedProperties, setSavedProperties] = useState({
     favorites: "",
     contacted: ""
   });
+
   const [allProperties, setAllProperties] = useState(propertiesData);
 
   const [displayedPropertiesType, setDisplayedPropertiesType] = useState("test");

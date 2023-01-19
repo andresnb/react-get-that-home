@@ -7,6 +7,7 @@ import LandingPage from "./pages/landing-page";
 import PropertyDetailPage from './pages/property-detail-page';
 import MyProperties from "./pages/my-properties-page.js";
 import SavedProperties from "./pages/saved-properties-page.js";
+import EditPropertyDetail from "./pages/edit-property-detail-page.js";
 import { useAuth } from "./context/auth-context";
 
 function App() {
@@ -22,7 +23,8 @@ function App() {
         <Route path = "/properties" element ={<ListViewPage />} />
         <Route path="/properties/:id" element={<PropertyDetailPage />} />
         <Route path="/my-properties" element={<MyProperties />} />
-        <Route path = "/saved-properties" element ={<SavedProperties />} />
+        <Route path="/saved-properties" element={<SavedProperties />} />
+        <Route path = "/edit-property-detail" element ={<EditPropertyDetail />} />
         <Route path="*" element={<LandingPage />} />
       </Routes>
     </div>
