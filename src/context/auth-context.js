@@ -244,6 +244,7 @@ function AuthProvider(props) {
     setSavedProperties,
     allProperties,
     setAllProperties
+
   };
 
   return <AuthContext.Provider value={value} {...props} />;

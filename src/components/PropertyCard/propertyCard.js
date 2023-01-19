@@ -1,8 +1,9 @@
-// import FooterCard from "./footerCard"
-// import { AiOutlineLeft, AiOutlineRight } from "react-icons/ai";
+import { Link } from "react-router-dom";
+import styled from 'styled-components';
 import { RiMoneyDollarCircleLine } from "react-icons/ri";
 import { BiBed, BiBath, BiArea } from "react-icons/bi";
 import { MdOutlinePets } from "react-icons/md";
+
 import { RiBuildingLine, RiUploadLine, RiDeleteBin6Line } from "react-icons/ri";
 import { BsHeartFill } from "react-icons/bs";
 import { BiEdit } from "react-icons/bi";

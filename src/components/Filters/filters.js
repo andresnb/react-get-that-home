@@ -249,7 +249,7 @@ const CheckDiv = styled.div`
             value={query}
             placeholder="Search by address"
             onChange={handleQuery}
-            id={"search-address"}
+            id="search-address"
             style={{width: "196px"}}
           />
 
