@@ -1,4 +1,4 @@
-import styled from "@emotion/styled";
+import styled from "styled-components";
 
 const StyledDiv = styled("div")`
   display: flex;
@@ -11,7 +11,7 @@ const StyledInput = styled("input")`
   text-align: center;
   width: 213px;
   height: 28px;
-  background: #FFFFFF;
+  background: #ffffff;
   box-shadow: 2px 2px 0px rgba(0, 0, 0, 0.25);
   border-radius: 4px;
   ::placeholder {
