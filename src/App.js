@@ -5,7 +5,6 @@ import LandingPage from "./pages/landing-page";
 import PropertyDetailPage from './pages/property-detail-page';
 import MyProperties from "./pages/my-properties-page.js";
 import SavedProperties from "./pages/saved-properties-page.js";
-import Navbar from './components/Navbar';
 import LoginForm from "./components/LoginForm/login-form";
 import SignUp from "./components/SignupForm/signup-form";
 import { useAuth } from "./context/auth-context";

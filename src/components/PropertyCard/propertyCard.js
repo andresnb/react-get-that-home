@@ -8,8 +8,6 @@ import { RiBuildingLine, RiUploadLine, RiDeleteBin6Line } from "react-icons/ri";
 import { BsHeartFill } from "react-icons/bs";
 import { BiEdit } from "react-icons/bi";
 import {AiOutlineCloseCircle} from "react-icons/ai"
-import styled from 'styled-components';
-import { Link } from "react-router-dom";
 import { useAuth } from "../../context/auth-context";
 
 const PropertyWrapper = styled.div`
